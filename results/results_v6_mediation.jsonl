@@ -1,0 +1,368 @@
+{"part": "readout", "cond": "floor", "arg": "France", "min_rank": 4}
+{"part": "readout", "cond": "floor", "arg": "Canada", "min_rank": 2}
+{"part": "readout", "cond": "floor", "arg": "China", "min_rank": 3}
+{"part": "readout", "cond": "floor", "arg": "Egypt", "min_rank": 13}
+{"part": "readout", "cond": "floor", "arg": "Japan", "min_rank": 26}
+{"part": "readout", "cond": "floor", "arg": "Germany", "min_rank": 5}
+{"part": "readout", "cond": "floor", "arg": "Italy", "min_rank": 8}
+{"part": "readout", "cond": "floor", "arg": "Spain", "min_rank": 55}
+{"part": "readout", "cond": "floor", "arg": "Russia", "min_rank": 9}
+{"part": "readout", "cond": "floor", "arg": "Turkey", "min_rank": 90}
+{"part": "readout", "cond": "floor", "arg": "Greece", "min_rank": 4}
+{"part": "readout", "cond": "floor", "arg": "Poland", "min_rank": 27}
+{"part": "readout", "cond": "floor", "arg": "Kenya", "min_rank": 8}
+{"part": "readout", "cond": "floor", "arg": "Peru", "min_rank": 28}
+{"part": "readout", "cond": "floor", "arg": "Thailand", "min_rank": 26}
+{"part": "readout", "cond": "floor", "arg": "Vietnam", "min_rank": 87}
+{"part": "readout", "cond": "phantom", "arg": "France", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Canada", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "China", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Egypt", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Japan", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Germany", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Italy", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Spain", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Russia", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Turkey", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Greece", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Poland", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Kenya", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Peru", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Thailand", "min_rank": 1}
+{"part": "readout", "cond": "phantom", "arg": "Vietnam", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "France", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Canada", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "China", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Egypt", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Japan", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Germany", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Italy", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Spain", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Russia", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Turkey", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Greece", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Poland", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Kenya", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Peru", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Thailand", "min_rank": 1}
+{"part": "readout", "cond": "text", "arg": "Vietnam", "min_rank": 1}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "France", "gold": "Paris", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "France", "gold": "Paris", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "France", "gold": "Paris", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "France", "gold": "Paris", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "France", "gold": "Paris", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Canada", "gold": "Ottawa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Canada", "gold": "Ottawa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Canada", "gold": "Ottawa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Canada", "gold": "Ottawa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Canada", "gold": "Ottawa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "China", "gold": "Beijing", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "China", "gold": "Beijing", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "China", "gold": "Beijing", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "China", "gold": "Beijing", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "China", "gold": "Beijing", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Egypt", "gold": "Cairo", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Egypt", "gold": "Cairo", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Egypt", "gold": "Cairo", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Egypt", "gold": "Cairo", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Egypt", "gold": "Cairo", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Japan", "gold": "Tokyo", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Japan", "gold": "Tokyo", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Japan", "gold": "Tokyo", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Japan", "gold": "Tokyo", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Japan", "gold": "Tokyo", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Germany", "gold": "Berlin", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Germany", "gold": "Berlin", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Germany", "gold": "Berlin", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Germany", "gold": "Berlin", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Germany", "gold": "Berlin", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Italy", "gold": "Rome", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Italy", "gold": "Rome", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Italy", "gold": "Rome", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Italy", "gold": "Rome", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Italy", "gold": "Rome", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Spain", "gold": "Madrid", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Spain", "gold": "Madrid", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Spain", "gold": "Madrid", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Spain", "gold": "Madrid", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Spain", "gold": "Madrid", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Russia", "gold": "Moscow", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Russia", "gold": "Moscow", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Russia", "gold": "Moscow", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Russia", "gold": "Moscow", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Russia", "gold": "Moscow", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Turkey", "gold": "Ankara", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Turkey", "gold": "Ankara", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Turkey", "gold": "Ankara", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Turkey", "gold": "Ankara", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Turkey", "gold": "Ankara", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Greece", "gold": "Athens", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Greece", "gold": "Athens", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Greece", "gold": "Athens", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Greece", "gold": "Athens", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Greece", "gold": "Athens", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Poland", "gold": "Warsaw", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Poland", "gold": "Warsaw", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Poland", "gold": "Warsaw", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Poland", "gold": "Warsaw", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Poland", "gold": "Warsaw", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Kenya", "gold": "Nairobi", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Kenya", "gold": "Nairobi", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Kenya", "gold": "Nairobi", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Kenya", "gold": "Nairobi", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Kenya", "gold": "Nairobi", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Peru", "gold": "Lima", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Peru", "gold": "Lima", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Peru", "gold": "Lima", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Peru", "gold": "Lima", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Peru", "gold": "Lima", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Thailand", "gold": "Bangkok", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Thailand", "gold": "Bangkok", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Thailand", "gold": "Bangkok", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Thailand", "gold": "Bangkok", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Thailand", "gold": "Bangkok", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "capital", "arg": "Vietnam", "gold": "Hanoi", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "capital", "arg": "Vietnam", "gold": "Hanoi", "gold_rank": 3, "hit": false}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "capital", "arg": "Vietnam", "gold": "Hanoi", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "capital", "arg": "Vietnam", "gold": "Hanoi", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "capital", "arg": "Vietnam", "gold": "Hanoi", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "France", "gold": "French", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "France", "gold": "French", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "France", "gold": "French", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "France", "gold": "French", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "France", "gold": "French", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Canada", "gold": "English", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Canada", "gold": "English", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Canada", "gold": "English", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Canada", "gold": "English", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Canada", "gold": "English", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "China", "gold": "Chinese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "China", "gold": "Chinese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "China", "gold": "Chinese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "China", "gold": "Chinese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "China", "gold": "Chinese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Egypt", "gold": "Arabic", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Egypt", "gold": "Arabic", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Egypt", "gold": "Arabic", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Egypt", "gold": "Arabic", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Egypt", "gold": "Arabic", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Japan", "gold": "Japanese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Japan", "gold": "Japanese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Japan", "gold": "Japanese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Japan", "gold": "Japanese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Japan", "gold": "Japanese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Germany", "gold": "German", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Germany", "gold": "German", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Germany", "gold": "German", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Germany", "gold": "German", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Germany", "gold": "German", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Italy", "gold": "Italian", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Italy", "gold": "Italian", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Italy", "gold": "Italian", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Italy", "gold": "Italian", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Italy", "gold": "Italian", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Spain", "gold": "Spanish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Spain", "gold": "Spanish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Spain", "gold": "Spanish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Spain", "gold": "Spanish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Spain", "gold": "Spanish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Russia", "gold": "Russian", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Russia", "gold": "Russian", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Russia", "gold": "Russian", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Russia", "gold": "Russian", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Russia", "gold": "Russian", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Turkey", "gold": "Turkish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Turkey", "gold": "Turkish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Turkey", "gold": "Turkish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Turkey", "gold": "Turkish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Turkey", "gold": "Turkish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Greece", "gold": "Greek", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Greece", "gold": "Greek", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Greece", "gold": "Greek", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Greece", "gold": "Greek", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Greece", "gold": "Greek", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Poland", "gold": "Polish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Poland", "gold": "Polish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Poland", "gold": "Polish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Poland", "gold": "Polish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Poland", "gold": "Polish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Kenya", "gold": "Swahili", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Kenya", "gold": "Swahili", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Kenya", "gold": "Swahili", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Kenya", "gold": "Swahili", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Kenya", "gold": "Swahili", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Peru", "gold": "Spanish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Peru", "gold": "Spanish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Peru", "gold": "Spanish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Peru", "gold": "Spanish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Peru", "gold": "Spanish", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Thailand", "gold": "Thai", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Thailand", "gold": "Thai", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Thailand", "gold": "Thai", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Thailand", "gold": "Thai", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Thailand", "gold": "Thai", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "language", "arg": "Vietnam", "gold": "Vietnamese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "language", "arg": "Vietnam", "gold": "Vietnamese", "gold_rank": 3, "hit": false}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "language", "arg": "Vietnam", "gold": "Vietnamese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "language", "arg": "Vietnam", "gold": "Vietnamese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "language", "arg": "Vietnam", "gold": "Vietnamese", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "France", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "France", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "France", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "France", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "France", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Canada", "gold": "North", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Canada", "gold": "North", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Canada", "gold": "North", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Canada", "gold": "North", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Canada", "gold": "North", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "China", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "China", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "China", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "China", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "China", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Egypt", "gold": "Africa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Egypt", "gold": "Africa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Egypt", "gold": "Africa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Egypt", "gold": "Africa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Egypt", "gold": "Africa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Japan", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Japan", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Japan", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Japan", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Japan", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Germany", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Germany", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Germany", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Germany", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Germany", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Italy", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Italy", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Italy", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Italy", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Italy", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Spain", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Spain", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Spain", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Spain", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Spain", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Russia", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Russia", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Russia", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Russia", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Russia", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Turkey", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Turkey", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Turkey", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Turkey", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Turkey", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Greece", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Greece", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Greece", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Greece", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Greece", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Poland", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Poland", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Poland", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Poland", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Poland", "gold": "Europe", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Kenya", "gold": "Africa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Kenya", "gold": "Africa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Kenya", "gold": "Africa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Kenya", "gold": "Africa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Kenya", "gold": "Africa", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Peru", "gold": "South", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Peru", "gold": "South", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Peru", "gold": "South", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Peru", "gold": "South", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Peru", "gold": "South", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Thailand", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Thailand", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Thailand", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Thailand", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Thailand", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "continent", "arg": "Vietnam", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "continent", "arg": "Vietnam", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "continent", "arg": "Vietnam", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "continent", "arg": "Vietnam", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "continent", "arg": "Vietnam", "gold": "Asia", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "France", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "France", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "France", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "France", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "France", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Canada", "gold": "Dollar", "gold_rank": 4, "hit": false}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Canada", "gold": "Dollar", "gold_rank": 4, "hit": false}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Canada", "gold": "Dollar", "gold_rank": 4, "hit": false}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Canada", "gold": "Dollar", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Canada", "gold": "Dollar", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "China", "gold": "Yuan", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "China", "gold": "Yuan", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "China", "gold": "Yuan", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "China", "gold": "Yuan", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "China", "gold": "Yuan", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Egypt", "gold": "Pound", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Egypt", "gold": "Pound", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Egypt", "gold": "Pound", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Egypt", "gold": "Pound", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Egypt", "gold": "Pound", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Japan", "gold": "Yen", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Japan", "gold": "Yen", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Japan", "gold": "Yen", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Japan", "gold": "Yen", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Japan", "gold": "Yen", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Germany", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Germany", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Germany", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Germany", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Germany", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Italy", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Italy", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Italy", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Italy", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Italy", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Spain", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Spain", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Spain", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Spain", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Spain", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Russia", "gold": "Ruble", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Russia", "gold": "Ruble", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Russia", "gold": "Ruble", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Russia", "gold": "Ruble", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Russia", "gold": "Ruble", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Turkey", "gold": "Lira", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Turkey", "gold": "Lira", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Turkey", "gold": "Lira", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Turkey", "gold": "Lira", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Turkey", "gold": "Lira", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Greece", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Greece", "gold": "Euro", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Greece", "gold": "Euro", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Greece", "gold": "Euro", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Greece", "gold": "Euro", "gold_rank": 3, "hit": false}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Poland", "gold": "Zloty", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Poland", "gold": "Zloty", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Poland", "gold": "Zloty", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Poland", "gold": "Zloty", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Poland", "gold": "Zloty", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Kenya", "gold": "Shilling", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Kenya", "gold": "Shilling", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Kenya", "gold": "Shilling", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Kenya", "gold": "Shilling", "gold_rank": 2, "hit": false}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Kenya", "gold": "Shilling", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Peru", "gold": "Sol", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Peru", "gold": "Sol", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Peru", "gold": "Sol", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Peru", "gold": "Sol", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Peru", "gold": "Sol", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Thailand", "gold": "Baht", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Thailand", "gold": "Baht", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Thailand", "gold": "Baht", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Thailand", "gold": "Baht", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Thailand", "gold": "Baht", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom", "func": "currency", "arg": "Vietnam", "gold": "Dong", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "phantom_erase", "func": "currency", "arg": "Vietnam", "gold": "Dong", "gold_rank": 4, "hit": false}
+{"part": "mediation", "exp": "phantom_ctrl", "func": "currency", "arg": "Vietnam", "gold": "Dong", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text", "func": "currency", "arg": "Vietnam", "gold": "Dong", "gold_rank": 1, "hit": true}
+{"part": "mediation", "exp": "text_erase", "func": "currency", "arg": "Vietnam", "gold": "Dong", "gold_rank": 1, "hit": true}

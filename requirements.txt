@@ -1,0 +1,5 @@
+torch
+transformers>=5.5
+numpy
+# plus the Jacobian lens reference implementation:
+# pip install git+https://github.com/anthropics/jacobian-lens

@@ -1,0 +1,768 @@
+{"func": "capital", "arg": "France", "k": 0, "target_pos": 0, "exp": "text", "gold": "Paris", "gold_rank": 1, "hit": true, "top5": [" Paris", " __", " London", " Lyon", "\n"]}
+{"func": "capital", "arg": "France", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Paris", "gold_rank": 1, "hit": true, "top5": [" Paris", " London", " Kin", " Ottawa", " New"]}
+{"func": "capital", "arg": "France", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Paris", "gold_rank": 1, "hit": true, "top5": [" Paris", " __", "...", ":", " ______"]}
+{"func": "capital", "arg": "Canada", "k": 0, "target_pos": 0, "exp": "text", "gold": "Ottawa", "gold_rank": 1, "hit": true, "top5": [" Ottawa", " Toronto", " Canada", " Quebec", " Montreal"]}
+{"func": "capital", "arg": "Canada", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Ottawa", "gold_rank": 1, "hit": true, "top5": [" Ottawa", " Kingston", " Toronto", " London", " ______"]}
+{"func": "capital", "arg": "Canada", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Ottawa", "gold_rank": 1, "hit": true, "top5": [" Ottawa", " ______", " Kingston", ".", " Toronto"]}
+{"func": "capital", "arg": "China", "k": 0, "target_pos": 0, "exp": "text", "gold": "Beijing", "gold_rank": 1, "hit": true, "top5": [" Beijing", " P", " Nan", " Shanghai", " Be"]}
+{"func": "capital", "arg": "China", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Beijing", "gold_rank": 1, "hit": true, "top5": [" Beijing", " London", " Ottawa", " ______", " Canberra"]}
+{"func": "capital", "arg": "China", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Beijing", "gold_rank": 1, "hit": true, "top5": [" Beijing", " Nan", " P", ".", " Hong"]}
+{"func": "capital", "arg": "Egypt", "k": 0, "target_pos": 0, "exp": "text", "gold": "Cairo", "gold_rank": 1, "hit": true, "top5": [" Cairo", " Alexandria", " **", " __", " the"]}
+{"func": "capital", "arg": "Egypt", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Cairo", "gold_rank": 1, "hit": true, "top5": [" Cairo", " Kin", " London", " Kingston", " New"]}
+{"func": "capital", "arg": "Egypt", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Cairo", "gold_rank": 1, "hit": true, "top5": [" Cairo", " Alexandria", " G", " Lux", " Kh"]}
+{"func": "capital", "arg": "Japan", "k": 0, "target_pos": 0, "exp": "text", "gold": "Tokyo", "gold_rank": 1, "hit": true, "top5": [" Tokyo", " Kyoto", "\n", " __", " Osaka"]}
+{"func": "capital", "arg": "Japan", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Tokyo", "gold_rank": 1, "hit": true, "top5": [" Tokyo", " London", " Seoul", " Kin", " Ottawa"]}
+{"func": "capital", "arg": "Japan", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Tokyo", "gold_rank": 1, "hit": true, "top5": [" Tokyo", " Kyoto", ".", "Tok", " N"]}
+{"func": "capital", "arg": "Germany", "k": 0, "target_pos": 0, "exp": "text", "gold": "Berlin", "gold_rank": 1, "hit": true, "top5": [" Berlin", " Bonn", " Munich", " Frankfurt", " __"]}
+{"func": "capital", "arg": "Germany", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Berlin", "gold_rank": 1, "hit": true, "top5": [" Berlin", " London", " Ottawa", " ______", " Bern"]}
+{"func": "capital", "arg": "Germany", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Berlin", "gold_rank": 1, "hit": true, "top5": [" Berlin", " Bonn", " ______", " __", "..."]}
+{"func": "capital", "arg": "Italy", "k": 0, "target_pos": 0, "exp": "text", "gold": "Rome", "gold_rank": 1, "hit": true, "top5": [" Rome", " Milan", " Florence", " Roma", " Naples"]}
+{"func": "capital", "arg": "Italy", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Rome", "gold_rank": 2, "hit": false, "top5": [" London", " Rome", " Paris", " ______", " Lisbon"]}
+{"func": "capital", "arg": "Italy", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Rome", "gold_rank": 1, "hit": true, "top5": [" Rome", ":", " R", " ______", "..."]}
+{"func": "capital", "arg": "Spain", "k": 0, "target_pos": 0, "exp": "text", "gold": "Madrid", "gold_rank": 1, "hit": true, "top5": [" Madrid", " Barcelona", " __", " Spain", " Se"]}
+{"func": "capital", "arg": "Spain", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Madrid", "gold_rank": 1, "hit": true, "top5": [" Madrid", " London", " Lisbon", " ______", " __"]}
+{"func": "capital", "arg": "Spain", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Madrid", "gold_rank": 1, "hit": true, "top5": [" Madrid", ":", " __", " ______", "..."]}
+{"func": "capital", "arg": "Russia", "k": 0, "target_pos": 0, "exp": "text", "gold": "Moscow", "gold_rank": 1, "hit": true, "top5": [" Moscow", " St", " __", " Saint", " Mos"]}
+{"func": "capital", "arg": "Russia", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Moscow", "gold_rank": 1, "hit": true, "top5": [" Moscow", " London", " Kiev", " New", " K"]}
+{"func": "capital", "arg": "Russia", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Moscow", "gold_rank": 1, "hit": true, "top5": [" Moscow", " St", " M", " __", " ______"]}
+{"func": "capital", "arg": "Turkey", "k": 0, "target_pos": 0, "exp": "text", "gold": "Ankara", "gold_rank": 1, "hit": true, "top5": [" Ankara", " Istanbul", " An", " Turkey", " __"]}
+{"func": "capital", "arg": "Turkey", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Ankara", "gold_rank": 1, "hit": true, "top5": [" Ankara", " London", " Istanbul", " An", " ______"]}
+{"func": "capital", "arg": "Turkey", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Ankara", "gold_rank": 1, "hit": true, "top5": [" Ankara", " An", " Istanbul", " ______", " __"]}
+{"func": "capital", "arg": "Greece", "k": 0, "target_pos": 0, "exp": "text", "gold": "Athens", "gold_rank": 1, "hit": true, "top5": [" Athens", " Th", " Ath", " __", " ______"]}
+{"func": "capital", "arg": "Greece", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Athens", "gold_rank": 1, "hit": true, "top5": [" Athens", " London", " N", " ______", " Th"]}
+{"func": "capital", "arg": "Greece", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Athens", "gold_rank": 1, "hit": true, "top5": [" Athens", "Ath", " Th", ".", " ______"]}
+{"func": "capital", "arg": "Poland", "k": 0, "target_pos": 0, "exp": "text", "gold": "Warsaw", "gold_rank": 1, "hit": true, "top5": [" Warsaw", " Krak", " W", " Warszawa", " __"]}
+{"func": "capital", "arg": "Poland", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Warsaw", "gold_rank": 1, "hit": true, "top5": [" Warsaw", " Krak", " London", " Cr", " W"]}
+{"func": "capital", "arg": "Poland", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Warsaw", "gold_rank": 1, "hit": true, "top5": [" Warsaw", " W", " Krak", ":", " __"]}
+{"func": "capital", "arg": "Kenya", "k": 0, "target_pos": 0, "exp": "text", "gold": "Nairobi", "gold_rank": 1, "hit": true, "top5": [" Nairobi", " N", " Kenya", " **", " Kamp"]}
+{"func": "capital", "arg": "Kenya", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Nairobi", "gold_rank": 1, "hit": true, "top5": [" Nairobi", " N", ".", ":", "..."]}
+{"func": "capital", "arg": "Kenya", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Nairobi", "gold_rank": 1, "hit": true, "top5": [" Nairobi", " N", ".", " Kenya", ":"]}
+{"func": "capital", "arg": "Peru", "k": 0, "target_pos": 0, "exp": "text", "gold": "Lima", "gold_rank": 1, "hit": true, "top5": [" Lima", " Lim", " Peru", " Are", " L"]}
+{"func": "capital", "arg": "Peru", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Lima", "gold_rank": 1, "hit": true, "top5": [" Lima", " L", ".", " Q", " La"]}
+{"func": "capital", "arg": "Peru", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Lima", "gold_rank": 1, "hit": true, "top5": [" Lima", " L", ".", " Are", " C"]}
+{"func": "capital", "arg": "Thailand", "k": 0, "target_pos": 0, "exp": "text", "gold": "Bangkok", "gold_rank": 1, "hit": true, "top5": [" Bangkok", " Bang", " ______", " Thailand", " __"]}
+{"func": "capital", "arg": "Thailand", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Bangkok", "gold_rank": 1, "hit": true, "top5": [" Bangkok", " N", " Ph", " V", " ______"]}
+{"func": "capital", "arg": "Thailand", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Bangkok", "gold_rank": 1, "hit": true, "top5": [" Bangkok", ".", " ______", "Bang", " Bang"]}
+{"func": "capital", "arg": "Vietnam", "k": 0, "target_pos": 0, "exp": "text", "gold": "Hanoi", "gold_rank": 1, "hit": true, "top5": [" H", " Ho", " Ha", " __", " ______"]}
+{"func": "capital", "arg": "Vietnam", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Hanoi", "gold_rank": 1, "hit": true, "top5": [" H", " Ph", " V", " ______", " Kin"]}
+{"func": "capital", "arg": "Vietnam", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Hanoi", "gold_rank": 1, "hit": true, "top5": [" H", " Saigon", " Ph", " Ho", " Ha"]}
+{"func": "language", "arg": "France", "k": 0, "target_pos": 0, "exp": "text", "gold": "French", "gold_rank": 1, "hit": true, "top5": [" French", " English", " the", " not", " __"]}
+{"func": "language", "arg": "France", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "French", "gold_rank": 1, "hit": true, "top5": [" French", " English", " Spanish", ":", " the"]}
+{"func": "language", "arg": "France", "k": 0, "target_pos": 0, "exp": "bound", "gold": "French", "gold_rank": 1, "hit": true, "top5": [" French", ":", " __", " known", " the"]}
+{"func": "language", "arg": "Canada", "k": 0, "target_pos": 0, "exp": "text", "gold": "English", "gold_rank": 1, "hit": true, "top5": [" English", " French", " not", " Canadian", " the"]}
+{"func": "language", "arg": "Canada", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "English", "gold_rank": 1, "hit": true, "top5": [" English", " French", " Spanish", ":", " not"]}
+{"func": "language", "arg": "Canada", "k": 0, "target_pos": 0, "exp": "bound", "gold": "English", "gold_rank": 1, "hit": true, "top5": [" English", " French", ":", " not", " ______"]}
+{"func": "language", "arg": "China", "k": 0, "target_pos": 0, "exp": "text", "gold": "Chinese", "gold_rank": 1, "hit": true, "top5": [" Chinese", " Mandarin", " English", " not", " the"]}
+{"func": "language", "arg": "China", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Chinese", "gold_rank": 2, "hit": false, "top5": [" English", " Chinese", " Spanish", " the", " French"]}
+{"func": "language", "arg": "China", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Chinese", "gold_rank": 1, "hit": true, "top5": [" Chinese", " Mandarin", " not", " English", ":"]}
+{"func": "language", "arg": "Egypt", "k": 0, "target_pos": 0, "exp": "text", "gold": "Arabic", "gold_rank": 1, "hit": true, "top5": [" Arabic", " English", " Egyptian", " not", " the"]}
+{"func": "language", "arg": "Egypt", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Arabic", "gold_rank": 2, "hit": false, "top5": [" English", " Arabic", " French", ":", " Spanish"]}
+{"func": "language", "arg": "Egypt", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Arabic", "gold_rank": 1, "hit": true, "top5": [" Arabic", " English", " Egyptian", ":", " the"]}
+{"func": "language", "arg": "Japan", "k": 0, "target_pos": 0, "exp": "text", "gold": "Japanese", "gold_rank": 1, "hit": true, "top5": [" Japanese", " English", " not", " the", " __"]}
+{"func": "language", "arg": "Japan", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Japanese", "gold_rank": 2, "hit": false, "top5": [" English", " Japanese", " Spanish", " the", " called"]}
+{"func": "language", "arg": "Japan", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Japanese", "gold_rank": 1, "hit": true, "top5": [" Japanese", " English", ":", " the", " called"]}
+{"func": "language", "arg": "Germany", "k": 0, "target_pos": 0, "exp": "text", "gold": "German", "gold_rank": 1, "hit": true, "top5": [" German", " English", " the", " not", " Spanish"]}
+{"func": "language", "arg": "Germany", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "German", "gold_rank": 1, "hit": true, "top5": [" German", " English", " Dutch", " French", " the"]}
+{"func": "language", "arg": "Germany", "k": 0, "target_pos": 0, "exp": "bound", "gold": "German", "gold_rank": 1, "hit": true, "top5": [" German", ":", " English", " the", " Standard"]}
+{"func": "language", "arg": "Italy", "k": 0, "target_pos": 0, "exp": "text", "gold": "Italian", "gold_rank": 1, "hit": true, "top5": [" Italian", " English", " Spanish", " the", " not"]}
+{"func": "language", "arg": "Italy", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Italian", "gold_rank": 2, "hit": false, "top5": [" English", " Italian", " Spanish", " French", ":"]}
+{"func": "language", "arg": "Italy", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Italian", "gold_rank": 1, "hit": true, "top5": [" Italian", ":", " English", " not", " the"]}
+{"func": "language", "arg": "Spain", "k": 0, "target_pos": 0, "exp": "text", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " Cast", " English", " not", " the"]}
+{"func": "language", "arg": "Spain", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " English", ":", " Portuguese", " the"]}
+{"func": "language", "arg": "Spain", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", ":", " Cast", " the", " not"]}
+{"func": "language", "arg": "Russia", "k": 0, "target_pos": 0, "exp": "text", "gold": "Russian", "gold_rank": 1, "hit": true, "top5": [" Russian", " English", " not", " the", " __"]}
+{"func": "language", "arg": "Russia", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Russian", "gold_rank": 2, "hit": false, "top5": [" English", " Russian", " Spanish", " French", " German"]}
+{"func": "language", "arg": "Russia", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Russian", "gold_rank": 1, "hit": true, "top5": [" Russian", ":", " English", " the", " not"]}
+{"func": "language", "arg": "Turkey", "k": 0, "target_pos": 0, "exp": "text", "gold": "Turkish", "gold_rank": 1, "hit": true, "top5": [" Turkish", " English", " not", " the", " Arabic"]}
+{"func": "language", "arg": "Turkey", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Turkish", "gold_rank": 2, "hit": false, "top5": [" English", " Turkish", " Spanish", " French", " not"]}
+{"func": "language", "arg": "Turkey", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Turkish", "gold_rank": 1, "hit": true, "top5": [" Turkish", " English", ":", " not", " the"]}
+{"func": "language", "arg": "Greece", "k": 0, "target_pos": 0, "exp": "text", "gold": "Greek", "gold_rank": 1, "hit": true, "top5": [" Greek", " English", " not", " the", " Modern"]}
+{"func": "language", "arg": "Greece", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Greek", "gold_rank": 1, "hit": true, "top5": [" English", " Greek", " French", ":", " not"]}
+{"func": "language", "arg": "Greece", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Greek", "gold_rank": 1, "hit": true, "top5": [" Greek", ":", " English", " Modern", " Ancient"]}
+{"func": "language", "arg": "Poland", "k": 0, "target_pos": 0, "exp": "text", "gold": "Polish", "gold_rank": 1, "hit": true, "top5": [" Polish", " English", " the", " not", " Poland"]}
+{"func": "language", "arg": "Poland", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Polish", "gold_rank": 1, "hit": true, "top5": [" Polish", " English", " German", ":", " the"]}
+{"func": "language", "arg": "Poland", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Polish", "gold_rank": 1, "hit": true, "top5": [" Polish", ":", " English", " the", " called"]}
+{"func": "language", "arg": "Kenya", "k": 0, "target_pos": 0, "exp": "text", "gold": "Swahili", "gold_rank": 1, "hit": true, "top5": [" English", " Sw", " not", " Kis", " the"]}
+{"func": "language", "arg": "Kenya", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Swahili", "gold_rank": 1, "hit": true, "top5": [" Sw", " English", ":", " not", " the"]}
+{"func": "language", "arg": "Kenya", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Swahili", "gold_rank": 1, "hit": true, "top5": [" English", " Sw", ":", " Kis", " not"]}
+{"func": "language", "arg": "Peru", "k": 0, "target_pos": 0, "exp": "text", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " Que", " not", " English", " the"]}
+{"func": "language", "arg": "Peru", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " Que", " English", ":", " Portuguese"]}
+{"func": "language", "arg": "Peru", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " Que", ":", " not", "\n"]}
+{"func": "language", "arg": "Thailand", "k": 0, "target_pos": 0, "exp": "text", "gold": "Thai", "gold_rank": 1, "hit": true, "top5": [" Thai", " English", " the", " not", " also"]}
+{"func": "language", "arg": "Thailand", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Thai", "gold_rank": 2, "hit": false, "top5": [" English", " Thai", " the", " Bur", " called"]}
+{"func": "language", "arg": "Thailand", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Thai", "gold_rank": 1, "hit": true, "top5": [" Thai", " English", " the", ":", " called"]}
+{"func": "language", "arg": "Vietnam", "k": 0, "target_pos": 0, "exp": "text", "gold": "Vietnamese", "gold_rank": 1, "hit": true, "top5": [" Vietnamese", " English", " the", " not", " French"]}
+{"func": "language", "arg": "Vietnam", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Vietnamese", "gold_rank": 2, "hit": false, "top5": [" English", " Vietnamese", " French", " Spanish", " the"]}
+{"func": "language", "arg": "Vietnam", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Vietnamese", "gold_rank": 1, "hit": true, "top5": [" Vietnamese", " English", " French", " Spanish", " the"]}
+{"func": "continent", "arg": "France", "k": 0, "target_pos": 0, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " North", " which", " __"]}
+{"func": "continent", "arg": "France", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " North", " Asia", " ______"]}
+{"func": "continent", "arg": "France", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", ":", "...", " ______", "\n"]}
+{"func": "continent", "arg": "Canada", "k": 0, "target_pos": 0, "exp": "text", "gold": "North", "gold_rank": 1, "hit": true, "top5": [" North", " Europe", " the", " Canada", " ______"]}
+{"func": "continent", "arg": "Canada", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "North", "gold_rank": 1, "hit": true, "top5": [" North", " Africa", " Europe", " South", " Asia"]}
+{"func": "continent", "arg": "Canada", "k": 0, "target_pos": 0, "exp": "bound", "gold": "North", "gold_rank": 1, "hit": true, "top5": [" North", ":", "\n", "...", " ______"]}
+{"func": "continent", "arg": "China", "k": 0, "target_pos": 0, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Europe", " Euras", " East", " Africa"]}
+{"func": "continent", "arg": "China", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Africa", " Asia", " Europe", " North", " Australia"]}
+{"func": "continent", "arg": "China", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " ______", " __", "\n", ":"]}
+{"func": "continent", "arg": "Egypt", "k": 0, "target_pos": 0, "exp": "text", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " Asia", " North", " the", " which"]}
+{"func": "continent", "arg": "Egypt", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " Europe", " ______", "...", ":"]}
+{"func": "continent", "arg": "Egypt", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", "...", ":", "\n", " ______"]}
+{"func": "continent", "arg": "Japan", "k": 0, "target_pos": 0, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " East", " North", " Europe", " Oce"]}
+{"func": "continent", "arg": "Japan", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Europe", " ______", "...", ":"]}
+{"func": "continent", "arg": "Japan", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", ":", " ______", "\n", "..."]}
+{"func": "continent", "arg": "Germany", "k": 0, "target_pos": 0, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " North", " ______", " __", " which"]}
+{"func": "continent", "arg": "Germany", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " North", " ______", "..."]}
+{"func": "continent", "arg": "Germany", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " ______", ":", "...", "\n"]}
+{"func": "continent", "arg": "Italy", "k": 0, "target_pos": 0, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " South", " which", " __"]}
+{"func": "continent", "arg": "Italy", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " ______", "...", ":"]}
+{"func": "continent", "arg": "Italy", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", ":", " ______", "\n", " which"]}
+{"func": "continent", "arg": "Spain", "k": 0, "target_pos": 0, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " South", " Spain", " which", " Africa"]}
+{"func": "continent", "arg": "Spain", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " ______", ":", "..."]}
+{"func": "continent", "arg": "Spain", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", ":", " ______", "...", "\n"]}
+{"func": "continent", "arg": "Russia", "k": 0, "target_pos": 0, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Asia", " Euras", " North", " Russia"]}
+{"func": "continent", "arg": "Russia", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Asia", " Africa", " North", " ______"]}
+{"func": "continent", "arg": "Russia", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Euras", " Asia", ":", " ______"]}
+{"func": "continent", "arg": "Turkey", "k": 0, "target_pos": 0, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Europe", " Euras", " which", " the"]}
+{"func": "continent", "arg": "Turkey", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " Asia", " ______", "..."]}
+{"func": "continent", "arg": "Turkey", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Europe", " Euras", ":", " which"]}
+{"func": "continent", "arg": "Greece", "k": 0, "target_pos": 0, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Asia", " Euras", " Africa", " which"]}
+{"func": "continent", "arg": "Greece", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " ______", " Asia", "..."]}
+{"func": "continent", "arg": "Greece", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", ":", " ______", "...", " which"]}
+{"func": "continent", "arg": "Poland", "k": 0, "target_pos": 0, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Eastern", " Euras", " Europa", " __"]}
+{"func": "continent", "arg": "Poland", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", ":", " ______", "...", "\n"]}
+{"func": "continent", "arg": "Poland", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", ":", "\n", "...", " ______"]}
+{"func": "continent", "arg": "Kenya", "k": 0, "target_pos": 0, "exp": "text", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " which", " __", " the", " East"]}
+{"func": "continent", "arg": "Kenya", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", "...", " ______", " __", ":"]}
+{"func": "continent", "arg": "Kenya", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", "...", " __", ":", "\n"]}
+{"func": "continent", "arg": "Peru", "k": 0, "target_pos": 0, "exp": "text", "gold": "South", "gold_rank": 1, "hit": true, "top5": [" South", " North", " S", " the", "\n"]}
+{"func": "continent", "arg": "Peru", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "South", "gold_rank": 1, "hit": true, "top5": [" South", " North", " Africa", "...", ":"]}
+{"func": "continent", "arg": "Peru", "k": 0, "target_pos": 0, "exp": "bound", "gold": "South", "gold_rank": 1, "hit": true, "top5": [" South", ":", "...", "\n", " ______"]}
+{"func": "continent", "arg": "Thailand", "k": 0, "target_pos": 0, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Southeast", " __", " ______", " South"]}
+{"func": "continent", "arg": "Thailand", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Africa", " ______", " Australia", "..."]}
+{"func": "continent", "arg": "Thailand", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Southeast", " ______", ":", "\n"]}
+{"func": "continent", "arg": "Vietnam", "k": 0, "target_pos": 0, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Southeast", " __", " ______", " the"]}
+{"func": "continent", "arg": "Vietnam", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Africa", " ______", ":", "..."]}
+{"func": "continent", "arg": "Vietnam", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Southeast", ":", " ______", "..."]}
+{"func": "currency", "arg": "France", "k": 0, "target_pos": 0, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " French", " franc", " Franc"]}
+{"func": "currency", "arg": "France", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Euro", "gold_rank": 11, "hit": false, "top5": [" \"", " franc", " K", " Franc", " '"]}
+{"func": "currency", "arg": "France", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " Euro", " franc", " Franc", " \""]}
+{"func": "currency", "arg": "Canada", "k": 0, "target_pos": 0, "exp": "text", "gold": "Dollar", "gold_rank": 2, "hit": false, "top5": [" Canadian", " dollar", " CAD", " **", " Dollar"]}
+{"func": "currency", "arg": "Canada", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Dollar", "gold_rank": 3, "hit": false, "top5": [" \"", " K", " dollar", " Canadian", " k"]}
+{"func": "currency", "arg": "Canada", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Dollar", "gold_rank": 4, "hit": false, "top5": [" Canadian", " \"", " Can", " dollar", " can"]}
+{"func": "currency", "arg": "China", "k": 0, "target_pos": 0, "exp": "text", "gold": "Yuan", "gold_rank": 1, "hit": true, "top5": [" yuan", " Ren", " Yuan", " R", " Chinese"]}
+{"func": "currency", "arg": "China", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Yuan", "gold_rank": 2, "hit": false, "top5": [" \"", " yuan", " dollar", " Yuan", " '"]}
+{"func": "currency", "arg": "China", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Yuan", "gold_rank": 1, "hit": true, "top5": [" yuan", " Yuan", " ren", " R", " \""]}
+{"func": "currency", "arg": "Egypt", "k": 0, "target_pos": 0, "exp": "text", "gold": "Pound", "gold_rank": 2, "hit": false, "top5": [" Egyptian", " pound", " Pound", " **", " E"]}
+{"func": "currency", "arg": "Egypt", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Pound", "gold_rank": 9, "hit": false, "top5": [" \"", " dollar", " K", " k", " '"]}
+{"func": "currency", "arg": "Egypt", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Pound", "gold_rank": 1, "hit": true, "top5": [" pound", " Egyptian", " \"", " Pound", " E"]}
+{"func": "currency", "arg": "Japan", "k": 0, "target_pos": 0, "exp": "text", "gold": "Yen", "gold_rank": 1, "hit": true, "top5": [" Yen", " yen", " Japanese", " Y", " __"]}
+{"func": "currency", "arg": "Japan", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Yen", "gold_rank": 4, "hit": false, "top5": [" \"", " K", " dollar", " yen", " '"]}
+{"func": "currency", "arg": "Japan", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Yen", "gold_rank": 1, "hit": true, "top5": [" yen", " Yen", " Y", " \"", " y"]}
+{"func": "currency", "arg": "Germany", "k": 0, "target_pos": 0, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " German", " Deutsche", " __"]}
+{"func": "currency", "arg": "Germany", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Euro", "gold_rank": 6, "hit": false, "top5": [" \"", " K", " '", " Kevin", " k"]}
+{"func": "currency", "arg": "Germany", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " Deutsche", " Mark", " German"]}
+{"func": "currency", "arg": "Italy", "k": 0, "target_pos": 0, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " L", " Italian", " __"]}
+{"func": "currency", "arg": "Italy", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Euro", "gold_rank": 7, "hit": false, "top5": [" \"", " K", " '", " Kevin", " k"]}
+{"func": "currency", "arg": "Italy", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " lira", " L", " Euro", " \""]}
+{"func": "currency", "arg": "Spain", "k": 0, "target_pos": 0, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " Spanish", " __", " Peso"]}
+{"func": "currency", "arg": "Spain", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Euro", "gold_rank": 4, "hit": false, "top5": [" \"", " K", " '", " Euro", " euro"]}
+{"func": "currency", "arg": "Spain", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " pes", " Euro", " \"", " Spanish"]}
+{"func": "currency", "arg": "Russia", "k": 0, "target_pos": 0, "exp": "text", "gold": "Ruble", "gold_rank": 1, "hit": true, "top5": [" rub", " Rub", " Russian", " r", " R"]}
+{"func": "currency", "arg": "Russia", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Ruble", "gold_rank": 7, "hit": false, "top5": [" \"", " K", " dollar", " k", " kron"]}
+{"func": "currency", "arg": "Russia", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Ruble", "gold_rank": 1, "hit": true, "top5": [" rub", " Rub", " r", " R", " \""]}
+{"func": "currency", "arg": "Turkey", "k": 0, "target_pos": 0, "exp": "text", "gold": "Lira", "gold_rank": 2, "hit": false, "top5": [" Turkish", " L", " lira", " l", " **"]}
+{"func": "currency", "arg": "Turkey", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Lira", "gold_rank": 7, "hit": false, "top5": [" \"", " dollar", " K", " k", " '"]}
+{"func": "currency", "arg": "Turkey", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Lira", "gold_rank": 1, "hit": true, "top5": [" L", " lira", " Turkish", " \"", " l"]}
+{"func": "currency", "arg": "Greece", "k": 0, "target_pos": 0, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " Euro", " dr", " Greek", " Dr"]}
+{"func": "currency", "arg": "Greece", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Euro", "gold_rank": 10, "hit": false, "top5": [" \"", " K", " dr", " '", " k"]}
+{"func": "currency", "arg": "Greece", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Euro", "gold_rank": 3, "hit": false, "top5": [" dr", " Dr", " euro", " \"", " Euro"]}
+{"func": "currency", "arg": "Poland", "k": 0, "target_pos": 0, "exp": "text", "gold": "Zloty", "gold_rank": 1, "hit": true, "top5": [" Z", " z", " Polish", " z\u0142ot", " **"]}
+{"func": "currency", "arg": "Poland", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Zloty", "gold_rank": 2, "hit": false, "top5": [" \"", " z", " Z", " K", " k"]}
+{"func": "currency", "arg": "Poland", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Zloty", "gold_rank": 1, "hit": true, "top5": [" z", " Z", " z\u0142ot", " Polish", " \""]}
+{"func": "currency", "arg": "Kenya", "k": 0, "target_pos": 0, "exp": "text", "gold": "Shilling", "gold_rank": 2, "hit": false, "top5": [" Ken", " sh", " Kenya", " Sh", " K"]}
+{"func": "currency", "arg": "Kenya", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Shilling", "gold_rank": 3, "hit": false, "top5": [" Ken", " Kenya", " K", " sh", " Kw"]}
+{"func": "currency", "arg": "Kenya", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Shilling", "gold_rank": 3, "hit": false, "top5": [" Ken", " Kenya", " sh", " Sh", " K"]}
+{"func": "currency", "arg": "Peru", "k": 0, "target_pos": 0, "exp": "text", "gold": "Sol", "gold_rank": 1, "hit": true, "top5": [" Sol", " sol", " Nuevo", " Per", " New"]}
+{"func": "currency", "arg": "Peru", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Sol", "gold_rank": 28, "hit": false, "top5": [" \"", " dollar", " Per", " Peso", " peso"]}
+{"func": "currency", "arg": "Peru", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Sol", "gold_rank": 1, "hit": true, "top5": [" sol", " Sol", " Nuevo", " \"", " so"]}
+{"func": "currency", "arg": "Thailand", "k": 0, "target_pos": 0, "exp": "text", "gold": "Baht", "gold_rank": 1, "hit": true, "top5": [" ba", " Ba", " Thai", " **", " ___"]}
+{"func": "currency", "arg": "Thailand", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Baht", "gold_rank": 2, "hit": false, "top5": [" \"", " ba", " K", " Thai", " Ba"]}
+{"func": "currency", "arg": "Thailand", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Baht", "gold_rank": 1, "hit": true, "top5": [" ba", " Ba", " Thai", " \"", " TH"]}
+{"func": "currency", "arg": "Vietnam", "k": 0, "target_pos": 0, "exp": "text", "gold": "Dong", "gold_rank": 1, "hit": true, "top5": [" Dong", " Vietnamese", " dong", " \u0111\u1ed3ng", " __"]}
+{"func": "currency", "arg": "Vietnam", "k": 0, "target_pos": 0, "exp": "unbound", "gold": "Dong", "gold_rank": 8, "hit": false, "top5": [" \"", " dollar", " K", " Dollar", " '"]}
+{"func": "currency", "arg": "Vietnam", "k": 0, "target_pos": 0, "exp": "bound", "gold": "Dong", "gold_rank": 1, "hit": true, "top5": [" dong", " \"", " K", " Dong", " k"]}
+{"func": "capital", "arg": "France", "k": 4, "target_pos": 3, "exp": "text", "gold": "Paris", "gold_rank": 1, "hit": true, "top5": [" Paris", " __", " which", "\n", " ______"]}
+{"func": "capital", "arg": "France", "k": 4, "target_pos": 3, "exp": "unbound", "gold": "Paris", "gold_rank": 20, "hit": false, "top5": [" Nairobi", " London", ".", " N", " Kin"]}
+{"func": "capital", "arg": "France", "k": 4, "target_pos": 3, "exp": "bound", "gold": "Paris", "gold_rank": 1, "hit": true, "top5": [" Paris", ":", " __", " ______", "..."]}
+{"func": "capital", "arg": "Canada", "k": 4, "target_pos": 0, "exp": "text", "gold": "Ottawa", "gold_rank": 1, "hit": true, "top5": [" Ottawa", " Toronto", " which", " ______", " ["]}
+{"func": "capital", "arg": "Canada", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Ottawa", "gold_rank": 1, "hit": true, "top5": [" Ottawa", " London", " Nairobi", " Kin", "."]}
+{"func": "capital", "arg": "Canada", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Ottawa", "gold_rank": 1, "hit": true, "top5": [" Ottawa", " Canada", " Quebec", " Toronto", ":"]}
+{"func": "capital", "arg": "China", "k": 4, "target_pos": 1, "exp": "text", "gold": "Beijing", "gold_rank": 1, "hit": true, "top5": [" Beijing", "\n", " [", " __", " P"]}
+{"func": "capital", "arg": "China", "k": 4, "target_pos": 1, "exp": "unbound", "gold": "Beijing", "gold_rank": 2, "hit": false, "top5": [" London", " Beijing", " Cairo", " ______", " Kin"]}
+{"func": "capital", "arg": "China", "k": 4, "target_pos": 1, "exp": "bound", "gold": "Beijing", "gold_rank": 1, "hit": true, "top5": [" Beijing", " Nan", " Shanghai", ":", " P"]}
+{"func": "capital", "arg": "Egypt", "k": 4, "target_pos": 4, "exp": "text", "gold": "Cairo", "gold_rank": 1, "hit": true, "top5": [" Cairo", " Alexandria", " [", " Lux", " which"]}
+{"func": "capital", "arg": "Egypt", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Cairo", "gold_rank": 39, "hit": false, "top5": [" H", " London", " Kin", " Paris", " Moscow"]}
+{"func": "capital", "arg": "Egypt", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Cairo", "gold_rank": 1, "hit": true, "top5": [" Cairo", " Alexandria", " Lux", " G", ":"]}
+{"func": "capital", "arg": "Japan", "k": 4, "target_pos": 0, "exp": "text", "gold": "Tokyo", "gold_rank": 1, "hit": true, "top5": [" Tokyo", " Kyoto", "\n", " __", " ["]}
+{"func": "capital", "arg": "Japan", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Tokyo", "gold_rank": 7, "hit": false, "top5": [" London", " Nairobi", " Kin", "...", " Ottawa"]}
+{"func": "capital", "arg": "Japan", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Tokyo", "gold_rank": 1, "hit": true, "top5": [" Tokyo", " London", " Kyoto", " S", " Osaka"]}
+{"func": "capital", "arg": "Germany", "k": 4, "target_pos": 0, "exp": "text", "gold": "Berlin", "gold_rank": 1, "hit": true, "top5": [" Berlin", " __", " Munich", " [", " ______"]}
+{"func": "capital", "arg": "Germany", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Berlin", "gold_rank": 8, "hit": false, "top5": [" London", " Nairobi", " Ottawa", " Kin", " ______"]}
+{"func": "capital", "arg": "Germany", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Berlin", "gold_rank": 1, "hit": true, "top5": [" Berlin", " Bonn", " Munich", " Frankfurt", " __"]}
+{"func": "capital", "arg": "Italy", "k": 4, "target_pos": 2, "exp": "text", "gold": "Rome", "gold_rank": 1, "hit": true, "top5": [" Rome", " Milan", " Florence", " Naples", " Venice"]}
+{"func": "capital", "arg": "Italy", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "Rome", "gold_rank": 16, "hit": false, "top5": [" London", " Beijing", " Madrid", " Moscow", " Paris"]}
+{"func": "capital", "arg": "Italy", "k": 4, "target_pos": 2, "exp": "bound", "gold": "Rome", "gold_rank": 1, "hit": true, "top5": [" Rome", " Milan", ":", " ______", "."]}
+{"func": "capital", "arg": "Spain", "k": 4, "target_pos": 4, "exp": "text", "gold": "Madrid", "gold_rank": 1, "hit": true, "top5": [" Madrid", " __", " Barcelona", " ______", "\n"]}
+{"func": "capital", "arg": "Spain", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Madrid", "gold_rank": 8, "hit": false, "top5": [" London", " Bangkok", " Tokyo", " ______", "..."]}
+{"func": "capital", "arg": "Spain", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Madrid", "gold_rank": 1, "hit": true, "top5": [" Madrid", ":", " ______", " __", " Barcelona"]}
+{"func": "capital", "arg": "Russia", "k": 4, "target_pos": 1, "exp": "text", "gold": "Moscow", "gold_rank": 1, "hit": true, "top5": [" Moscow", " __", " [", " ______", "\n"]}
+{"func": "capital", "arg": "Russia", "k": 4, "target_pos": 1, "exp": "unbound", "gold": "Moscow", "gold_rank": 3, "hit": false, "top5": [" London", " Beijing", " Moscow", " Paris", "..."]}
+{"func": "capital", "arg": "Russia", "k": 4, "target_pos": 1, "exp": "bound", "gold": "Moscow", "gold_rank": 1, "hit": true, "top5": [" Moscow", ":", " ______", " __", "\n"]}
+{"func": "capital", "arg": "Turkey", "k": 4, "target_pos": 1, "exp": "text", "gold": "Ankara", "gold_rank": 1, "hit": true, "top5": [" Ankara", " Istanbul", " An", " __", " ______"]}
+{"func": "capital", "arg": "Turkey", "k": 4, "target_pos": 1, "exp": "unbound", "gold": "Ankara", "gold_rank": 6, "hit": false, "top5": [" Ottawa", " London", " Kin", " ______", "..."]}
+{"func": "capital", "arg": "Turkey", "k": 4, "target_pos": 1, "exp": "bound", "gold": "Ankara", "gold_rank": 1, "hit": true, "top5": [" Ankara", " Istanbul", " ______", ":", " An"]}
+{"func": "capital", "arg": "Greece", "k": 4, "target_pos": 2, "exp": "text", "gold": "Athens", "gold_rank": 1, "hit": true, "top5": [" Athens", " Th", " [", " __", " which"]}
+{"func": "capital", "arg": "Greece", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "Athens", "gold_rank": 71, "hit": false, "top5": [" Ottawa", " Nairobi", ".", " London", " Kin"]}
+{"func": "capital", "arg": "Greece", "k": 4, "target_pos": 2, "exp": "bound", "gold": "Athens", "gold_rank": 1, "hit": true, "top5": [" Athens", " Th", ":", ".", " ______"]}
+{"func": "capital", "arg": "Poland", "k": 4, "target_pos": 4, "exp": "text", "gold": "Warsaw", "gold_rank": 1, "hit": true, "top5": [" Warsaw", " W", " Krak", " __", " ["]}
+{"func": "capital", "arg": "Poland", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Warsaw", "gold_rank": 45, "hit": false, "top5": [" Nairobi", " London", " Ankara", " Ottawa", " Kin"]}
+{"func": "capital", "arg": "Poland", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Warsaw", "gold_rank": 1, "hit": true, "top5": [" Warsaw", " Krak", " W", " Poz", " G"]}
+{"func": "capital", "arg": "Kenya", "k": 4, "target_pos": 2, "exp": "text", "gold": "Nairobi", "gold_rank": 1, "hit": true, "top5": [" Nairobi", " __", ".", "\n", " N"]}
+{"func": "capital", "arg": "Kenya", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "Nairobi", "gold_rank": 3, "hit": false, "top5": [" Tokyo", " London", " Nairobi", " ______", "..."]}
+{"func": "capital", "arg": "Kenya", "k": 4, "target_pos": 2, "exp": "bound", "gold": "Nairobi", "gold_rank": 1, "hit": true, "top5": [" Nairobi", " N", ".", " __", ":"]}
+{"func": "capital", "arg": "Peru", "k": 4, "target_pos": 4, "exp": "text", "gold": "Lima", "gold_rank": 1, "hit": true, "top5": [" Lima", " ______", " __", " C", " Lim"]}
+{"func": "capital", "arg": "Peru", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Lima", "gold_rank": 3, "hit": false, "top5": [" London", " ______", " Lima", " Ottawa", "."]}
+{"func": "capital", "arg": "Peru", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Lima", "gold_rank": 1, "hit": true, "top5": [" Lima", " Q", " Are", ":", " C"]}
+{"func": "capital", "arg": "Thailand", "k": 4, "target_pos": 1, "exp": "text", "gold": "Bangkok", "gold_rank": 1, "hit": true, "top5": [" Bangkok", " ______", " ____", " __", "\n"]}
+{"func": "capital", "arg": "Thailand", "k": 4, "target_pos": 1, "exp": "unbound", "gold": "Bangkok", "gold_rank": 13, "hit": false, "top5": [" London", " Ottawa", " Berlin", " Paris", "."]}
+{"func": "capital", "arg": "Thailand", "k": 4, "target_pos": 1, "exp": "bound", "gold": "Bangkok", "gold_rank": 1, "hit": true, "top5": [" Bangkok", " ______", ".", ":", " N"]}
+{"func": "capital", "arg": "Vietnam", "k": 4, "target_pos": 3, "exp": "text", "gold": "Hanoi", "gold_rank": 1, "hit": true, "top5": [" H", " Ha", " Ho", " ______", " __"]}
+{"func": "capital", "arg": "Vietnam", "k": 4, "target_pos": 3, "exp": "unbound", "gold": "Hanoi", "gold_rank": 5, "hit": false, "top5": [" Moscow", " London", ".", " Kin", " H"]}
+{"func": "capital", "arg": "Vietnam", "k": 4, "target_pos": 3, "exp": "bound", "gold": "Hanoi", "gold_rank": 1, "hit": true, "top5": [" H", " Ha", " ______", ".", " Ho"]}
+{"func": "language", "arg": "France", "k": 4, "target_pos": 2, "exp": "text", "gold": "French", "gold_rank": 1, "hit": true, "top5": [" French", " English", " __", " not", " the"]}
+{"func": "language", "arg": "France", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "French", "gold_rank": 2, "hit": false, "top5": [" English", " French", " German", " Spanish", ":"]}
+{"func": "language", "arg": "France", "k": 4, "target_pos": 2, "exp": "bound", "gold": "French", "gold_rank": 1, "hit": true, "top5": [" French", ":", " the", " __", " not"]}
+{"func": "language", "arg": "Canada", "k": 4, "target_pos": 1, "exp": "text", "gold": "English", "gold_rank": 1, "hit": true, "top5": [" English", " French", " Canadian", " the", " __"]}
+{"func": "language", "arg": "Canada", "k": 4, "target_pos": 1, "exp": "unbound", "gold": "English", "gold_rank": 1, "hit": true, "top5": [" English", " French", " not", " Spanish", " the"]}
+{"func": "language", "arg": "Canada", "k": 4, "target_pos": 1, "exp": "bound", "gold": "English", "gold_rank": 1, "hit": true, "top5": [" French", " English", " the", " not", ":"]}
+{"func": "language", "arg": "China", "k": 4, "target_pos": 3, "exp": "text", "gold": "Chinese", "gold_rank": 1, "hit": true, "top5": [" Chinese", " Mandarin", " English", " not", " the"]}
+{"func": "language", "arg": "China", "k": 4, "target_pos": 3, "exp": "unbound", "gold": "Chinese", "gold_rank": 7, "hit": false, "top5": [" English", " Spanish", " not", " French", " the"]}
+{"func": "language", "arg": "China", "k": 4, "target_pos": 3, "exp": "bound", "gold": "Chinese", "gold_rank": 1, "hit": true, "top5": [" Chinese", " not", " the", " English", " Mandarin"]}
+{"func": "language", "arg": "Egypt", "k": 4, "target_pos": 1, "exp": "text", "gold": "Arabic", "gold_rank": 1, "hit": true, "top5": [" Arabic", " Egyptian", " not", " English", " the"]}
+{"func": "language", "arg": "Egypt", "k": 4, "target_pos": 1, "exp": "unbound", "gold": "Arabic", "gold_rank": 11, "hit": false, "top5": [" English", " Spanish", " French", " Chinese", " the"]}
+{"func": "language", "arg": "Egypt", "k": 4, "target_pos": 1, "exp": "bound", "gold": "Arabic", "gold_rank": 1, "hit": true, "top5": [" Arabic", " not", " the", ":", " NOT"]}
+{"func": "language", "arg": "Japan", "k": 4, "target_pos": 1, "exp": "text", "gold": "Japanese", "gold_rank": 1, "hit": true, "top5": [" Japanese", " English", " not", " the", " __"]}
+{"func": "language", "arg": "Japan", "k": 4, "target_pos": 1, "exp": "unbound", "gold": "Japanese", "gold_rank": 15, "hit": false, "top5": [" English", " French", " Chinese", " Sw", " not"]}
+{"func": "language", "arg": "Japan", "k": 4, "target_pos": 1, "exp": "bound", "gold": "Japanese", "gold_rank": 1, "hit": true, "top5": [" Japanese", " not", " English", " the", " a"]}
+{"func": "language", "arg": "Germany", "k": 4, "target_pos": 0, "exp": "text", "gold": "German", "gold_rank": 1, "hit": true, "top5": [" German", " English", " the", " not", " __"]}
+{"func": "language", "arg": "Germany", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "German", "gold_rank": 2, "hit": false, "top5": [" English", " German", " French", " Spanish", " Sw"]}
+{"func": "language", "arg": "Germany", "k": 4, "target_pos": 0, "exp": "bound", "gold": "German", "gold_rank": 1, "hit": true, "top5": [" German", " English", " not", " the", " a"]}
+{"func": "language", "arg": "Italy", "k": 4, "target_pos": 0, "exp": "text", "gold": "Italian", "gold_rank": 1, "hit": true, "top5": [" Italian", " Spanish", " the", " not", " __"]}
+{"func": "language", "arg": "Italy", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Italian", "gold_rank": 9, "hit": false, "top5": [" English", " French", " Spanish", ":", " not"]}
+{"func": "language", "arg": "Italy", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Italian", "gold_rank": 1, "hit": true, "top5": [" Italian", " English", " the", " not", " German"]}
+{"func": "language", "arg": "Spain", "k": 4, "target_pos": 2, "exp": "text", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " Cast", " English", " the", " not"]}
+{"func": "language", "arg": "Spain", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "Spanish", "gold_rank": 2, "hit": false, "top5": [" English", " Spanish", " French", " not", ":"]}
+{"func": "language", "arg": "Spain", "k": 4, "target_pos": 2, "exp": "bound", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " the", ":", " not", " ______"]}
+{"func": "language", "arg": "Russia", "k": 4, "target_pos": 2, "exp": "text", "gold": "Russian", "gold_rank": 1, "hit": true, "top5": [" Russian", " not", " English", " the", " __"]}
+{"func": "language", "arg": "Russia", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "Russian", "gold_rank": 24, "hit": false, "top5": [" English", " Spanish", " French", ":", " the"]}
+{"func": "language", "arg": "Russia", "k": 4, "target_pos": 2, "exp": "bound", "gold": "Russian", "gold_rank": 1, "hit": true, "top5": [" Russian", " not", " the", ":", " __"]}
+{"func": "language", "arg": "Turkey", "k": 4, "target_pos": 2, "exp": "text", "gold": "Turkish", "gold_rank": 1, "hit": true, "top5": [" Turkish", " not", " the", " English", " Arabic"]}
+{"func": "language", "arg": "Turkey", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "Turkish", "gold_rank": 24, "hit": false, "top5": [" English", " Italian", " French", ":", " Spanish"]}
+{"func": "language", "arg": "Turkey", "k": 4, "target_pos": 2, "exp": "bound", "gold": "Turkish", "gold_rank": 1, "hit": true, "top5": [" Turkish", ":", " not", " the", " __"]}
+{"func": "language", "arg": "Greece", "k": 4, "target_pos": 0, "exp": "text", "gold": "Greek", "gold_rank": 1, "hit": true, "top5": [" Greek", " not", " English", " the", " Modern"]}
+{"func": "language", "arg": "Greece", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Greek", "gold_rank": 9, "hit": false, "top5": [" English", " Spanish", " French", " Portuguese", ":"]}
+{"func": "language", "arg": "Greece", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Greek", "gold_rank": 1, "hit": true, "top5": [" Greek", " English", " not", " the", " Spanish"]}
+{"func": "language", "arg": "Poland", "k": 4, "target_pos": 1, "exp": "text", "gold": "Polish", "gold_rank": 1, "hit": true, "top5": [" Polish", " English", " the", " not", " Poland"]}
+{"func": "language", "arg": "Poland", "k": 4, "target_pos": 1, "exp": "unbound", "gold": "Polish", "gold_rank": 18, "hit": false, "top5": [" English", " Spanish", " French", " Portuguese", ":"]}
+{"func": "language", "arg": "Poland", "k": 4, "target_pos": 1, "exp": "bound", "gold": "Polish", "gold_rank": 1, "hit": true, "top5": [" Polish", " not", " English", " the", ":"]}
+{"func": "language", "arg": "Kenya", "k": 4, "target_pos": 4, "exp": "text", "gold": "Swahili", "gold_rank": 1, "hit": true, "top5": [" Sw", " English", " not", " the", " Ken"]}
+{"func": "language", "arg": "Kenya", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Swahili", "gold_rank": 1, "hit": true, "top5": [" English", " Spanish", " French", ":", " Portuguese"]}
+{"func": "language", "arg": "Kenya", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Swahili", "gold_rank": 1, "hit": true, "top5": [" Sw", " not", " English", " the", ":"]}
+{"func": "language", "arg": "Peru", "k": 4, "target_pos": 4, "exp": "text", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " Que", " not", " Portuguese", " the"]}
+{"func": "language", "arg": "Peru", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Spanish", "gold_rank": 2, "hit": false, "top5": [" English", " Spanish", " not", " the", ":"]}
+{"func": "language", "arg": "Peru", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " Que", " not", ":", " the"]}
+{"func": "language", "arg": "Thailand", "k": 4, "target_pos": 4, "exp": "text", "gold": "Thai", "gold_rank": 1, "hit": true, "top5": [" Thai", " English", " the", " not", " a"]}
+{"func": "language", "arg": "Thailand", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Thai", "gold_rank": 44, "hit": false, "top5": [" English", " German", " French", " Spanish", " not"]}
+{"func": "language", "arg": "Thailand", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Thai", "gold_rank": 1, "hit": true, "top5": [" Thai", " the", " English", " not", ":"]}
+{"func": "language", "arg": "Vietnam", "k": 4, "target_pos": 3, "exp": "text", "gold": "Vietnamese", "gold_rank": 1, "hit": true, "top5": [" Vietnamese", " English", " French", " the", " Vietnam"]}
+{"func": "language", "arg": "Vietnam", "k": 4, "target_pos": 3, "exp": "unbound", "gold": "Vietnamese", "gold_rank": 35, "hit": false, "top5": [" English", " French", " Spanish", " not", ":"]}
+{"func": "language", "arg": "Vietnam", "k": 4, "target_pos": 3, "exp": "bound", "gold": "Vietnamese", "gold_rank": 1, "hit": true, "top5": [" Vietnamese", " English", " the", " not", " a"]}
+{"func": "continent", "arg": "France", "k": 4, "target_pos": 3, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", " North", " South"]}
+{"func": "continent", "arg": "France", "k": 4, "target_pos": 3, "exp": "unbound", "gold": "Europe", "gold_rank": 4, "hit": false, "top5": [" Asia", " Africa", " South", " Europe", " North"]}
+{"func": "continent", "arg": "France", "k": 4, "target_pos": 3, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " North", " which", ":"]}
+{"func": "continent", "arg": "Canada", "k": 4, "target_pos": 2, "exp": "text", "gold": "North", "gold_rank": 1, "hit": true, "top5": [" North", " which", " ______", " __", " what"]}
+{"func": "continent", "arg": "Canada", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "North", "gold_rank": 3, "hit": false, "top5": [" Europe", " Africa", " North", " South", " Asia"]}
+{"func": "continent", "arg": "Canada", "k": 4, "target_pos": 2, "exp": "bound", "gold": "North", "gold_rank": 1, "hit": true, "top5": [" North", " which", ":", " Europe", " ______"]}
+{"func": "continent", "arg": "China", "k": 4, "target_pos": 2, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " which", " Africa", " North", " Europe"]}
+{"func": "continent", "arg": "China", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "Asia", "gold_rank": 5, "hit": false, "top5": [" South", " Africa", " North", " Europe", " Asia"]}
+{"func": "continent", "arg": "China", "k": 4, "target_pos": 2, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Africa", ":", " ______", " which"]}
+{"func": "continent", "arg": "Egypt", "k": 4, "target_pos": 0, "exp": "text", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " which", " North", " Asia", " __"]}
+{"func": "continent", "arg": "Egypt", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " North", " South", " Europe", " Asia"]}
+{"func": "continent", "arg": "Egypt", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " North", " Europe", " South", " Asia"]}
+{"func": "continent", "arg": "Japan", "k": 4, "target_pos": 1, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " which", " Europe", " North", " __"]}
+{"func": "continent", "arg": "Japan", "k": 4, "target_pos": 1, "exp": "unbound", "gold": "Asia", "gold_rank": 3, "hit": false, "top5": [" Africa", " Europe", " Asia", " North", " South"]}
+{"func": "continent", "arg": "Japan", "k": 4, "target_pos": 1, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Europe", " Africa", " which", " North"]}
+{"func": "continent", "arg": "Germany", "k": 4, "target_pos": 2, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Asia", " which", " North", " __"]}
+{"func": "continent", "arg": "Germany", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "Europe", "gold_rank": 3, "hit": false, "top5": [" Asia", " North", " Europe", " Africa", " Australia"]}
+{"func": "continent", "arg": "Germany", "k": 4, "target_pos": 2, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Asia", " which", " Africa", ":"]}
+{"func": "continent", "arg": "Italy", "k": 4, "target_pos": 0, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " which", " Africa", " South", " __"]}
+{"func": "continent", "arg": "Italy", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Europe", "gold_rank": 3, "hit": false, "top5": [" South", " Africa", " North", " Europe", " Asia"]}
+{"func": "continent", "arg": "Italy", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " South", " which", " North"]}
+{"func": "continent", "arg": "Spain", "k": 4, "target_pos": 4, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", " North", " __"]}
+{"func": "continent", "arg": "Spain", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Europe", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " North", " Asia", " South"]}
+{"func": "continent", "arg": "Spain", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", ":", " ______"]}
+{"func": "continent", "arg": "Russia", "k": 4, "target_pos": 2, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " Asia", " which", " North"]}
+{"func": "continent", "arg": "Russia", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "Europe", "gold_rank": 3, "hit": false, "top5": [" Africa", " South", " Europe", " North", "..."]}
+{"func": "continent", "arg": "Russia", "k": 4, "target_pos": 2, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " Asia", " North", " which"]}
+{"func": "continent", "arg": "Turkey", "k": 4, "target_pos": 3, "exp": "text", "gold": "Asia", "gold_rank": 2, "hit": false, "top5": [" Africa", " Asia", " Europe", " which", " North"]}
+{"func": "continent", "arg": "Turkey", "k": 4, "target_pos": 3, "exp": "unbound", "gold": "Asia", "gold_rank": 4, "hit": false, "top5": [" Africa", " South", " North", " Europe", " Asia"]}
+{"func": "continent", "arg": "Turkey", "k": 4, "target_pos": 3, "exp": "bound", "gold": "Asia", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " Asia", " which", " North"]}
+{"func": "continent", "arg": "Greece", "k": 4, "target_pos": 0, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " which", " Asia", " __", " ______"]}
+{"func": "continent", "arg": "Greece", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Europe", "gold_rank": 2, "hit": false, "top5": [" Asia", " Europe", " Africa", " North", " Australia"]}
+{"func": "continent", "arg": "Greece", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " Asia", " which", " ______"]}
+{"func": "continent", "arg": "Poland", "k": 4, "target_pos": 0, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " which", " __", "\n", " ______"]}
+{"func": "continent", "arg": "Poland", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Europe", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " Asia", " South", " North"]}
+{"func": "continent", "arg": "Poland", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", ":", " which", " North", " __"]}
+{"func": "continent", "arg": "Kenya", "k": 4, "target_pos": 3, "exp": "text", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " which", " __", "...", " ______"]}
+{"func": "continent", "arg": "Kenya", "k": 4, "target_pos": 3, "exp": "unbound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " South", " Europe", " North", " Asia"]}
+{"func": "continent", "arg": "Kenya", "k": 4, "target_pos": 3, "exp": "bound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", ":", " ______", " __", "..."]}
+{"func": "continent", "arg": "Peru", "k": 4, "target_pos": 0, "exp": "text", "gold": "South", "gold_rank": 1, "hit": true, "top5": [" South", " North", " ______", " __", " which"]}
+{"func": "continent", "arg": "Peru", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "South", "gold_rank": 3, "hit": false, "top5": [" Africa", " Europe", " South", " North", " Asia"]}
+{"func": "continent", "arg": "Peru", "k": 4, "target_pos": 0, "exp": "bound", "gold": "South", "gold_rank": 1, "hit": true, "top5": [" South", " North", " Africa", " ______", ":"]}
+{"func": "continent", "arg": "Thailand", "k": 4, "target_pos": 4, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Africa", " Southeast", " which", " __"]}
+{"func": "continent", "arg": "Thailand", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Asia", "gold_rank": 3, "hit": false, "top5": [" Africa", " Europe", " Asia", " North", " South"]}
+{"func": "continent", "arg": "Thailand", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Southeast", ":", " which", " ______"]}
+{"func": "continent", "arg": "Vietnam", "k": 4, "target_pos": 2, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " which", " Europe", " Southeast", " __"]}
+{"func": "continent", "arg": "Vietnam", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "Asia", "gold_rank": 5, "hit": false, "top5": [" Europe", " Africa", " South", " North", " Asia"]}
+{"func": "continent", "arg": "Vietnam", "k": 4, "target_pos": 2, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " ______", ":", " which", " __"]}
+{"func": "currency", "arg": "France", "k": 4, "target_pos": 2, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " French", " __", " Franc"]}
+{"func": "currency", "arg": "France", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "Euro", "gold_rank": 33, "hit": false, "top5": [" \"", " K", " dollar", " k", " '"]}
+{"func": "currency", "arg": "France", "k": 4, "target_pos": 2, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", ":", " __", " franc"]}
+{"func": "currency", "arg": "Canada", "k": 4, "target_pos": 3, "exp": "text", "gold": "Dollar", "gold_rank": 2, "hit": false, "top5": [" Canadian", " dollar", " Dollar", " __", " CAD"]}
+{"func": "currency", "arg": "Canada", "k": 4, "target_pos": 3, "exp": "unbound", "gold": "Dollar", "gold_rank": 3, "hit": false, "top5": [" \"", " franc", " dollar", " yuan", " kron"]}
+{"func": "currency", "arg": "Canada", "k": 4, "target_pos": 3, "exp": "bound", "gold": "Dollar", "gold_rank": 2, "hit": false, "top5": [" Canadian", " dollar", ":", " __", " \""]}
+{"func": "currency", "arg": "China", "k": 4, "target_pos": 4, "exp": "text", "gold": "Yuan", "gold_rank": 1, "hit": true, "top5": [" Ren", " yuan", " Yuan", " R", " ren"]}
+{"func": "currency", "arg": "China", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Yuan", "gold_rank": 13, "hit": false, "top5": [" \"", " dollar", " kron", " '", " K"]}
+{"func": "currency", "arg": "China", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Yuan", "gold_rank": 1, "hit": true, "top5": [" yuan", " Yuan", " Ren", " R", ":"]}
+{"func": "currency", "arg": "Egypt", "k": 4, "target_pos": 3, "exp": "text", "gold": "Pound", "gold_rank": 2, "hit": false, "top5": [" Egyptian", " pound", " Pound", " \"", " E"]}
+{"func": "currency", "arg": "Egypt", "k": 4, "target_pos": 3, "exp": "unbound", "gold": "Pound", "gold_rank": 26, "hit": false, "top5": [" \"", " franc", " dollar", " K", " euro"]}
+{"func": "currency", "arg": "Egypt", "k": 4, "target_pos": 3, "exp": "bound", "gold": "Pound", "gold_rank": 2, "hit": false, "top5": [" Egyptian", " pound", " Pound", ":", " __"]}
+{"func": "currency", "arg": "Japan", "k": 4, "target_pos": 0, "exp": "text", "gold": "Yen", "gold_rank": 1, "hit": true, "top5": [" Yen", " yen", " Y", " Japanese", " __"]}
+{"func": "currency", "arg": "Japan", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Yen", "gold_rank": 36, "hit": false, "top5": [" \"", " kron", " dollar", " z", " kr"]}
+{"func": "currency", "arg": "Japan", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Yen", "gold_rank": 1, "hit": true, "top5": [" Yen", " yen", " \"", " won", " Y"]}
+{"func": "currency", "arg": "Germany", "k": 4, "target_pos": 4, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " German", " Deutsche", " __"]}
+{"func": "currency", "arg": "Germany", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Euro", "gold_rank": 26, "hit": false, "top5": [" \"", " dollar", " K", " kron", " '"]}
+{"func": "currency", "arg": "Germany", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " Deutsche", " German", ":"]}
+{"func": "currency", "arg": "Italy", "k": 4, "target_pos": 3, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " L", " Italian", " __"]}
+{"func": "currency", "arg": "Italy", "k": 4, "target_pos": 3, "exp": "unbound", "gold": "Euro", "gold_rank": 79, "hit": false, "top5": [" \"", " K", " k", " dollar", " '"]}
+{"func": "currency", "arg": "Italy", "k": 4, "target_pos": 3, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " Euro", " lira", " L", " \""]}
+{"func": "currency", "arg": "Spain", "k": 4, "target_pos": 0, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " Spanish", " __", " Peso"]}
+{"func": "currency", "arg": "Spain", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Euro", "gold_rank": 25, "hit": false, "top5": [" \"", " dollar", " K", " kron", " k"]}
+{"func": "currency", "arg": "Spain", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " pes", " Euro", " peso", " dollar"]}
+{"func": "currency", "arg": "Russia", "k": 4, "target_pos": 3, "exp": "text", "gold": "Ruble", "gold_rank": 1, "hit": true, "top5": [" Rub", " rub", " Russian", " r", " R"]}
+{"func": "currency", "arg": "Russia", "k": 4, "target_pos": 3, "exp": "unbound", "gold": "Ruble", "gold_rank": 19, "hit": false, "top5": [" \"", " K", " dollar", " dr", " kron"]}
+{"func": "currency", "arg": "Russia", "k": 4, "target_pos": 3, "exp": "bound", "gold": "Ruble", "gold_rank": 1, "hit": true, "top5": [" rub", " Rub", " r", " R", " \""]}
+{"func": "currency", "arg": "Turkey", "k": 4, "target_pos": 4, "exp": "text", "gold": "Lira", "gold_rank": 2, "hit": false, "top5": [" Turkish", " L", " lira", " \"", " l"]}
+{"func": "currency", "arg": "Turkey", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Lira", "gold_rank": 20, "hit": false, "top5": [" \"", " K", " dollar", " k", " franc"]}
+{"func": "currency", "arg": "Turkey", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Lira", "gold_rank": 1, "hit": true, "top5": [" lira", " Turkish", " L", ":", "."]}
+{"func": "currency", "arg": "Greece", "k": 4, "target_pos": 1, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " Euro", " Dr", " dr", " Greek"]}
+{"func": "currency", "arg": "Greece", "k": 4, "target_pos": 1, "exp": "unbound", "gold": "Euro", "gold_rank": 27, "hit": false, "top5": [" \"", " K", " k", " dollar", " kron"]}
+{"func": "currency", "arg": "Greece", "k": 4, "target_pos": 1, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " Euro", " dr", " Dr", ":"]}
+{"func": "currency", "arg": "Poland", "k": 4, "target_pos": 0, "exp": "text", "gold": "Zloty", "gold_rank": 1, "hit": true, "top5": [" Z", " z", " Polish", " z\u0142ot", " __"]}
+{"func": "currency", "arg": "Poland", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Zloty", "gold_rank": 5, "hit": false, "top5": [" \"", " dollar", " kron", " K", " z"]}
+{"func": "currency", "arg": "Poland", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Zloty", "gold_rank": 1, "hit": true, "top5": [" z", " Z", " z\u0142ot", " Polish", " \""]}
+{"func": "currency", "arg": "Kenya", "k": 4, "target_pos": 2, "exp": "text", "gold": "Shilling", "gold_rank": 2, "hit": false, "top5": [" Ken", " sh", " Sh", " Kenya", " Kil"]}
+{"func": "currency", "arg": "Kenya", "k": 4, "target_pos": 2, "exp": "unbound", "gold": "Shilling", "gold_rank": 61, "hit": false, "top5": [" \"", " dollar", " Canadian", " K", " franc"]}
+{"func": "currency", "arg": "Kenya", "k": 4, "target_pos": 2, "exp": "bound", "gold": "Shilling", "gold_rank": 2, "hit": false, "top5": [" Ken", " sh", " Sh", " Kenya", " __"]}
+{"func": "currency", "arg": "Peru", "k": 4, "target_pos": 0, "exp": "text", "gold": "Sol", "gold_rank": 1, "hit": true, "top5": [" Sol", " Nuevo", " sol", " New", " Per"]}
+{"func": "currency", "arg": "Peru", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Sol", "gold_rank": 89, "hit": false, "top5": [" \"", " dollar", " Peso", " K", " '"]}
+{"func": "currency", "arg": "Peru", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Sol", "gold_rank": 1, "hit": true, "top5": [" sol", " Per", " \"", " Sol", " peso"]}
+{"func": "currency", "arg": "Thailand", "k": 4, "target_pos": 0, "exp": "text", "gold": "Baht", "gold_rank": 1, "hit": true, "top5": [" Ba", " ba", " Thai", " ___", " **"]}
+{"func": "currency", "arg": "Thailand", "k": 4, "target_pos": 0, "exp": "unbound", "gold": "Baht", "gold_rank": 15, "hit": false, "top5": [" \"", " K", " dollar", " k", " Kw"]}
+{"func": "currency", "arg": "Thailand", "k": 4, "target_pos": 0, "exp": "bound", "gold": "Baht", "gold_rank": 1, "hit": true, "top5": [" ba", " Ba", " Thai", " \"", ":"]}
+{"func": "currency", "arg": "Vietnam", "k": 4, "target_pos": 4, "exp": "text", "gold": "Dong", "gold_rank": 1, "hit": true, "top5": [" Dong", " dong", " Vietnamese", " \u0111\u1ed3ng", " __"]}
+{"func": "currency", "arg": "Vietnam", "k": 4, "target_pos": 4, "exp": "unbound", "gold": "Dong", "gold_rank": 21, "hit": false, "top5": [" \"", " dollar", " K", " kron", " z"]}
+{"func": "currency", "arg": "Vietnam", "k": 4, "target_pos": 4, "exp": "bound", "gold": "Dong", "gold_rank": 1, "hit": true, "top5": [" dong", " Dong", " \u0111\u1ed3ng", " \"", ":"]}
+{"func": "capital", "arg": "France", "k": 16, "target_pos": 11, "exp": "text", "gold": "Paris", "gold_rank": 1, "hit": true, "top5": [" Paris", " __", " which", "\n", " ______"]}
+{"func": "capital", "arg": "France", "k": 16, "target_pos": 11, "exp": "unbound", "gold": "Paris", "gold_rank": 3, "hit": false, "top5": [" London", " Nairobi", " ______", " Paris", "."]}
+{"func": "capital", "arg": "France", "k": 16, "target_pos": 11, "exp": "bound", "gold": "Paris", "gold_rank": 1, "hit": true, "top5": [" Paris", " __", ":", " Berlin", " ______"]}
+{"func": "capital", "arg": "Canada", "k": 16, "target_pos": 12, "exp": "text", "gold": "Ottawa", "gold_rank": 1, "hit": true, "top5": [" Ottawa", " Toronto", " Vancouver", " which", " Montreal"]}
+{"func": "capital", "arg": "Canada", "k": 16, "target_pos": 12, "exp": "unbound", "gold": "Ottawa", "gold_rank": 2, "hit": false, "top5": [" London", " Ottawa", " Paris", " ______", "."]}
+{"func": "capital", "arg": "Canada", "k": 16, "target_pos": 12, "exp": "bound", "gold": "Ottawa", "gold_rank": 1, "hit": true, "top5": [" Ottawa", " Toronto", ":", " Montreal", " ______"]}
+{"func": "capital", "arg": "China", "k": 16, "target_pos": 11, "exp": "text", "gold": "Beijing", "gold_rank": 1, "hit": true, "top5": [" Beijing", "\n", " __", " which", " ["]}
+{"func": "capital", "arg": "China", "k": 16, "target_pos": 11, "exp": "unbound", "gold": "Beijing", "gold_rank": 53, "hit": false, "top5": [" Nairobi", " London", " ______", " Ottawa", "."]}
+{"func": "capital", "arg": "China", "k": 16, "target_pos": 11, "exp": "bound", "gold": "Beijing", "gold_rank": 1, "hit": true, "top5": [" Beijing", " Shanghai", ":", " Nan", " __"]}
+{"func": "capital", "arg": "Egypt", "k": 16, "target_pos": 3, "exp": "text", "gold": "Cairo", "gold_rank": 1, "hit": true, "top5": [" Cairo", " [", " __", " which", "\n"]}
+{"func": "capital", "arg": "Egypt", "k": 16, "target_pos": 3, "exp": "unbound", "gold": "Cairo", "gold_rank": 52, "hit": false, "top5": [" London", " Ottawa", " Paris", " Toronto", "."]}
+{"func": "capital", "arg": "Egypt", "k": 16, "target_pos": 3, "exp": "bound", "gold": "Cairo", "gold_rank": 1, "hit": true, "top5": [" Cairo", " __", " ______", " Alexandria", ":"]}
+{"func": "capital", "arg": "Japan", "k": 16, "target_pos": 15, "exp": "text", "gold": "Tokyo", "gold_rank": 1, "hit": true, "top5": [" Tokyo", " Kyoto", "\n", " which", " what"]}
+{"func": "capital", "arg": "Japan", "k": 16, "target_pos": 15, "exp": "unbound", "gold": "Tokyo", "gold_rank": 11, "hit": false, "top5": [" ______", " Kin", " London", " Berlin", "."]}
+{"func": "capital", "arg": "Japan", "k": 16, "target_pos": 15, "exp": "bound", "gold": "Tokyo", "gold_rank": 1, "hit": true, "top5": [" Tokyo", ":", ".", " ______", " Kyoto"]}
+{"func": "capital", "arg": "Germany", "k": 16, "target_pos": 5, "exp": "text", "gold": "Berlin", "gold_rank": 1, "hit": true, "top5": [" Berlin", " Munich", " __", " London", " ______"]}
+{"func": "capital", "arg": "Germany", "k": 16, "target_pos": 5, "exp": "unbound", "gold": "Berlin", "gold_rank": 11, "hit": false, "top5": [" London", " Ottawa", " ______", ".", " Paris"]}
+{"func": "capital", "arg": "Germany", "k": 16, "target_pos": 5, "exp": "bound", "gold": "Berlin", "gold_rank": 1, "hit": true, "top5": [" Berlin", " __", " Munich", " ______", ":"]}
+{"func": "capital", "arg": "Italy", "k": 16, "target_pos": 15, "exp": "text", "gold": "Rome", "gold_rank": 1, "hit": true, "top5": [" Rome", " Milan", " which", " ______", "\n"]}
+{"func": "capital", "arg": "Italy", "k": 16, "target_pos": 15, "exp": "unbound", "gold": "Rome", "gold_rank": 21, "hit": false, "top5": [" Paris", " London", " Ottawa", " ______", " Kin"]}
+{"func": "capital", "arg": "Italy", "k": 16, "target_pos": 15, "exp": "bound", "gold": "Rome", "gold_rank": 1, "hit": true, "top5": [" Rome", " Milan", ":", " ______", " __"]}
+{"func": "capital", "arg": "Spain", "k": 16, "target_pos": 11, "exp": "text", "gold": "Madrid", "gold_rank": 1, "hit": true, "top5": [" Madrid", " Barcelona", " __", "\n", " ______"]}
+{"func": "capital", "arg": "Spain", "k": 16, "target_pos": 11, "exp": "unbound", "gold": "Madrid", "gold_rank": 31, "hit": false, "top5": [" London", " ______", " Ottawa", " Kin", " Paris"]}
+{"func": "capital", "arg": "Spain", "k": 16, "target_pos": 11, "exp": "bound", "gold": "Madrid", "gold_rank": 1, "hit": true, "top5": [" Madrid", " Barcelona", ":", " ______", " __"]}
+{"func": "capital", "arg": "Russia", "k": 16, "target_pos": 1, "exp": "text", "gold": "Moscow", "gold_rank": 1, "hit": true, "top5": [" Moscow", " __", " [", "\n", " which"]}
+{"func": "capital", "arg": "Russia", "k": 16, "target_pos": 1, "exp": "unbound", "gold": "Moscow", "gold_rank": 21, "hit": false, "top5": [" Nairobi", " N", ".", " London", " ______"]}
+{"func": "capital", "arg": "Russia", "k": 16, "target_pos": 1, "exp": "bound", "gold": "Moscow", "gold_rank": 1, "hit": true, "top5": [" Moscow", " __", " ______", " [", ":"]}
+{"func": "capital", "arg": "Turkey", "k": 16, "target_pos": 3, "exp": "text", "gold": "Ankara", "gold_rank": 1, "hit": true, "top5": [" Ankara", " Istanbul", " An", " __", " ______"]}
+{"func": "capital", "arg": "Turkey", "k": 16, "target_pos": 3, "exp": "unbound", "gold": "Ankara", "gold_rank": 38, "hit": false, "top5": [" Nairobi", " London", " Ottawa", " Kin", " Paris"]}
+{"func": "capital", "arg": "Turkey", "k": 16, "target_pos": 3, "exp": "bound", "gold": "Ankara", "gold_rank": 1, "hit": true, "top5": [" Ankara", " Istanbul", " ______", " __", " An"]}
+{"func": "capital", "arg": "Greece", "k": 16, "target_pos": 0, "exp": "text", "gold": "Athens", "gold_rank": 1, "hit": true, "top5": [" Athens", " [", "\n", " which", " __"]}
+{"func": "capital", "arg": "Greece", "k": 16, "target_pos": 0, "exp": "unbound", "gold": "Athens", "gold_rank": 13, "hit": false, "top5": [" London", " Paris", " Ottawa", " ______", " Cairo"]}
+{"func": "capital", "arg": "Greece", "k": 16, "target_pos": 0, "exp": "bound", "gold": "Athens", "gold_rank": 1, "hit": true, "top5": [" Athens", " Greece", ":", " London", "."]}
+{"func": "capital", "arg": "Poland", "k": 16, "target_pos": 13, "exp": "text", "gold": "Warsaw", "gold_rank": 1, "hit": true, "top5": [" Warsaw", " __", " Krak", " W", " which"]}
+{"func": "capital", "arg": "Poland", "k": 16, "target_pos": 13, "exp": "unbound", "gold": "Warsaw", "gold_rank": 105, "hit": false, "top5": [" Nairobi", " London", " Ottawa", " Kin", "."]}
+{"func": "capital", "arg": "Poland", "k": 16, "target_pos": 13, "exp": "bound", "gold": "Warsaw", "gold_rank": 1, "hit": true, "top5": [" Warsaw", ":", " Krak", ".", " __"]}
+{"func": "capital", "arg": "Kenya", "k": 16, "target_pos": 9, "exp": "text", "gold": "Nairobi", "gold_rank": 1, "hit": true, "top5": [" Nairobi", "\n", " __", ".", " ["]}
+{"func": "capital", "arg": "Kenya", "k": 16, "target_pos": 9, "exp": "unbound", "gold": "Nairobi", "gold_rank": 14, "hit": false, "top5": [" Ottawa", " London", " Paris", " ______", " Moscow"]}
+{"func": "capital", "arg": "Kenya", "k": 16, "target_pos": 9, "exp": "bound", "gold": "Nairobi", "gold_rank": 1, "hit": true, "top5": [" Nairobi", ".", " __", ":", " ______"]}
+{"func": "capital", "arg": "Peru", "k": 16, "target_pos": 1, "exp": "text", "gold": "Lima", "gold_rank": 1, "hit": true, "top5": [" Lima", " __", " L", " which", "\n"]}
+{"func": "capital", "arg": "Peru", "k": 16, "target_pos": 1, "exp": "unbound", "gold": "Lima", "gold_rank": 19, "hit": false, "top5": [" London", " Ottawa", " ______", ".", " Kin"]}
+{"func": "capital", "arg": "Peru", "k": 16, "target_pos": 1, "exp": "bound", "gold": "Lima", "gold_rank": 1, "hit": true, "top5": [" Lima", " ______", " __", ":", "."]}
+{"func": "capital", "arg": "Thailand", "k": 16, "target_pos": 10, "exp": "text", "gold": "Bangkok", "gold_rank": 1, "hit": true, "top5": [" Bangkok", " which", "\n", " ______", " what"]}
+{"func": "capital", "arg": "Thailand", "k": 16, "target_pos": 10, "exp": "unbound", "gold": "Bangkok", "gold_rank": 30, "hit": false, "top5": [" London", " ______", " Paris", " Ottawa", " Kin"]}
+{"func": "capital", "arg": "Thailand", "k": 16, "target_pos": 10, "exp": "bound", "gold": "Bangkok", "gold_rank": 1, "hit": true, "top5": [" Bangkok", " ______", " N", ".", " __"]}
+{"func": "capital", "arg": "Vietnam", "k": 16, "target_pos": 7, "exp": "text", "gold": "Hanoi", "gold_rank": 1, "hit": true, "top5": [" H", " Ha", " ______", " Ho", " __"]}
+{"func": "capital", "arg": "Vietnam", "k": 16, "target_pos": 7, "exp": "unbound", "gold": "Hanoi", "gold_rank": 58, "hit": false, "top5": [" Ottawa", " London", " Paris", " Athens", " ______"]}
+{"func": "capital", "arg": "Vietnam", "k": 16, "target_pos": 7, "exp": "bound", "gold": "Hanoi", "gold_rank": 1, "hit": true, "top5": [" H", " Ha", " ______", " __", "."]}
+{"func": "language", "arg": "France", "k": 16, "target_pos": 7, "exp": "text", "gold": "French", "gold_rank": 1, "hit": true, "top5": [" French", " English", " not", " the", " __"]}
+{"func": "language", "arg": "France", "k": 16, "target_pos": 7, "exp": "unbound", "gold": "French", "gold_rank": 3, "hit": false, "top5": [" English", " Spanish", " French", ":", " German"]}
+{"func": "language", "arg": "France", "k": 16, "target_pos": 7, "exp": "bound", "gold": "French", "gold_rank": 1, "hit": true, "top5": [" French", ":", " __", " the", "\n"]}
+{"func": "language", "arg": "Canada", "k": 16, "target_pos": 7, "exp": "text", "gold": "English", "gold_rank": 1, "hit": true, "top5": [" English", " French", " Canadian", " the", " not"]}
+{"func": "language", "arg": "Canada", "k": 16, "target_pos": 7, "exp": "unbound", "gold": "English", "gold_rank": 1, "hit": true, "top5": [" English", " Spanish", " German", " French", ":"]}
+{"func": "language", "arg": "Canada", "k": 16, "target_pos": 7, "exp": "bound", "gold": "English", "gold_rank": 1, "hit": true, "top5": [" English", " French", ":", " __", " the"]}
+{"func": "language", "arg": "China", "k": 16, "target_pos": 1, "exp": "text", "gold": "Chinese", "gold_rank": 1, "hit": true, "top5": [" Chinese", " Mandarin", " English", " not", " the"]}
+{"func": "language", "arg": "China", "k": 16, "target_pos": 1, "exp": "unbound", "gold": "Chinese", "gold_rank": 9, "hit": false, "top5": [" English", " French", " Spanish", " not", ":"]}
+{"func": "language", "arg": "China", "k": 16, "target_pos": 1, "exp": "bound", "gold": "Chinese", "gold_rank": 1, "hit": true, "top5": [" Chinese", " the", " Mandarin", " not", ":"]}
+{"func": "language", "arg": "Egypt", "k": 16, "target_pos": 12, "exp": "text", "gold": "Arabic", "gold_rank": 1, "hit": true, "top5": [" Arabic", " English", " Egyptian", " not", " the"]}
+{"func": "language", "arg": "Egypt", "k": 16, "target_pos": 12, "exp": "unbound", "gold": "Arabic", "gold_rank": 11, "hit": false, "top5": [" English", " Spanish", " French", " German", ":"]}
+{"func": "language", "arg": "Egypt", "k": 16, "target_pos": 12, "exp": "bound", "gold": "Arabic", "gold_rank": 1, "hit": true, "top5": [" Arabic", ":", " not", " __", "\n"]}
+{"func": "language", "arg": "Japan", "k": 16, "target_pos": 14, "exp": "text", "gold": "Japanese", "gold_rank": 1, "hit": true, "top5": [" Japanese", " English", " the", " not", " what"]}
+{"func": "language", "arg": "Japan", "k": 16, "target_pos": 14, "exp": "unbound", "gold": "Japanese", "gold_rank": 22, "hit": false, "top5": [" English", " Spanish", " German", ":", " French"]}
+{"func": "language", "arg": "Japan", "k": 16, "target_pos": 14, "exp": "bound", "gold": "Japanese", "gold_rank": 1, "hit": true, "top5": [" Japanese", " English", " not", ":", " the"]}
+{"func": "language", "arg": "Germany", "k": 16, "target_pos": 7, "exp": "text", "gold": "German", "gold_rank": 1, "hit": true, "top5": [" German", " English", " Spanish", " the", " not"]}
+{"func": "language", "arg": "Germany", "k": 16, "target_pos": 7, "exp": "unbound", "gold": "German", "gold_rank": 5, "hit": false, "top5": [" English", " Spanish", ":", " French", " German"]}
+{"func": "language", "arg": "Germany", "k": 16, "target_pos": 7, "exp": "bound", "gold": "German", "gold_rank": 1, "hit": true, "top5": [" German", ":", " the", " __", "\n"]}
+{"func": "language", "arg": "Italy", "k": 16, "target_pos": 7, "exp": "text", "gold": "Italian", "gold_rank": 1, "hit": true, "top5": [" Italian", " English", " the", " Spanish", " not"]}
+{"func": "language", "arg": "Italy", "k": 16, "target_pos": 7, "exp": "unbound", "gold": "Italian", "gold_rank": 12, "hit": false, "top5": [" English", " Spanish", " French", ":", " German"]}
+{"func": "language", "arg": "Italy", "k": 16, "target_pos": 7, "exp": "bound", "gold": "Italian", "gold_rank": 1, "hit": true, "top5": [" Italian", ":", " the", " __", "\n"]}
+{"func": "language", "arg": "Spain", "k": 16, "target_pos": 10, "exp": "text", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " English", " the", " Cast", "\n"]}
+{"func": "language", "arg": "Spain", "k": 16, "target_pos": 10, "exp": "unbound", "gold": "Spanish", "gold_rank": 3, "hit": false, "top5": [" English", " French", " Spanish", " not", ":"]}
+{"func": "language", "arg": "Spain", "k": 16, "target_pos": 10, "exp": "bound", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", ":", " the", " ______", " __"]}
+{"func": "language", "arg": "Russia", "k": 16, "target_pos": 0, "exp": "text", "gold": "Russian", "gold_rank": 1, "hit": true, "top5": [" Russian", " not", " the", " English", "\n"]}
+{"func": "language", "arg": "Russia", "k": 16, "target_pos": 0, "exp": "unbound", "gold": "Russian", "gold_rank": 23, "hit": false, "top5": [" English", " French", " Spanish", ":", " the"]}
+{"func": "language", "arg": "Russia", "k": 16, "target_pos": 0, "exp": "bound", "gold": "Russian", "gold_rank": 1, "hit": true, "top5": [" Russian", " the", " not", " English", " __"]}
+{"func": "language", "arg": "Turkey", "k": 16, "target_pos": 13, "exp": "text", "gold": "Turkish", "gold_rank": 1, "hit": true, "top5": [" Turkish", " not", " English", " the", " what"]}
+{"func": "language", "arg": "Turkey", "k": 16, "target_pos": 13, "exp": "unbound", "gold": "Turkish", "gold_rank": 51, "hit": false, "top5": [" English", " Spanish", " German", " French", ":"]}
+{"func": "language", "arg": "Turkey", "k": 16, "target_pos": 13, "exp": "bound", "gold": "Turkish", "gold_rank": 1, "hit": true, "top5": [" Turkish", ":", " not", " __", " English"]}
+{"func": "language", "arg": "Greece", "k": 16, "target_pos": 4, "exp": "text", "gold": "Greek", "gold_rank": 1, "hit": true, "top5": [" Greek", " English", " not", " the", "\n"]}
+{"func": "language", "arg": "Greece", "k": 16, "target_pos": 4, "exp": "unbound", "gold": "Greek", "gold_rank": 16, "hit": false, "top5": [" Spanish", " English", " French", ":", " Portuguese"]}
+{"func": "language", "arg": "Greece", "k": 16, "target_pos": 4, "exp": "bound", "gold": "Greek", "gold_rank": 1, "hit": true, "top5": [" Greek", ":", " English", " __", "\n"]}
+{"func": "language", "arg": "Poland", "k": 16, "target_pos": 6, "exp": "text", "gold": "Polish", "gold_rank": 1, "hit": true, "top5": [" Polish", " the", " English", " not", ":"]}
+{"func": "language", "arg": "Poland", "k": 16, "target_pos": 6, "exp": "unbound", "gold": "Polish", "gold_rank": 55, "hit": false, "top5": [" English", " Spanish", " French", ":", " not"]}
+{"func": "language", "arg": "Poland", "k": 16, "target_pos": 6, "exp": "bound", "gold": "Polish", "gold_rank": 1, "hit": true, "top5": [" Polish", ":", " not", " the", "\n"]}
+{"func": "language", "arg": "Kenya", "k": 16, "target_pos": 15, "exp": "text", "gold": "Swahili", "gold_rank": 1, "hit": true, "top5": [" Sw", " English", " not", " Ken", " the"]}
+{"func": "language", "arg": "Kenya", "k": 16, "target_pos": 15, "exp": "unbound", "gold": "Swahili", "gold_rank": 1, "hit": true, "top5": [" English", " French", " Spanish", ":", " not"]}
+{"func": "language", "arg": "Kenya", "k": 16, "target_pos": 15, "exp": "bound", "gold": "Swahili", "gold_rank": 2, "hit": false, "top5": [":", " English", " Sw", " not", " __"]}
+{"func": "language", "arg": "Peru", "k": 16, "target_pos": 6, "exp": "text", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " Que", " Portuguese", " not", " the"]}
+{"func": "language", "arg": "Peru", "k": 16, "target_pos": 6, "exp": "unbound", "gold": "Spanish", "gold_rank": 3, "hit": false, "top5": [" English", " French", " Spanish", " German", ":"]}
+{"func": "language", "arg": "Peru", "k": 16, "target_pos": 6, "exp": "bound", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", ":", " Que", " not", " the"]}
+{"func": "language", "arg": "Thailand", "k": 16, "target_pos": 10, "exp": "text", "gold": "Thai", "gold_rank": 1, "hit": true, "top5": [" Thai", " English", " the", " not", " Chinese"]}
+{"func": "language", "arg": "Thailand", "k": 16, "target_pos": 10, "exp": "unbound", "gold": "Thai", "gold_rank": 76, "hit": false, "top5": [" English", " Spanish", " French", ":", " not"]}
+{"func": "language", "arg": "Thailand", "k": 16, "target_pos": 10, "exp": "bound", "gold": "Thai", "gold_rank": 1, "hit": true, "top5": [" Thai", ":", " English", " the", " not"]}
+{"func": "language", "arg": "Vietnam", "k": 16, "target_pos": 1, "exp": "text", "gold": "Vietnamese", "gold_rank": 1, "hit": true, "top5": [" Vietnamese", " English", " the", " Vietnam", " not"]}
+{"func": "language", "arg": "Vietnam", "k": 16, "target_pos": 1, "exp": "unbound", "gold": "Vietnamese", "gold_rank": 21, "hit": false, "top5": [" English", " French", " Spanish", " German", ":"]}
+{"func": "language", "arg": "Vietnam", "k": 16, "target_pos": 1, "exp": "bound", "gold": "Vietnamese", "gold_rank": 1, "hit": true, "top5": [" Vietnamese", " English", " __", " the", ":"]}
+{"func": "continent", "arg": "France", "k": 16, "target_pos": 7, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", " __", " North"]}
+{"func": "continent", "arg": "France", "k": 16, "target_pos": 7, "exp": "unbound", "gold": "Europe", "gold_rank": 5, "hit": false, "top5": [" Africa", " Asia", " North", " South", " Europe"]}
+{"func": "continent", "arg": "France", "k": 16, "target_pos": 7, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", ":", " __"]}
+{"func": "continent", "arg": "Canada", "k": 16, "target_pos": 12, "exp": "text", "gold": "North", "gold_rank": 1, "hit": true, "top5": [" North", " Europe", " which", " Africa", " South"]}
+{"func": "continent", "arg": "Canada", "k": 16, "target_pos": 12, "exp": "unbound", "gold": "North", "gold_rank": 4, "hit": false, "top5": [" Europe", " Africa", " Asia", " North", " South"]}
+{"func": "continent", "arg": "Canada", "k": 16, "target_pos": 12, "exp": "bound", "gold": "North", "gold_rank": 1, "hit": true, "top5": [" North", " Europe", " which", " Africa", ":"]}
+{"func": "continent", "arg": "China", "k": 16, "target_pos": 1, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Europe", " Africa", " which", " __"]}
+{"func": "continent", "arg": "China", "k": 16, "target_pos": 1, "exp": "unbound", "gold": "Asia", "gold_rank": 5, "hit": false, "top5": [" Africa", " Europe", " North", " South", " Asia"]}
+{"func": "continent", "arg": "China", "k": 16, "target_pos": 1, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " ______", " which", " __", ":"]}
+{"func": "continent", "arg": "Egypt", "k": 16, "target_pos": 3, "exp": "text", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " which", " Asia", " Europe", " North"]}
+{"func": "continent", "arg": "Egypt", "k": 16, "target_pos": 3, "exp": "unbound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " Europe", " South", " Asia", " North"]}
+{"func": "continent", "arg": "Egypt", "k": 16, "target_pos": 3, "exp": "bound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " which", ":", " North", " Asia"]}
+{"func": "continent", "arg": "Japan", "k": 16, "target_pos": 6, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Europe", " Africa", " which", " North"]}
+{"func": "continent", "arg": "Japan", "k": 16, "target_pos": 6, "exp": "unbound", "gold": "Asia", "gold_rank": 5, "hit": false, "top5": [" Africa", " North", " Europe", " South", " Asia"]}
+{"func": "continent", "arg": "Japan", "k": 16, "target_pos": 6, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Africa", " which", ":", " Europe"]}
+{"func": "continent", "arg": "Germany", "k": 16, "target_pos": 1, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", " Asia", " ______"]}
+{"func": "continent", "arg": "Germany", "k": 16, "target_pos": 1, "exp": "unbound", "gold": "Europe", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " North", " Asia", " ______"]}
+{"func": "continent", "arg": "Germany", "k": 16, "target_pos": 1, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " ______", " which", " __"]}
+{"func": "continent", "arg": "Italy", "k": 16, "target_pos": 5, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", " Asia", " North"]}
+{"func": "continent", "arg": "Italy", "k": 16, "target_pos": 5, "exp": "unbound", "gold": "Europe", "gold_rank": 4, "hit": false, "top5": [" Africa", " Asia", " North", " Europe", " South"]}
+{"func": "continent", "arg": "Italy", "k": 16, "target_pos": 5, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", ":", " ______"]}
+{"func": "continent", "arg": "Spain", "k": 16, "target_pos": 9, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", " Asia", " South"]}
+{"func": "continent", "arg": "Spain", "k": 16, "target_pos": 9, "exp": "unbound", "gold": "Europe", "gold_rank": 3, "hit": false, "top5": [" Africa", " Asia", " Europe", " North", " South"]}
+{"func": "continent", "arg": "Spain", "k": 16, "target_pos": 9, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", ":", " ______"]}
+{"func": "continent", "arg": "Russia", "k": 16, "target_pos": 4, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " North", " which", " Asia"]}
+{"func": "continent", "arg": "Russia", "k": 16, "target_pos": 4, "exp": "unbound", "gold": "Europe", "gold_rank": 4, "hit": false, "top5": [" Africa", " North", " South", " Europe", ":"]}
+{"func": "continent", "arg": "Russia", "k": 16, "target_pos": 4, "exp": "bound", "gold": "Europe", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " North", " which", " ______"]}
+{"func": "continent", "arg": "Turkey", "k": 16, "target_pos": 4, "exp": "text", "gold": "Asia", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " Asia", " which", " North"]}
+{"func": "continent", "arg": "Turkey", "k": 16, "target_pos": 4, "exp": "unbound", "gold": "Asia", "gold_rank": 4, "hit": false, "top5": [" Africa", " North", " South", " Europe", " ______"]}
+{"func": "continent", "arg": "Turkey", "k": 16, "target_pos": 4, "exp": "bound", "gold": "Asia", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " Asia", " which", " ______"]}
+{"func": "continent", "arg": "Greece", "k": 16, "target_pos": 13, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " North", " Asia", " which"]}
+{"func": "continent", "arg": "Greece", "k": 16, "target_pos": 13, "exp": "unbound", "gold": "Europe", "gold_rank": 3, "hit": false, "top5": [" Africa", " Asia", " Europe", " South", " North"]}
+{"func": "continent", "arg": "Greece", "k": 16, "target_pos": 13, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " North", " which", ":"]}
+{"func": "continent", "arg": "Poland", "k": 16, "target_pos": 7, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " which", " North", " Asia", " what"]}
+{"func": "continent", "arg": "Poland", "k": 16, "target_pos": 7, "exp": "unbound", "gold": "Europe", "gold_rank": 5, "hit": false, "top5": [" Africa", " Asia", " North", " South", " Europe"]}
+{"func": "continent", "arg": "Poland", "k": 16, "target_pos": 7, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", ":", " which", " North", "\n"]}
+{"func": "continent", "arg": "Kenya", "k": 16, "target_pos": 11, "exp": "text", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " which", " __", "...", "\n"]}
+{"func": "continent", "arg": "Kenya", "k": 16, "target_pos": 11, "exp": "unbound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " Europe", " North", " Asia", " South"]}
+{"func": "continent", "arg": "Kenya", "k": 16, "target_pos": 11, "exp": "bound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", "...", " __", " which", ":"]}
+{"func": "continent", "arg": "Peru", "k": 16, "target_pos": 3, "exp": "text", "gold": "South", "gold_rank": 1, "hit": true, "top5": [" South", " North", " which", " Africa", " Europe"]}
+{"func": "continent", "arg": "Peru", "k": 16, "target_pos": 3, "exp": "unbound", "gold": "South", "gold_rank": 4, "hit": false, "top5": [" Africa", " Europe", " North", " Asia", " South"]}
+{"func": "continent", "arg": "Peru", "k": 16, "target_pos": 3, "exp": "bound", "gold": "South", "gold_rank": 1, "hit": true, "top5": [" South", ":", " ______", " which", "\n"]}
+{"func": "continent", "arg": "Thailand", "k": 16, "target_pos": 15, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Southeast", " which", " Europe", " North"]}
+{"func": "continent", "arg": "Thailand", "k": 16, "target_pos": 15, "exp": "unbound", "gold": "Asia", "gold_rank": 5, "hit": false, "top5": [" Europe", " Africa", " North", " South", " Asia"]}
+{"func": "continent", "arg": "Thailand", "k": 16, "target_pos": 15, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " which", " Europe", ":", " North"]}
+{"func": "continent", "arg": "Vietnam", "k": 16, "target_pos": 7, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " which", " Europe", " Southeast", " __"]}
+{"func": "continent", "arg": "Vietnam", "k": 16, "target_pos": 7, "exp": "unbound", "gold": "Asia", "gold_rank": 4, "hit": false, "top5": [" Africa", " Europe", " North", " Asia", " South"]}
+{"func": "continent", "arg": "Vietnam", "k": 16, "target_pos": 7, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " which", ":", " ______", "\n"]}
+{"func": "currency", "arg": "France", "k": 16, "target_pos": 9, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " French", " __", " Franc"]}
+{"func": "currency", "arg": "France", "k": 16, "target_pos": 9, "exp": "unbound", "gold": "Euro", "gold_rank": 71, "hit": false, "top5": [" \"", " K", " dollar", " k", " kron"]}
+{"func": "currency", "arg": "France", "k": 16, "target_pos": 9, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " Euro", ":", " __", " franc"]}
+{"func": "currency", "arg": "Canada", "k": 16, "target_pos": 13, "exp": "text", "gold": "Dollar", "gold_rank": 2, "hit": false, "top5": [" Canadian", " dollar", " Dollar", " \"", " CAD"]}
+{"func": "currency", "arg": "Canada", "k": 16, "target_pos": 13, "exp": "unbound", "gold": "Dollar", "gold_rank": 3, "hit": false, "top5": [" \"", " K", " dollar", " k", " kron"]}
+{"func": "currency", "arg": "Canada", "k": 16, "target_pos": 13, "exp": "bound", "gold": "Dollar", "gold_rank": 2, "hit": false, "top5": [" Canadian", " dollar", ":", " \"", " __"]}
+{"func": "currency", "arg": "China", "k": 16, "target_pos": 2, "exp": "text", "gold": "Yuan", "gold_rank": 1, "hit": true, "top5": [" Ren", " Yuan", " yuan", " R", " ren"]}
+{"func": "currency", "arg": "China", "k": 16, "target_pos": 2, "exp": "unbound", "gold": "Yuan", "gold_rank": 66, "hit": false, "top5": [" \"", " dollar", " K", " k", " '"]}
+{"func": "currency", "arg": "China", "k": 16, "target_pos": 2, "exp": "bound", "gold": "Yuan", "gold_rank": 1, "hit": true, "top5": [" yuan", " Yuan", " Ren", " ren", ":"]}
+{"func": "currency", "arg": "Egypt", "k": 16, "target_pos": 0, "exp": "text", "gold": "Pound", "gold_rank": 2, "hit": false, "top5": [" Egyptian", " pound", " Pound", " \"", " E"]}
+{"func": "currency", "arg": "Egypt", "k": 16, "target_pos": 0, "exp": "unbound", "gold": "Pound", "gold_rank": 38, "hit": false, "top5": [" \"", " dollar", " K", " k", " kron"]}
+{"func": "currency", "arg": "Egypt", "k": 16, "target_pos": 0, "exp": "bound", "gold": "Pound", "gold_rank": 1, "hit": true, "top5": [" pound", " Egyptian", " dollar", " Pound", " __"]}
+{"func": "currency", "arg": "Japan", "k": 16, "target_pos": 12, "exp": "text", "gold": "Yen", "gold_rank": 1, "hit": true, "top5": [" Yen", " yen", " Japanese", " Y", "\n"]}
+{"func": "currency", "arg": "Japan", "k": 16, "target_pos": 12, "exp": "unbound", "gold": "Yen", "gold_rank": 161, "hit": false, "top5": [" \"", " kron", " dollar", " K", " k"]}
+{"func": "currency", "arg": "Japan", "k": 16, "target_pos": 12, "exp": "bound", "gold": "Yen", "gold_rank": 1, "hit": true, "top5": [" yen", " Yen", ":", " __", "."]}
+{"func": "currency", "arg": "Germany", "k": 16, "target_pos": 0, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " German", " Deutsche", " \""]}
+{"func": "currency", "arg": "Germany", "k": 16, "target_pos": 0, "exp": "unbound", "gold": "Euro", "gold_rank": 26, "hit": false, "top5": [" \"", " dollar", " K", " k", " kron"]}
+{"func": "currency", "arg": "Germany", "k": 16, "target_pos": 0, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " German", " Deutsche", " __"]}
+{"func": "currency", "arg": "Italy", "k": 16, "target_pos": 13, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " L", " Italian", " \""]}
+{"func": "currency", "arg": "Italy", "k": 16, "target_pos": 13, "exp": "unbound", "gold": "Euro", "gold_rank": 31, "hit": false, "top5": [" \"", " dollar", " K", " k", " kron"]}
+{"func": "currency", "arg": "Italy", "k": 16, "target_pos": 13, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " Euro", ":", " \"", " L"]}
+{"func": "currency", "arg": "Spain", "k": 16, "target_pos": 7, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " Spanish", " __", " \""]}
+{"func": "currency", "arg": "Spain", "k": 16, "target_pos": 7, "exp": "unbound", "gold": "Euro", "gold_rank": 27, "hit": false, "top5": [" \"", " dollar", " K", " k", " kron"]}
+{"func": "currency", "arg": "Spain", "k": 16, "target_pos": 7, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " Euro", ":", " pes", " __"]}
+{"func": "currency", "arg": "Russia", "k": 16, "target_pos": 9, "exp": "text", "gold": "Ruble", "gold_rank": 1, "hit": true, "top5": [" Rub", " rub", " Russian", " r", "\n"]}
+{"func": "currency", "arg": "Russia", "k": 16, "target_pos": 9, "exp": "unbound", "gold": "Ruble", "gold_rank": 24, "hit": false, "top5": [" \"", " dollar", " K", " k", " kron"]}
+{"func": "currency", "arg": "Russia", "k": 16, "target_pos": 9, "exp": "bound", "gold": "Ruble", "gold_rank": 1, "hit": true, "top5": [" rub", " Rub", ":", " r", " __"]}
+{"func": "currency", "arg": "Turkey", "k": 16, "target_pos": 15, "exp": "text", "gold": "Lira", "gold_rank": 2, "hit": false, "top5": [" Turkish", " L", " lira", " \"", " l"]}
+{"func": "currency", "arg": "Turkey", "k": 16, "target_pos": 15, "exp": "unbound", "gold": "Lira", "gold_rank": 22, "hit": false, "top5": [" \"", " dollar", " K", " k", " '"]}
+{"func": "currency", "arg": "Turkey", "k": 16, "target_pos": 15, "exp": "bound", "gold": "Lira", "gold_rank": 2, "hit": false, "top5": [" Turkish", " L", " lira", ":", " \""]}
+{"func": "currency", "arg": "Greece", "k": 16, "target_pos": 5, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " Dr", " dr", " Greek"]}
+{"func": "currency", "arg": "Greece", "k": 16, "target_pos": 5, "exp": "unbound", "gold": "Euro", "gold_rank": 33, "hit": false, "top5": [" \"", " dollar", " K", " k", " kron"]}
+{"func": "currency", "arg": "Greece", "k": 16, "target_pos": 5, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " dr", " Euro", " Dr", " __"]}
+{"func": "currency", "arg": "Poland", "k": 16, "target_pos": 0, "exp": "text", "gold": "Zloty", "gold_rank": 1, "hit": true, "top5": [" Z", " z", " Polish", " z\u0142ot", " \""]}
+{"func": "currency", "arg": "Poland", "k": 16, "target_pos": 0, "exp": "unbound", "gold": "Zloty", "gold_rank": 6, "hit": false, "top5": [" \"", " dollar", " K", " k", " kron"]}
+{"func": "currency", "arg": "Poland", "k": 16, "target_pos": 0, "exp": "bound", "gold": "Zloty", "gold_rank": 1, "hit": true, "top5": [" z", " Z", " z\u0142ot", " Polish", ":"]}
+{"func": "currency", "arg": "Kenya", "k": 16, "target_pos": 14, "exp": "text", "gold": "Shilling", "gold_rank": 2, "hit": false, "top5": [" Ken", " Sh", " sh", " Kenya", " __"]}
+{"func": "currency", "arg": "Kenya", "k": 16, "target_pos": 14, "exp": "unbound", "gold": "Shilling", "gold_rank": 57, "hit": false, "top5": [" \"", " K", " dollar", " k", " kron"]}
+{"func": "currency", "arg": "Kenya", "k": 16, "target_pos": 14, "exp": "bound", "gold": "Shilling", "gold_rank": 2, "hit": false, "top5": [" Ken", " sh", " Kenya", " Sh", " __"]}
+{"func": "currency", "arg": "Peru", "k": 16, "target_pos": 12, "exp": "text", "gold": "Sol", "gold_rank": 1, "hit": true, "top5": [" Sol", " Nuevo", " Per", " New", " sol"]}
+{"func": "currency", "arg": "Peru", "k": 16, "target_pos": 12, "exp": "unbound", "gold": "Sol", "gold_rank": 139, "hit": false, "top5": [" \"", " dollar", " K", " k", " kron"]}
+{"func": "currency", "arg": "Peru", "k": 16, "target_pos": 12, "exp": "bound", "gold": "Sol", "gold_rank": 1, "hit": true, "top5": [" Sol", " Nuevo", " sol", ":", " __"]}
+{"func": "currency", "arg": "Thailand", "k": 16, "target_pos": 4, "exp": "text", "gold": "Baht", "gold_rank": 1, "hit": true, "top5": [" Ba", " Thai", " ba", " \"", " ___"]}
+{"func": "currency", "arg": "Thailand", "k": 16, "target_pos": 4, "exp": "unbound", "gold": "Baht", "gold_rank": 121, "hit": false, "top5": [" \"", " dollar", " K", " kron", " k"]}
+{"func": "currency", "arg": "Thailand", "k": 16, "target_pos": 4, "exp": "bound", "gold": "Baht", "gold_rank": 1, "hit": true, "top5": [" ba", " Ba", " Thai", " \"", ":"]}
+{"func": "currency", "arg": "Vietnam", "k": 16, "target_pos": 2, "exp": "text", "gold": "Dong", "gold_rank": 1, "hit": true, "top5": [" Dong", " dong", " Vietnamese", " \u0111\u1ed3ng", " \""]}
+{"func": "currency", "arg": "Vietnam", "k": 16, "target_pos": 2, "exp": "unbound", "gold": "Dong", "gold_rank": 23, "hit": false, "top5": [" \"", " dollar", " franc", " K", " k"]}
+{"func": "currency", "arg": "Vietnam", "k": 16, "target_pos": 2, "exp": "bound", "gold": "Dong", "gold_rank": 1, "hit": true, "top5": [" dong", " Dong", " Vietnamese", " __", " \u0111\u1ed3ng"]}
+{"func": "capital", "arg": "France", "k": 48, "target_pos": 16, "exp": "text", "gold": "Paris", "gold_rank": 1, "hit": true, "top5": [" Paris", " __", " which", "\n", " ["]}
+{"func": "capital", "arg": "France", "k": 48, "target_pos": 16, "exp": "unbound", "gold": "Paris", "gold_rank": 4, "hit": false, "top5": [" London", " ______", " Moscow", " Ottawa", " Paris"]}
+{"func": "capital", "arg": "France", "k": 48, "target_pos": 16, "exp": "bound", "gold": "Paris", "gold_rank": 1, "hit": true, "top5": [" Paris", " __", ":", " ______", " Lyon"]}
+{"func": "capital", "arg": "Canada", "k": 48, "target_pos": 30, "exp": "text", "gold": "Ottawa", "gold_rank": 1, "hit": true, "top5": [" Ottawa", " Toronto", " which", " Montreal", " ["]}
+{"func": "capital", "arg": "Canada", "k": 48, "target_pos": 30, "exp": "unbound", "gold": "Ottawa", "gold_rank": 8, "hit": false, "top5": [" London", " ______", " Paris", " Kin", " __"]}
+{"func": "capital", "arg": "Canada", "k": 48, "target_pos": 30, "exp": "bound", "gold": "Ottawa", "gold_rank": 1, "hit": true, "top5": [" Ottawa", " Toronto", ":", " Montreal", " ______"]}
+{"func": "capital", "arg": "China", "k": 48, "target_pos": 35, "exp": "text", "gold": "Beijing", "gold_rank": 1, "hit": true, "top5": [" Beijing", " Shanghai", " which", " __", "\n"]}
+{"func": "capital", "arg": "China", "k": 48, "target_pos": 35, "exp": "unbound", "gold": "Beijing", "gold_rank": 45, "hit": false, "top5": [" London", " Ottawa", " ______", " Nairobi", " Paris"]}
+{"func": "capital", "arg": "China", "k": 48, "target_pos": 35, "exp": "bound", "gold": "Beijing", "gold_rank": 1, "hit": true, "top5": [" Beijing", "\n", " __", " ______", ":"]}
+{"func": "capital", "arg": "Egypt", "k": 48, "target_pos": 41, "exp": "text", "gold": "Cairo", "gold_rank": 1, "hit": true, "top5": [" Cairo", " which", " Alexandria", " [", "\n"]}
+{"func": "capital", "arg": "Egypt", "k": 48, "target_pos": 41, "exp": "unbound", "gold": "Cairo", "gold_rank": 82, "hit": false, "top5": [" London", " Nairobi", " Kin", " ______", "."]}
+{"func": "capital", "arg": "Egypt", "k": 48, "target_pos": 41, "exp": "bound", "gold": "Cairo", "gold_rank": 1, "hit": true, "top5": [" Cairo", " ______", " Alexandria", " __", ":"]}
+{"func": "capital", "arg": "Japan", "k": 48, "target_pos": 9, "exp": "text", "gold": "Tokyo", "gold_rank": 1, "hit": true, "top5": [" Tokyo", " what", " which", "\n", " Kyoto"]}
+{"func": "capital", "arg": "Japan", "k": 48, "target_pos": 9, "exp": "unbound", "gold": "Tokyo", "gold_rank": 39, "hit": false, "top5": [" Ottawa", " London", " Kin", " ______", " Paris"]}
+{"func": "capital", "arg": "Japan", "k": 48, "target_pos": 9, "exp": "bound", "gold": "Tokyo", "gold_rank": 1, "hit": true, "top5": [" Tokyo", "Tok", " ______", ".", ":"]}
+{"func": "capital", "arg": "Germany", "k": 48, "target_pos": 8, "exp": "text", "gold": "Berlin", "gold_rank": 1, "hit": true, "top5": [" Berlin", " London", " __", " ______", " which"]}
+{"func": "capital", "arg": "Germany", "k": 48, "target_pos": 8, "exp": "unbound", "gold": "Berlin", "gold_rank": 34, "hit": false, "top5": [" Nairobi", " Lima", " Kin", " London", " ______"]}
+{"func": "capital", "arg": "Germany", "k": 48, "target_pos": 8, "exp": "bound", "gold": "Berlin", "gold_rank": 1, "hit": true, "top5": [" Berlin", " __", " ______", " Munich", ":"]}
+{"func": "capital", "arg": "Italy", "k": 48, "target_pos": 32, "exp": "text", "gold": "Rome", "gold_rank": 1, "hit": true, "top5": [" Rome", " Milan", " which", " London", "\n"]}
+{"func": "capital", "arg": "Italy", "k": 48, "target_pos": 32, "exp": "unbound", "gold": "Rome", "gold_rank": 41, "hit": false, "top5": [" London", " Nairobi", " Kin", " Ottawa", " ______"]}
+{"func": "capital", "arg": "Italy", "k": 48, "target_pos": 32, "exp": "bound", "gold": "Rome", "gold_rank": 1, "hit": true, "top5": [" Rome", " Milan", " Tur", " Florence", " ______"]}
+{"func": "capital", "arg": "Spain", "k": 48, "target_pos": 40, "exp": "text", "gold": "Madrid", "gold_rank": 1, "hit": true, "top5": [" Madrid", " Barcelona", " __", " which", " ______"]}
+{"func": "capital", "arg": "Spain", "k": 48, "target_pos": 40, "exp": "unbound", "gold": "Madrid", "gold_rank": 26, "hit": false, "top5": [" London", " Nairobi", " Paris", " Kin", " ______"]}
+{"func": "capital", "arg": "Spain", "k": 48, "target_pos": 40, "exp": "bound", "gold": "Madrid", "gold_rank": 1, "hit": true, "top5": [" Madrid", " Barcelona", " __", " ______", ":"]}
+{"func": "capital", "arg": "Russia", "k": 48, "target_pos": 16, "exp": "text", "gold": "Moscow", "gold_rank": 1, "hit": true, "top5": [" Moscow", " __", " [", " ______", " which"]}
+{"func": "capital", "arg": "Russia", "k": 48, "target_pos": 16, "exp": "unbound", "gold": "Moscow", "gold_rank": 21, "hit": false, "top5": [" London", " Ottawa", " Paris", " ______", " Kin"]}
+{"func": "capital", "arg": "Russia", "k": 48, "target_pos": 16, "exp": "bound", "gold": "Moscow", "gold_rank": 1, "hit": true, "top5": [" Moscow", " __", " ______", " [", ":"]}
+{"func": "capital", "arg": "Turkey", "k": 48, "target_pos": 10, "exp": "text", "gold": "Ankara", "gold_rank": 1, "hit": true, "top5": [" Ankara", " Istanbul", " An", " __", " ______"]}
+{"func": "capital", "arg": "Turkey", "k": 48, "target_pos": 10, "exp": "unbound", "gold": "Ankara", "gold_rank": 87, "hit": false, "top5": [" Nairobi", " London", " Kin", " ______", " Ottawa"]}
+{"func": "capital", "arg": "Turkey", "k": 48, "target_pos": 10, "exp": "bound", "gold": "Ankara", "gold_rank": 1, "hit": true, "top5": [" Ankara", " Istanbul", " ______", " An", " __"]}
+{"func": "capital", "arg": "Greece", "k": 48, "target_pos": 42, "exp": "text", "gold": "Athens", "gold_rank": 1, "hit": true, "top5": [" Athens", " which", " [", " Th", "\n"]}
+{"func": "capital", "arg": "Greece", "k": 48, "target_pos": 42, "exp": "unbound", "gold": "Athens", "gold_rank": 61, "hit": false, "top5": [" London", " Ottawa", " Paris", " ______", " Tokyo"]}
+{"func": "capital", "arg": "Greece", "k": 48, "target_pos": 42, "exp": "bound", "gold": "Athens", "gold_rank": 1, "hit": true, "top5": [" Athens", " ______", ":", ".", "\n"]}
+{"func": "capital", "arg": "Poland", "k": 48, "target_pos": 17, "exp": "text", "gold": "Warsaw", "gold_rank": 1, "hit": true, "top5": [" Warsaw", " Krak", " __", " which", " W"]}
+{"func": "capital", "arg": "Poland", "k": 48, "target_pos": 17, "exp": "unbound", "gold": "Warsaw", "gold_rank": 116, "hit": false, "top5": [" Ottawa", " Nairobi", " London", " Kin", " ______"]}
+{"func": "capital", "arg": "Poland", "k": 48, "target_pos": 17, "exp": "bound", "gold": "Warsaw", "gold_rank": 1, "hit": true, "top5": [" Warsaw", ":", " __", " Krak", " ______"]}
+{"func": "capital", "arg": "Kenya", "k": 48, "target_pos": 2, "exp": "text", "gold": "Nairobi", "gold_rank": 1, "hit": true, "top5": [" Nairobi", "\n", " __", " which", "."]}
+{"func": "capital", "arg": "Kenya", "k": 48, "target_pos": 2, "exp": "unbound", "gold": "Nairobi", "gold_rank": 10, "hit": false, "top5": [" Ottawa", " London", " ______", " Kin", "."]}
+{"func": "capital", "arg": "Kenya", "k": 48, "target_pos": 2, "exp": "bound", "gold": "Nairobi", "gold_rank": 1, "hit": true, "top5": [" Nairobi", " __", ".", " N", " ______"]}
+{"func": "capital", "arg": "Peru", "k": 48, "target_pos": 0, "exp": "text", "gold": "Lima", "gold_rank": 1, "hit": true, "top5": [" Lima", "\n", " which", " __", " ______"]}
+{"func": "capital", "arg": "Peru", "k": 48, "target_pos": 0, "exp": "unbound", "gold": "Lima", "gold_rank": 7, "hit": false, "top5": [" London", " Ottawa", " ______", " Kin", " Paris"]}
+{"func": "capital", "arg": "Peru", "k": 48, "target_pos": 0, "exp": "bound", "gold": "Lima", "gold_rank": 1, "hit": true, "top5": [" Lima", " Q", " ______", " __", ":"]}
+{"func": "capital", "arg": "Thailand", "k": 48, "target_pos": 15, "exp": "text", "gold": "Bangkok", "gold_rank": 1, "hit": true, "top5": [" Bangkok", " which", "\n", " ______", " ____"]}
+{"func": "capital", "arg": "Thailand", "k": 48, "target_pos": 15, "exp": "unbound", "gold": "Bangkok", "gold_rank": 29, "hit": false, "top5": [" London", " ______", " Kin", " Ottawa", " Paris"]}
+{"func": "capital", "arg": "Thailand", "k": 48, "target_pos": 15, "exp": "bound", "gold": "Bangkok", "gold_rank": 1, "hit": true, "top5": [" Bangkok", " N", " ______", ".", " Chiang"]}
+{"func": "capital", "arg": "Vietnam", "k": 48, "target_pos": 26, "exp": "text", "gold": "Hanoi", "gold_rank": 1, "hit": true, "top5": [" H", " Ha", " Ho", " ______", " __"]}
+{"func": "capital", "arg": "Vietnam", "k": 48, "target_pos": 26, "exp": "unbound", "gold": "Hanoi", "gold_rank": 58, "hit": false, "top5": [" London", " Ottawa", " Nairobi", " ______", " Kin"]}
+{"func": "capital", "arg": "Vietnam", "k": 48, "target_pos": 26, "exp": "bound", "gold": "Hanoi", "gold_rank": 1, "hit": true, "top5": [" H", " ______", ".", " __", " Ha"]}
+{"func": "language", "arg": "France", "k": 48, "target_pos": 28, "exp": "text", "gold": "French", "gold_rank": 1, "hit": true, "top5": [" French", " English", " __", " what", "\n"]}
+{"func": "language", "arg": "France", "k": 48, "target_pos": 28, "exp": "unbound", "gold": "French", "gold_rank": 3, "hit": false, "top5": [" English", " Spanish", " French", " German", ":"]}
+{"func": "language", "arg": "France", "k": 48, "target_pos": 28, "exp": "bound", "gold": "French", "gold_rank": 1, "hit": true, "top5": [" French", ":", " __", " English", "\n"]}
+{"func": "language", "arg": "Canada", "k": 48, "target_pos": 3, "exp": "text", "gold": "English", "gold_rank": 1, "hit": true, "top5": [" English", " French", " Canadian", " Spanish", " ["]}
+{"func": "language", "arg": "Canada", "k": 48, "target_pos": 3, "exp": "unbound", "gold": "English", "gold_rank": 1, "hit": true, "top5": [" English", " Spanish", " French", ":", " German"]}
+{"func": "language", "arg": "Canada", "k": 48, "target_pos": 3, "exp": "bound", "gold": "English", "gold_rank": 1, "hit": true, "top5": [" English", " French", ":", " the", " __"]}
+{"func": "language", "arg": "China", "k": 48, "target_pos": 5, "exp": "text", "gold": "Chinese", "gold_rank": 1, "hit": true, "top5": [" Chinese", " Mandarin", " English", " the", " not"]}
+{"func": "language", "arg": "China", "k": 48, "target_pos": 5, "exp": "unbound", "gold": "Chinese", "gold_rank": 17, "hit": false, "top5": [" English", " Spanish", " French", ":", " the"]}
+{"func": "language", "arg": "China", "k": 48, "target_pos": 5, "exp": "bound", "gold": "Chinese", "gold_rank": 1, "hit": true, "top5": [" the", " Chinese", " English", " not", " French"]}
+{"func": "language", "arg": "Egypt", "k": 48, "target_pos": 37, "exp": "text", "gold": "Arabic", "gold_rank": 1, "hit": true, "top5": [" Arabic", " English", " Egyptian", " not", " the"]}
+{"func": "language", "arg": "Egypt", "k": 48, "target_pos": 37, "exp": "unbound", "gold": "Arabic", "gold_rank": 22, "hit": false, "top5": [" English", " Spanish", " French", ":", " German"]}
+{"func": "language", "arg": "Egypt", "k": 48, "target_pos": 37, "exp": "bound", "gold": "Arabic", "gold_rank": 1, "hit": true, "top5": [" Arabic", " not", " English", " __", ":"]}
+{"func": "language", "arg": "Japan", "k": 48, "target_pos": 12, "exp": "text", "gold": "Japanese", "gold_rank": 1, "hit": true, "top5": [" Japanese", " English", " not", " the", " what"]}
+{"func": "language", "arg": "Japan", "k": 48, "target_pos": 12, "exp": "unbound", "gold": "Japanese", "gold_rank": 45, "hit": false, "top5": [" English", " Spanish", " French", " German", ":"]}
+{"func": "language", "arg": "Japan", "k": 48, "target_pos": 12, "exp": "bound", "gold": "Japanese", "gold_rank": 1, "hit": true, "top5": [" Japanese", " English", ":", " the", " __"]}
+{"func": "language", "arg": "Germany", "k": 48, "target_pos": 20, "exp": "text", "gold": "German", "gold_rank": 1, "hit": true, "top5": [" German", " English", " the", " not", "\n"]}
+{"func": "language", "arg": "Germany", "k": 48, "target_pos": 20, "exp": "unbound", "gold": "German", "gold_rank": 5, "hit": false, "top5": [" English", " French", " Spanish", ":", " not"]}
+{"func": "language", "arg": "Germany", "k": 48, "target_pos": 20, "exp": "bound", "gold": "German", "gold_rank": 1, "hit": true, "top5": [" German", " English", ":", " __", " the"]}
+{"func": "language", "arg": "Italy", "k": 48, "target_pos": 46, "exp": "text", "gold": "Italian", "gold_rank": 1, "hit": true, "top5": [" Italian", " English", " not", " the", " __"]}
+{"func": "language", "arg": "Italy", "k": 48, "target_pos": 46, "exp": "unbound", "gold": "Italian", "gold_rank": 15, "hit": false, "top5": [" English", " Spanish", " French", " German", ":"]}
+{"func": "language", "arg": "Italy", "k": 48, "target_pos": 46, "exp": "bound", "gold": "Italian", "gold_rank": 1, "hit": true, "top5": [" Italian", "\n", ":", " __", " the"]}
+{"func": "language", "arg": "Spain", "k": 48, "target_pos": 16, "exp": "text", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " English", " the", " not", " __"]}
+{"func": "language", "arg": "Spain", "k": 48, "target_pos": 16, "exp": "unbound", "gold": "Spanish", "gold_rank": 3, "hit": false, "top5": [" English", " French", " Spanish", " German", " not"]}
+{"func": "language", "arg": "Spain", "k": 48, "target_pos": 16, "exp": "bound", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " __", ":", " the", " ______"]}
+{"func": "language", "arg": "Russia", "k": 48, "target_pos": 30, "exp": "text", "gold": "Russian", "gold_rank": 1, "hit": true, "top5": [" Russian", " English", " not", " the", " __"]}
+{"func": "language", "arg": "Russia", "k": 48, "target_pos": 30, "exp": "unbound", "gold": "Russian", "gold_rank": 34, "hit": false, "top5": [" English", " French", " Spanish", " German", ":"]}
+{"func": "language", "arg": "Russia", "k": 48, "target_pos": 30, "exp": "bound", "gold": "Russian", "gold_rank": 1, "hit": true, "top5": [" Russian", " not", " the", " English", ":"]}
+{"func": "language", "arg": "Turkey", "k": 48, "target_pos": 1, "exp": "text", "gold": "Turkish", "gold_rank": 1, "hit": true, "top5": [" Turkish", " not", " English", " the", " what"]}
+{"func": "language", "arg": "Turkey", "k": 48, "target_pos": 1, "exp": "unbound", "gold": "Turkish", "gold_rank": 28, "hit": false, "top5": [" English", " French", " Spanish", " German", ":"]}
+{"func": "language", "arg": "Turkey", "k": 48, "target_pos": 1, "exp": "bound", "gold": "Turkish", "gold_rank": 1, "hit": true, "top5": [" Turkish", " not", ":", " English", " the"]}
+{"func": "language", "arg": "Greece", "k": 48, "target_pos": 32, "exp": "text", "gold": "Greek", "gold_rank": 1, "hit": true, "top5": [" Greek", " English", " not", "\n", " the"]}
+{"func": "language", "arg": "Greece", "k": 48, "target_pos": 32, "exp": "unbound", "gold": "Greek", "gold_rank": 26, "hit": false, "top5": [" English", " Spanish", " French", ":", " German"]}
+{"func": "language", "arg": "Greece", "k": 48, "target_pos": 32, "exp": "bound", "gold": "Greek", "gold_rank": 1, "hit": true, "top5": [" Greek", ":", " English", "\n", " not"]}
+{"func": "language", "arg": "Poland", "k": 48, "target_pos": 36, "exp": "text", "gold": "Polish", "gold_rank": 1, "hit": true, "top5": [" Polish", " English", " not", " the", " Poland"]}
+{"func": "language", "arg": "Poland", "k": 48, "target_pos": 36, "exp": "unbound", "gold": "Polish", "gold_rank": 54, "hit": false, "top5": [" English", " Spanish", " French", " German", ":"]}
+{"func": "language", "arg": "Poland", "k": 48, "target_pos": 36, "exp": "bound", "gold": "Polish", "gold_rank": 1, "hit": true, "top5": [" Polish", ":", " __", "\n", " the"]}
+{"func": "language", "arg": "Kenya", "k": 48, "target_pos": 35, "exp": "text", "gold": "Swahili", "gold_rank": 1, "hit": true, "top5": [" Sw", " English", " not", " Ken", " the"]}
+{"func": "language", "arg": "Kenya", "k": 48, "target_pos": 35, "exp": "unbound", "gold": "Swahili", "gold_rank": 1, "hit": true, "top5": [" English", " French", " Spanish", " German", ":"]}
+{"func": "language", "arg": "Kenya", "k": 48, "target_pos": 35, "exp": "bound", "gold": "Swahili", "gold_rank": 2, "hit": false, "top5": [":", " English", "\n", " __", " not"]}
+{"func": "language", "arg": "Peru", "k": 48, "target_pos": 23, "exp": "text", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " Que", " Portuguese", " not", " English"]}
+{"func": "language", "arg": "Peru", "k": 48, "target_pos": 23, "exp": "unbound", "gold": "Spanish", "gold_rank": 3, "hit": false, "top5": [" English", " French", " Spanish", " German", ":"]}
+{"func": "language", "arg": "Peru", "k": 48, "target_pos": 23, "exp": "bound", "gold": "Spanish", "gold_rank": 1, "hit": true, "top5": [" Spanish", " not", ":", " Portuguese", "\n"]}
+{"func": "language", "arg": "Thailand", "k": 48, "target_pos": 27, "exp": "text", "gold": "Thai", "gold_rank": 1, "hit": true, "top5": [" Thai", " English", " not", " the", " Spanish"]}
+{"func": "language", "arg": "Thailand", "k": 48, "target_pos": 27, "exp": "unbound", "gold": "Thai", "gold_rank": 104, "hit": false, "top5": [" English", " French", " Spanish", " German", ":"]}
+{"func": "language", "arg": "Thailand", "k": 48, "target_pos": 27, "exp": "bound", "gold": "Thai", "gold_rank": 1, "hit": true, "top5": [" Thai", ":", " English", "\n", " the"]}
+{"func": "language", "arg": "Vietnam", "k": 48, "target_pos": 14, "exp": "text", "gold": "Vietnamese", "gold_rank": 1, "hit": true, "top5": [" Vietnamese", " English", " Vietnam", " French", " not"]}
+{"func": "language", "arg": "Vietnam", "k": 48, "target_pos": 14, "exp": "unbound", "gold": "Vietnamese", "gold_rank": 54, "hit": false, "top5": [" English", " Spanish", " French", ":", " German"]}
+{"func": "language", "arg": "Vietnam", "k": 48, "target_pos": 14, "exp": "bound", "gold": "Vietnamese", "gold_rank": 1, "hit": true, "top5": [" Vietnamese", " the", " not", " English", " __"]}
+{"func": "continent", "arg": "France", "k": 48, "target_pos": 0, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", " North", " what"]}
+{"func": "continent", "arg": "France", "k": 48, "target_pos": 0, "exp": "unbound", "gold": "Europe", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " North", " Asia", " South"]}
+{"func": "continent", "arg": "France", "k": 48, "target_pos": 0, "exp": "bound", "gold": "Europe", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " North", " which", ":"]}
+{"func": "continent", "arg": "Canada", "k": 48, "target_pos": 22, "exp": "text", "gold": "North", "gold_rank": 1, "hit": true, "top5": [" North", " Europe", " which", " South", " Africa"]}
+{"func": "continent", "arg": "Canada", "k": 48, "target_pos": 22, "exp": "unbound", "gold": "North", "gold_rank": 3, "hit": false, "top5": [" Europe", " Africa", " Asia", " North", " South"]}
+{"func": "continent", "arg": "Canada", "k": 48, "target_pos": 22, "exp": "bound", "gold": "North", "gold_rank": 1, "hit": true, "top5": [" North", " Europe", " Africa", " which", ":"]}
+{"func": "continent", "arg": "China", "k": 48, "target_pos": 44, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Africa", " which", " Europe", " North"]}
+{"func": "continent", "arg": "China", "k": 48, "target_pos": 44, "exp": "unbound", "gold": "Asia", "gold_rank": 6, "hit": false, "top5": [" Africa", " Europe", " North", " South", ":"]}
+{"func": "continent", "arg": "China", "k": 48, "target_pos": 44, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Africa", " Europe", " which", " North"]}
+{"func": "continent", "arg": "Egypt", "k": 48, "target_pos": 4, "exp": "text", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " which", " Asia", " Europe", " __"]}
+{"func": "continent", "arg": "Egypt", "k": 48, "target_pos": 4, "exp": "unbound", "gold": "Africa", "gold_rank": 2, "hit": false, "top5": [" Europe", " Africa", " Asia", " North", " South"]}
+{"func": "continent", "arg": "Egypt", "k": 48, "target_pos": 4, "exp": "bound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " which", " __", " ______", ":"]}
+{"func": "continent", "arg": "Japan", "k": 48, "target_pos": 20, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Africa", " which", " Europe", " North"]}
+{"func": "continent", "arg": "Japan", "k": 48, "target_pos": 20, "exp": "unbound", "gold": "Asia", "gold_rank": 7, "hit": false, "top5": [" Africa", " Europe", " North", " South", ":"]}
+{"func": "continent", "arg": "Japan", "k": 48, "target_pos": 20, "exp": "bound", "gold": "Asia", "gold_rank": 2, "hit": false, "top5": [" Africa", " Asia", " Europe", " which", " North"]}
+{"func": "continent", "arg": "Germany", "k": 48, "target_pos": 41, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " North", " which", " South"]}
+{"func": "continent", "arg": "Germany", "k": 48, "target_pos": 41, "exp": "unbound", "gold": "Europe", "gold_rank": 3, "hit": false, "top5": [" Africa", " Asia", " North", " Europe", " South"]}
+{"func": "continent", "arg": "Germany", "k": 48, "target_pos": 41, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " North", " which", " South"]}
+{"func": "continent", "arg": "Italy", "k": 48, "target_pos": 6, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", " Asia", " South"]}
+{"func": "continent", "arg": "Italy", "k": 48, "target_pos": 6, "exp": "unbound", "gold": "Europe", "gold_rank": 3, "hit": false, "top5": [" Africa", " Asia", " Europe", " North", " South"]}
+{"func": "continent", "arg": "Italy", "k": 48, "target_pos": 6, "exp": "bound", "gold": "Europe", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " which", " North", " Asia"]}
+{"func": "continent", "arg": "Spain", "k": 48, "target_pos": 33, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", " South", " North"]}
+{"func": "continent", "arg": "Spain", "k": 48, "target_pos": 33, "exp": "unbound", "gold": "Europe", "gold_rank": 5, "hit": false, "top5": [" Africa", " North", " Asia", " South", " Europe"]}
+{"func": "continent", "arg": "Spain", "k": 48, "target_pos": 33, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " South", " North", " which"]}
+{"func": "continent", "arg": "Russia", "k": 48, "target_pos": 22, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " North", " Asia", " which"]}
+{"func": "continent", "arg": "Russia", "k": 48, "target_pos": 22, "exp": "unbound", "gold": "Europe", "gold_rank": 3, "hit": false, "top5": [" Africa", " North", " Europe", " South", ":"]}
+{"func": "continent", "arg": "Russia", "k": 48, "target_pos": 22, "exp": "bound", "gold": "Europe", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " which", " Asia", " North"]}
+{"func": "continent", "arg": "Turkey", "k": 48, "target_pos": 42, "exp": "text", "gold": "Asia", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " which", " Asia", " North"]}
+{"func": "continent", "arg": "Turkey", "k": 48, "target_pos": 42, "exp": "unbound", "gold": "Asia", "gold_rank": 3, "hit": false, "top5": [" Africa", " North", " Europe", " South", " ______"]}
+{"func": "continent", "arg": "Turkey", "k": 48, "target_pos": 42, "exp": "bound", "gold": "Asia", "gold_rank": 3, "hit": false, "top5": [" Africa", " which", " Europe", " North", ":"]}
+{"func": "continent", "arg": "Greece", "k": 48, "target_pos": 2, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", " Asia", " what"]}
+{"func": "continent", "arg": "Greece", "k": 48, "target_pos": 2, "exp": "unbound", "gold": "Europe", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " Asia", " North", " South"]}
+{"func": "continent", "arg": "Greece", "k": 48, "target_pos": 2, "exp": "bound", "gold": "Europe", "gold_rank": 2, "hit": false, "top5": [" Africa", " Europe", " which", " Asia", " __"]}
+{"func": "continent", "arg": "Poland", "k": 48, "target_pos": 5, "exp": "text", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " which", " North", " Asia"]}
+{"func": "continent", "arg": "Poland", "k": 48, "target_pos": 5, "exp": "unbound", "gold": "Europe", "gold_rank": 3, "hit": false, "top5": [" Africa", " Asia", " North", " Europe", " ______"]}
+{"func": "continent", "arg": "Poland", "k": 48, "target_pos": 5, "exp": "bound", "gold": "Europe", "gold_rank": 1, "hit": true, "top5": [" Europe", " Africa", " North", " which", ":"]}
+{"func": "continent", "arg": "Kenya", "k": 48, "target_pos": 12, "exp": "text", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " which", " __", " what", "..."]}
+{"func": "continent", "arg": "Kenya", "k": 48, "target_pos": 12, "exp": "unbound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " Europe", " Asia", " North", " South"]}
+{"func": "continent", "arg": "Kenya", "k": 48, "target_pos": 12, "exp": "bound", "gold": "Africa", "gold_rank": 1, "hit": true, "top5": [" Africa", " which", " __", " ______", ":"]}
+{"func": "continent", "arg": "Peru", "k": 48, "target_pos": 43, "exp": "text", "gold": "South", "gold_rank": 1, "hit": true, "top5": [" South", " North", " which", " Africa", " Europe"]}
+{"func": "continent", "arg": "Peru", "k": 48, "target_pos": 43, "exp": "unbound", "gold": "South", "gold_rank": 4, "hit": false, "top5": [" Africa", " Europe", " North", " South", " Asia"]}
+{"func": "continent", "arg": "Peru", "k": 48, "target_pos": 43, "exp": "bound", "gold": "South", "gold_rank": 1, "hit": true, "top5": [" South", " Africa", " North", " which", ":"]}
+{"func": "continent", "arg": "Thailand", "k": 48, "target_pos": 48, "exp": "text", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Africa", " which", " Europe", " Southeast"]}
+{"func": "continent", "arg": "Thailand", "k": 48, "target_pos": 48, "exp": "unbound", "gold": "Asia", "gold_rank": 4, "hit": false, "top5": [" Africa", " Europe", " North", " Asia", " South"]}
+{"func": "continent", "arg": "Thailand", "k": 48, "target_pos": 48, "exp": "bound", "gold": "Asia", "gold_rank": 2, "hit": false, "top5": [" Africa", " Asia", " Europe", " which", " North"]}
+{"func": "continent", "arg": "Vietnam", "k": 48, "target_pos": 35, "exp": "text", "gold": "Asia", "gold_rank": 2, "hit": false, "top5": [" Africa", " Asia", " Europe", " which", " South"]}
+{"func": "continent", "arg": "Vietnam", "k": 48, "target_pos": 35, "exp": "unbound", "gold": "Asia", "gold_rank": 9, "hit": false, "top5": [" Africa", " Europe", " North", ":", " ______"]}
+{"func": "continent", "arg": "Vietnam", "k": 48, "target_pos": 35, "exp": "bound", "gold": "Asia", "gold_rank": 1, "hit": true, "top5": [" Asia", " Africa", " which", " Europe", ":"]}
+{"func": "currency", "arg": "France", "k": 48, "target_pos": 30, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " French", " __", " Franc"]}
+{"func": "currency", "arg": "France", "k": 48, "target_pos": 30, "exp": "unbound", "gold": "Euro", "gold_rank": 24, "hit": false, "top5": [" \"", " K", " dollar", " k", " kron"]}
+{"func": "currency", "arg": "France", "k": 48, "target_pos": 30, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " __", ":", " franc"]}
+{"func": "currency", "arg": "Canada", "k": 48, "target_pos": 20, "exp": "text", "gold": "Dollar", "gold_rank": 2, "hit": false, "top5": [" Canadian", " dollar", " Dollar", " \"", " CAD"]}
+{"func": "currency", "arg": "Canada", "k": 48, "target_pos": 20, "exp": "unbound", "gold": "Dollar", "gold_rank": 3, "hit": false, "top5": [" \"", " K", " dollar", " k", " franc"]}
+{"func": "currency", "arg": "Canada", "k": 48, "target_pos": 20, "exp": "bound", "gold": "Dollar", "gold_rank": 2, "hit": false, "top5": [" Canadian", " dollar", ":", " __", " \""]}
+{"func": "currency", "arg": "China", "k": 48, "target_pos": 35, "exp": "text", "gold": "Yuan", "gold_rank": 1, "hit": true, "top5": [" Ren", " Yuan", " yuan", " R", " Chinese"]}
+{"func": "currency", "arg": "China", "k": 48, "target_pos": 35, "exp": "unbound", "gold": "Yuan", "gold_rank": 89, "hit": false, "top5": [" \"", " K", " k", " dollar", " '"]}
+{"func": "currency", "arg": "China", "k": 48, "target_pos": 35, "exp": "bound", "gold": "Yuan", "gold_rank": 1, "hit": true, "top5": [" yuan", " Yuan", " Ren", " ren", " R"]}
+{"func": "currency", "arg": "Egypt", "k": 48, "target_pos": 31, "exp": "text", "gold": "Pound", "gold_rank": 2, "hit": false, "top5": [" Egyptian", " pound", " Pound", " \"", " '"]}
+{"func": "currency", "arg": "Egypt", "k": 48, "target_pos": 31, "exp": "unbound", "gold": "Pound", "gold_rank": 43, "hit": false, "top5": [" \"", " K", " dollar", " k", " kron"]}
+{"func": "currency", "arg": "Egypt", "k": 48, "target_pos": 31, "exp": "bound", "gold": "Pound", "gold_rank": 1, "hit": true, "top5": [" pound", " Egyptian", " Pound", " __", " dollar"]}
+{"func": "currency", "arg": "Japan", "k": 48, "target_pos": 11, "exp": "text", "gold": "Yen", "gold_rank": 1, "hit": true, "top5": [" Yen", " yen", " Japanese", " Y", " \""]}
+{"func": "currency", "arg": "Japan", "k": 48, "target_pos": 11, "exp": "unbound", "gold": "Yen", "gold_rank": 139, "hit": false, "top5": [" \"", " dollar", " K", " k", " kron"]}
+{"func": "currency", "arg": "Japan", "k": 48, "target_pos": 11, "exp": "bound", "gold": "Yen", "gold_rank": 1, "hit": true, "top5": [" yen", " Yen", ":", " __", " Japanese"]}
+{"func": "currency", "arg": "Germany", "k": 48, "target_pos": 25, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " German", " Deutsche", " \""]}
+{"func": "currency", "arg": "Germany", "k": 48, "target_pos": 25, "exp": "unbound", "gold": "Euro", "gold_rank": 41, "hit": false, "top5": [" \"", " dollar", " K", " k", " kron"]}
+{"func": "currency", "arg": "Germany", "k": 48, "target_pos": 25, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " Deutsche", " German", " __"]}
+{"func": "currency", "arg": "Italy", "k": 48, "target_pos": 36, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " L", " Italian", " \""]}
+{"func": "currency", "arg": "Italy", "k": 48, "target_pos": 36, "exp": "unbound", "gold": "Euro", "gold_rank": 54, "hit": false, "top5": [" \"", " dollar", " K", " k", " kron"]}
+{"func": "currency", "arg": "Italy", "k": 48, "target_pos": 36, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " Euro", " L", " Italian", " lira"]}
+{"func": "currency", "arg": "Spain", "k": 48, "target_pos": 13, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " Spanish", " \"", " __"]}
+{"func": "currency", "arg": "Spain", "k": 48, "target_pos": 13, "exp": "unbound", "gold": "Euro", "gold_rank": 35, "hit": false, "top5": [" \"", " K", " dollar", " k", " '"]}
+{"func": "currency", "arg": "Spain", "k": 48, "target_pos": 13, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " pes", " __", ":"]}
+{"func": "currency", "arg": "Russia", "k": 48, "target_pos": 11, "exp": "text", "gold": "Ruble", "gold_rank": 1, "hit": true, "top5": [" Rub", " rub", " Russian", " r", " \""]}
+{"func": "currency", "arg": "Russia", "k": 48, "target_pos": 11, "exp": "unbound", "gold": "Ruble", "gold_rank": 18, "hit": false, "top5": [" \"", " dollar", " K", " franc", " k"]}
+{"func": "currency", "arg": "Russia", "k": 48, "target_pos": 11, "exp": "bound", "gold": "Ruble", "gold_rank": 1, "hit": true, "top5": [" rub", " Rub", " r", " __", ":"]}
+{"func": "currency", "arg": "Turkey", "k": 48, "target_pos": 10, "exp": "text", "gold": "Lira", "gold_rank": 2, "hit": false, "top5": [" Turkish", " L", " lira", " \"", " l"]}
+{"func": "currency", "arg": "Turkey", "k": 48, "target_pos": 10, "exp": "unbound", "gold": "Lira", "gold_rank": 17, "hit": false, "top5": [" \"", " K", " dollar", " k", " kron"]}
+{"func": "currency", "arg": "Turkey", "k": 48, "target_pos": 10, "exp": "bound", "gold": "Lira", "gold_rank": 2, "hit": false, "top5": [" Turkish", " L", " lira", ":", " __"]}
+{"func": "currency", "arg": "Greece", "k": 48, "target_pos": 6, "exp": "text", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" Euro", " euro", " Dr", " dr", " Greek"]}
+{"func": "currency", "arg": "Greece", "k": 48, "target_pos": 6, "exp": "unbound", "gold": "Euro", "gold_rank": 53, "hit": false, "top5": [" \"", " K", " dollar", " k", " kron"]}
+{"func": "currency", "arg": "Greece", "k": 48, "target_pos": 6, "exp": "bound", "gold": "Euro", "gold_rank": 1, "hit": true, "top5": [" euro", " dr", " Euro", " Dr", " __"]}
+{"func": "currency", "arg": "Poland", "k": 48, "target_pos": 25, "exp": "text", "gold": "Zloty", "gold_rank": 1, "hit": true, "top5": [" Z", " z", " Polish", " z\u0142ot", " \""]}
+{"func": "currency", "arg": "Poland", "k": 48, "target_pos": 25, "exp": "unbound", "gold": "Zloty", "gold_rank": 8, "hit": false, "top5": [" \"", " K", " dollar", " k", " '"]}
+{"func": "currency", "arg": "Poland", "k": 48, "target_pos": 25, "exp": "bound", "gold": "Zloty", "gold_rank": 1, "hit": true, "top5": [" z", " Z", " z\u0142ot", " Polish", ":"]}
+{"func": "currency", "arg": "Kenya", "k": 48, "target_pos": 0, "exp": "text", "gold": "Shilling", "gold_rank": 2, "hit": false, "top5": [" Ken", " Sh", " sh", " Kenya", " Kil"]}
+{"func": "currency", "arg": "Kenya", "k": 48, "target_pos": 0, "exp": "unbound", "gold": "Shilling", "gold_rank": 44, "hit": false, "top5": [" \"", " K", " dollar", " k", " kron"]}
+{"func": "currency", "arg": "Kenya", "k": 48, "target_pos": 0, "exp": "bound", "gold": "Shilling", "gold_rank": 2, "hit": false, "top5": [" Ken", " sh", " Sh", " Kenya", " __"]}
+{"func": "currency", "arg": "Peru", "k": 48, "target_pos": 37, "exp": "text", "gold": "Sol", "gold_rank": 1, "hit": true, "top5": [" Sol", " Nuevo", " Per", " \"", " New"]}
+{"func": "currency", "arg": "Peru", "k": 48, "target_pos": 37, "exp": "unbound", "gold": "Sol", "gold_rank": 160, "hit": false, "top5": [" \"", " franc", " K", " dollar", " k"]}
+{"func": "currency", "arg": "Peru", "k": 48, "target_pos": 37, "exp": "bound", "gold": "Sol", "gold_rank": 1, "hit": true, "top5": [" Sol", " Nuevo", " Per", " __", " sol"]}
+{"func": "currency", "arg": "Thailand", "k": 48, "target_pos": 26, "exp": "text", "gold": "Baht", "gold_rank": 1, "hit": true, "top5": [" Ba", " Thai", " ba", " \"", " **"]}
+{"func": "currency", "arg": "Thailand", "k": 48, "target_pos": 26, "exp": "unbound", "gold": "Baht", "gold_rank": 141, "hit": false, "top5": [" \"", " dollar", " K", " kron", " k"]}
+{"func": "currency", "arg": "Thailand", "k": 48, "target_pos": 26, "exp": "bound", "gold": "Baht", "gold_rank": 1, "hit": true, "top5": [" ba", " Ba", " Thai", ":", " \""]}
+{"func": "currency", "arg": "Vietnam", "k": 48, "target_pos": 46, "exp": "text", "gold": "Dong", "gold_rank": 1, "hit": true, "top5": [" Dong", " dong", " Vietnamese", " \u0111\u1ed3ng", " \""]}
+{"func": "currency", "arg": "Vietnam", "k": 48, "target_pos": 46, "exp": "unbound", "gold": "Dong", "gold_rank": 18, "hit": false, "top5": [" \"", " K", " dollar", " k", " franc"]}
+{"func": "currency", "arg": "Vietnam", "k": 48, "target_pos": 46, "exp": "bound", "gold": "Dong", "gold_rank": 1, "hit": true, "top5": [" dong", " Dong", " Vietnamese", " __", ":"]}

@@ -1,0 +1,83 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#ffffff;
+         font-family:-apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif; }
+  .card { width:1000px; height:560px; padding:38px 42px 28px; position:relative;
+          background:linear-gradient(180deg,#ffffff 0%,#f7f9fc 100%); overflow:hidden; }
+  .kicker   { font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+              color:#6366F1; margin:0 0 10px; }
+  .title    { font-size:30px; font-weight:800; color:#0F172A; letter-spacing:-0.02em; margin:0; max-width:680px; }
+  .subtitle { font-size:15px; color:#64748B; margin:9px 0 0; max-width:640px; line-height:1.45; }
+  .callout       { position:absolute; right:42px; top:40px; text-align:right; }
+  .callout .big  { font-size:44px; font-weight:800; letter-spacing:-0.03em; line-height:1;
+                   background:linear-gradient(90deg,#10B981,#14B8A6);
+                   -webkit-background-clip:text; background-clip:text; color:transparent; }
+  .callout .small{ font-size:13px; color:#64748B; margin-top:6px; }
+  .chartwrap { position:absolute; left:16px; right:12px; top:160px; height:360px; }
+  .footnote  { position:absolute; left:42px; bottom:16px; font-size:12px; color:#94A3B8; }
+  #root { width:100%; height:100%; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <p class="kicker">Vector-RAG · Global-workspace experiment</p>
+    <h1 class="title">Two cache tokens ≈ 91% of text-RAG accuracy</h1>
+    <p class="subtitle">Accuracy on 64 country-fact trials ("The capital of Kevin's home country is the city of&hellip;") on Qwen3.5-4B, when the entity reaches the model through the residual stream or the KV cache instead of the visible prompt.</p>
+    <div class="callout"><div class="big">84%</div><div class="small">correct with nothing<br>visible in the prompt</div></div>
+    <div class="chartwrap"><div id="root"></div></div>
+    <div class="footnote">n=64 per condition (16 countries &times; 4 questions), greedy next-token grading &middot; naive-inject cell n=16 &middot; Jacobian lens n1000 (Neuronpedia) &middot; Qwen3.5-4B bf16 &middot; RTX 4090</div>
+  </div>
+
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+<script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+<script>
+window.addEventListener("error", e => { const el = document.getElementById("root");
+  if (el) el.innerHTML = '<pre style="color:#e11d48;white-space:pre-wrap;font:13px monospace">'+(e.message||e.error)+'</pre>'; });
+(function(){
+  const h = React.createElement, R = window.Recharts;
+  if (!R) { document.getElementById("root").innerHTML = '<pre style="color:#e11d48">Recharts global missing</pre>'; return; }
+
+  const data = [
+    { name: "Naive inject",     sub: "residual · everywhere",       v: 0.0,  fill: "url(#gMut)" },
+    { name: "Referent site",    sub: "residual · ' country' token", v: 40.6, fill: "url(#gMut)" },
+    { name: "Natural volume",   sub: "residual · coef-matched",     v: 53.1, fill: "url(#gMut)" },
+    { name: "Attention-picked", sub: "residual · model-chosen site", v: 64.1, fill: "url(#gMut)" },
+    { name: "Phantom cache",    sub: 'cache · " France"',           v: 67.2, fill: "url(#gSky)" },
+    { name: "Phantom + period", sub: 'cache · " France."',          v: 84.4, fill: "url(#gWin)" }
+  ];
+  const XTick = (p) => {
+    const d = data[p.payload.index];
+    return h("g", { transform:`translate(${p.x},${p.y})` },
+      h("text", { textAnchor:"middle", y:18, fill:"#334155", fontSize:15, fontWeight:700 }, d.name),
+      h("text", { textAnchor:"middle", y:37, fill:"#94A3B8", fontSize:12 }, d.sub));
+  };
+  const chart = h(R.BarChart, { width: 960, height: 360, data, margin:{top:30,right:40,left:6,bottom:34} },
+    h("defs", null,
+      h("linearGradient",{id:"gMut",x1:0,y1:0,x2:0,y2:1}, h("stop",{offset:"0%",stopColor:"#6366F1"}), h("stop",{offset:"100%",stopColor:"#A5B4FC"})),
+      h("linearGradient",{id:"gSky",x1:0,y1:0,x2:0,y2:1}, h("stop",{offset:"0%",stopColor:"#0EA5E9"}), h("stop",{offset:"100%",stopColor:"#7DD3FC"})),
+      h("linearGradient",{id:"gWin",x1:0,y1:0,x2:0,y2:1}, h("stop",{offset:"0%",stopColor:"#10B981"}), h("stop",{offset:"100%",stopColor:"#14B8A6"}))),
+    h(R.CartesianGrid, { vertical:false, stroke:"#EDF1F6" }),
+    h(R.XAxis, { dataKey:"name", tick: h(XTick), interval:0, axisLine:{stroke:"#E2E8F0"}, tickLine:false, height:50 }),
+    h(R.YAxis, { domain:[0,100], ticks:[0,25,50,75,100], tickFormatter:v=>v+"%",
+      tick:{fill:"#94A3B8",fontSize:13}, axisLine:false, tickLine:false }),
+    h(R.ReferenceLine, { y:92.2, stroke:"#CBD5E1", strokeDasharray:"6 6", strokeWidth:2,
+      label:{ value:"Fact in prompt (text-RAG) · 92%", position:"insideTopLeft", fill:"#94A3B8", fontSize:13, fontWeight:700 } }),
+    h(R.ReferenceLine, { y:6.3, stroke:"#F59E0B", strokeDasharray:"6 6", strokeWidth:2,
+      label:{ value:"No info · 6%", position:"insideTopLeft", fill:"#B45309", fontSize:13, fontWeight:700 } }),
+    h(R.Bar, { dataKey:"v", radius:[10,10,0,0], isAnimationActive:false, barSize:86 },
+      data.map((d,i) => h(R.Cell, { key:i, fill:d.fill })),
+      h(R.LabelList, { dataKey:"v", position:"top", offset:12,
+        formatter:v=>v.toFixed(0)+"%", style:{ fill:"#0F172A", fontSize:19, fontWeight:800 } }))
+  );
+
+  ReactDOM.createRoot(document.getElementById("root")).render(chart);
+})();
+</script>
+</body>
+</html>

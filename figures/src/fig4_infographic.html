@@ -1,0 +1,105 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { box-sizing: border-box; }
+  body { margin:0; background:#ffffff;
+         font-family:-apple-system,"Segoe UI",Inter,Roboto,Helvetica,Arial,sans-serif; }
+  .card { width:1000px; height:575px; padding:38px 42px 26px; position:relative;
+          background:linear-gradient(180deg,#ffffff 0%,#f7f9fc 100%); overflow:hidden; }
+  .kicker   { font-size:13px; font-weight:700; letter-spacing:.14em; text-transform:uppercase;
+              color:#6366F1; margin:0 0 10px; }
+  .title    { font-size:29px; font-weight:800; color:#0F172A; letter-spacing:-0.02em; margin:0; }
+  .subtitle { font-size:15px; color:#64748B; margin:8px 0 0; max-width:840px; line-height:1.4; }
+  .lanes { position:absolute; left:42px; right:42px; top:146px; }
+  .lane { background:#ffffff; border:1px solid #E9EEF5; border-radius:14px;
+          padding:14px 18px 12px; margin-bottom:13px; position:relative;
+          box-shadow:0 1px 2px rgba(15,23,42,.04); }
+  .lane-head { display:flex; align-items:baseline; gap:12px; margin-bottom:9px; }
+  .lane-name { font-size:16px; font-weight:800; color:#0F172A; }
+  .lane-cost { font-size:12.5px; color:#94A3B8; }
+  .lane-acc  { margin-left:auto; font-size:26px; font-weight:800; letter-spacing:-0.02em; }
+  .flow { display:flex; align-items:center; gap:6px; flex-wrap:nowrap; }
+  .tok { border-radius:7px; padding:6px 10px; font-size:13px; color:#334155;
+         background:#F1F5F9; white-space:nowrap; }
+  .tok.retr { background:#FEF3C7; color:#92400E; font-weight:700; }
+  .tok.fact { background:#EEF2FF; color:#4338CA; font-weight:600; }
+  .tok.entity { background:#6366F1; color:#ffffff; font-weight:800; }
+  .tok.ghost { background:transparent; border:1.6px dashed #14B8A6; color:#0F766E;
+               font-weight:700; }
+  .cachelabel { font-size:10.5px; font-weight:700; letter-spacing:.08em; color:#0D9488;
+                text-transform:uppercase; margin-right:2px; }
+  .arrow { color:#94A3B8; font-size:17px; font-weight:700; padding:0 1px; }
+  .model { background:#0F172A; color:#F8FAFC; border-radius:9px; padding:7px 13px;
+           font-size:13px; font-weight:700; white-space:nowrap; }
+  .ans { background:linear-gradient(180deg,#10B981,#14B8A6); color:#ffffff; border-radius:7px;
+         padding:6px 12px; font-size:14px; font-weight:800; white-space:nowrap; }
+  .inject-note { margin-top:8px; font-size:12.5px; color:#4338CA; font-weight:600; }
+  .inject-note .up { font-size:14px; }
+  .footnote  { position:absolute; left:42px; bottom:14px; font-size:12px; color:#94A3B8; }
+</style>
+</head>
+<body>
+  <div class="card">
+    <p class="kicker">Traditional RAG vs. vector-RAG</p>
+    <h1 class="title">Same retrieval, three delivery routes</h1>
+    <p class="subtitle">Every lane retrieves the same fact (Kevin &rarr; France) and asks the same question. Traditional RAG pastes what it found into the visible prompt; vector-RAG hands the entity to the model through its internals.</p>
+
+    <div class="lanes">
+
+      <div class="lane">
+        <div class="lane-head">
+          <span class="lane-name">Traditional RAG</span>
+          <span class="lane-cost">fact pasted into the prompt &middot; visible &middot; tokens grow with every fact</span>
+          <span class="lane-acc" style="color:#64748B">92%</span>
+        </div>
+        <div class="flow">
+          <span class="tok retr">&#128269; Kevin &rarr; France</span>
+          <span class="arrow">&rarr;</span>
+          <span class="tok fact">Fact: Kevin's home country is</span><span class="tok entity">France.</span>
+          <span class="tok">The capital of Kevin's home country is&hellip;</span>
+          <span class="arrow">&rarr;</span><span class="model">Qwen3.5-4B</span>
+          <span class="arrow">&rarr;</span><span class="ans">&nbsp;Paris</span>
+        </div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head">
+          <span class="lane-name">Vector-RAG &middot; residual injection</span>
+          <span class="lane-cost">entity as a lens vector, written mid-stack &middot; zero tokens anywhere</span>
+          <span class="lane-acc" style="color:#6366F1">64%</span>
+        </div>
+        <div class="flow">
+          <span class="tok retr">&#128269; Kevin &rarr; France</span>
+          <span class="arrow">&rarr;</span>
+          <span class="tok">The capital of Kevin's home country is&hellip;</span>
+          <span class="arrow">&rarr;</span><span class="model">Qwen3.5-4B</span>
+          <span class="arrow">&rarr;</span><span class="ans">&nbsp;Paris</span>
+        </div>
+        <div class="inject-note"><span class="up">&uarr;</span> France vector written into layers 12&ndash;17 at the sites the model's own attention picks, natural amplitude only &mdash; fussy, and different questions read it differently</div>
+      </div>
+
+      <div class="lane">
+        <div class="lane-head">
+          <span class="lane-name">Vector-RAG &middot; phantom KV slot</span>
+          <span class="lane-cost">entity as 2 precomputed cache tokens &middot; invisible to the prompt</span>
+          <span class="lane-acc" style="color:#0D9488">84%</span>
+        </div>
+        <div class="flow">
+          <span class="tok retr">&#128269; Kevin &rarr; France</span>
+          <span class="arrow">&rarr;</span>
+          <span class="cachelabel">kv cache</span>
+          <span class="tok ghost">France</span><span class="tok ghost">.</span>
+          <span class="tok">The capital of Kevin's home country is&hellip;</span>
+          <span class="arrow">&rarr;</span><span class="model">Qwen3.5-4B</span>
+          <span class="arrow">&rarr;</span><span class="ans">&nbsp;Paris</span>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="footnote">Accuracies from the 64-trial battery (16 countries &times; 4 questions) &middot; dashed = exists only in the KV cache, never in visible text &middot; no-info floor: 6% &middot; Qwen3.5-4B, RTX 4090</div>
+  </div>
+</body>
+</html>
