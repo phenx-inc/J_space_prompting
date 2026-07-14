@@ -89,10 +89,21 @@ class RealEngine:
     # -- vocabulary helpers -------------------------------------------------
 
     def tid(self, word: str) -> int:
-        """Leading-space convention, matching v3's `toks()`."""
+        """Leading-space convention, matching v3's `toks()`.
+
+        Strict on purpose. Taking ids[0] of a multi-token word silently collapses
+        it to its first piece — and for anything starting with a digit that piece
+        is the bare space token, whose probability is enormous. That reads as a
+        spectacular result and is meaningless. v3 drops multi-token countries from
+        the battery for the same reason; here we refuse them out loud.
+        """
         ids = self.tok.encode(" " + word.strip(), add_special_tokens=False)
-        if not ids:
-            raise ValueError(f"{word!r} does not tokenize")
+        if len(ids) != 1:
+            pieces = [self.tok.decode([i]) for i in ids]
+            raise ValueError(
+                f"{word!r} is {len(ids)} tokens {pieces} — concepts must be a single "
+                f"token under the leading-space convention"
+            )
         return ids[0]
 
     def is_single_token(self, word: str) -> bool:

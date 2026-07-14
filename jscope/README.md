@@ -96,9 +96,26 @@ there, and the page says so rather than pretending.
 ## Limits
 
 - Concepts must be **single tokens** under the leading-space convention
-  (`" France"`). Multi-token concepts are rejected, not silently truncated. This is
-  the same restriction the experiments run under, which is why `Vietnam` and
-  friends get dropped from the battery.
+  (`" France"`), and are rejected out loud when they are not. They must be, because
+  the injection direction is built from exactly one token id. Taking the first
+  piece of a multi-token word instead would be worse than useless: `" 1"` tokenizes
+  to `[' ', '1']`, so its first piece is the bare **space** token, and the space
+  token's probability is enormous. You would read a triumphant 0.98 and it would
+  mean nothing.
+
+- That convention is prose-shaped, and it is the real limit on what you can track.
+  In code the interesting tokens have no leading space — the lens reads `.println`
+  perfectly well at L29 of a Java prompt, but you cannot name that token as a
+  "concept" here, so it scores ~0. A low peak means your probe missed, not
+  necessarily that the model is not representing the thing.
+
+- The lens is **not limited to the content it was fitted on.** Its vocabulary is
+  the model's own unembedding (248,320 tokens), not the fitting corpus; the 1000
+  wikitext samples only estimate the linear map. It reads `意大利` on an English
+  prompt, and a clinical note (`polydipsia, polyuria, elevated HbA1c`) lights up
+  `diabetes` at **p=0.50** — stronger than the boot riddle's `Italy` at 0.26. What
+  the fitting distribution limits is the *fidelity of the linear approximation*,
+  not the range of concepts.
 - Prompts are capped at 64 tokens. The grid is layers × tokens and stops being
   readable well before that.
 - One forward pass at a time, under a lock. It is an instrument, not a serving
