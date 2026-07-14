@@ -79,6 +79,10 @@
            position:relative; transition:transform .06s; }
   .gcell:hover { transform:scale(1.22); z-index:3; box-shadow:0 0 0 1px var(--txt); }
   .gcell.pin { box-shadow:0 0 0 1px var(--txt); }
+  .gcell.picked { box-shadow:0 0 0 2px var(--bad); z-index:2; }
+  .gcell.moved::after { content:""; position:absolute; inset:0; border-radius:2px;
+                        box-shadow:inset 0 0 0 1px var(--good); }
+  .grid.editing .gcell { cursor:cell; }
   .glab { font-family:var(--mono); font-size:10.5px; color:var(--faint); text-align:right;
           padding-right:7px; line-height:19px; white-space:nowrap; }
   .thead { font-family:var(--mono); font-size:10.5px; color:var(--dim); text-align:center;
@@ -178,7 +182,8 @@ const heat = p => Math.pow(Math.max(0, Math.min(1, p)), 0.55);
 
 /* ---------------------------------------------------------------- grid --- */
 
-function IgnitionGrid({ data, concepts, sites, toggleSite, pinned, setPinned }) {
+function IgnitionGrid({ data, base, concepts, sites, toggleSite, pinned, setPinned,
+                        cellMode, cellSet, toggleCell }) {
   const { tokens, layers, cells } = data;
   const rows = [...layers].reverse();      // deep layers on top: the stack, upright
   const cols = `54px repeat(${tokens.length}, minmax(40px, 1fr))`;
@@ -210,7 +215,7 @@ function IgnitionGrid({ data, concepts, sites, toggleSite, pinned, setPinned }) 
 
   return html`
     <div class="gridwrap">
-      <div class="grid" style=${{ gridTemplateColumns: cols }}>
+      <div class=${"grid" + (cellMode ? " editing" : "")} style=${{ gridTemplateColumns: cols }}>
         <div></div>
         ${tokens.map(t => html`
           <div key=${"h" + t.i}
@@ -225,15 +230,25 @@ function IgnitionGrid({ data, concepts, sites, toggleSite, pinned, setPinned }) 
             const { color, p, name } = colorOf(cell);
             const isPin = shown && shown.l === l && shown.p === t.i;
             const rel = gmax > 0 ? p / gmax : 0;
+            const picked = cellSet.has(l + ":" + t.i);
+            // in an after-view, mark cells whose reading actually moved
+            const was = base ? (() => { const c = base.cells[String(l)][t.i];
+              let m = 0; for (const k of concepts) m = Math.max(m, c.concepts[k.name] ?? 0);
+              return m; })() : null;
+            const moved = was != null && Math.abs(was - p) > 0.01;
             return html`
               <div key=${l + "-" + t.i}
-                   class=${"gcell" + (isPin ? " pin" : "")}
+                   class=${"gcell" + (isPin ? " pin" : "") + (picked ? " picked" : "")
+                           + (moved ? " moved" : "")}
                    style=${{ background: color && rel > 0.02
                        ? `color-mix(in srgb, ${color} ${heat(rel) * 100}%, var(--sunk))`
                        : "var(--sunk)" }}
-                   title=${`L${l} · ${JSON.stringify(t.text)}${name ? ` · ${name} ${fmt(p)}` : ""}`}
+                   title=${`L${l} · ${JSON.stringify(t.text)}${name ? ` · ${name} ${fmt(p)}` : ""}`
+                          + (was != null ? ` (was ${fmt(was)})` : "")
+                          + (cellMode ? " — click to edit this cell" : "")}
                    onMouseEnter=${() => setPinned({ l, p: t.i, sticky: false })}
-                   onClick=${() => setPinned({ l, p: t.i, sticky: true })}></div>`;
+                   onClick=${() => cellMode ? toggleCell(l, t.i)
+                                            : setPinned({ l, p: t.i, sticky: true })}></div>`;
           }),
         ])}
       </div>
@@ -395,6 +410,18 @@ const PRESETS = [
     referent: "country", carrier: "Fact: Kevin's home country is {concept}. ",
   },
   {
+    // The causal test, and the reason the readout is not decoration. Project
+    // 'Italy' out of the ' boot' column and the model loses the answer: next-token
+    // goes from ' euro' (0.143) to '\n', and euro falls out of the top four.
+    name: "erase it",
+    blurb: "project Italy out of ' boot' and the model stops answering 'euro'",
+    prompt: "The currency used in the country shaped like a boot is called the",
+    track: ["Italy"],
+    concept: "Italy", watch: ["euro", "Euro"], sites: "referent",
+    referent: "country", carrier: "Fact: Kevin's home country is {concept}. ",
+    op: "erase", cellsAt: { token: "boot", lo: 8, hi: 21 },
+  },
+  {
     // Nothing to do with countries. Baseline says ' machine' (0.43); inject
     // 'animal' at ' computer' and the answer flips to ' human' while the parrot
     // term stays at 0.002 — the concept is used, not repeated.
@@ -436,6 +463,23 @@ function App() {
   const [referent, setReferent] = useState(P0.referent);
   const [carrier, setCarrier] = useState(P0.carrier);
   const [adv, setAdv] = useState(false);
+
+  const [op, setOp] = useState(P0.op || "add");
+  const [cellMode, setCellMode] = useState(!!P0.cellsAt);
+  const [cellsAt, setCellsAt] = useState(P0.cellsAt || null);   // resolved once tokenized
+  const [picked, setPicked] = useState([]);         // [[layer, pos], ...]
+  const [after, setAfter] = useState(null);         // grid read with the edit live
+  const [showAfter, setShowAfter] = useState(true);
+
+  const cellSet = useMemo(() => new Set(picked.map(([l, p]) => l + ":" + p)), [picked]);
+  const toggleCell = (l, p) => setPicked(cs =>
+    cs.some(([a, b]) => a === l && b === p)
+      ? cs.filter(([a, b]) => !(a === l && b === p))
+      : [...cs, [l, p]]);
+
+  /* Cells win when you have picked any: the whole point is editing one square,
+     not a layers x tokens rectangle. */
+  const editCells = picked.length ? picked : null;
   const [alpha, setAlpha] = useState(0.25);
   const [mode, setMode] = useState("strength");
   const [inj, setInj] = useState(null);
@@ -495,9 +539,19 @@ function App() {
           }
       setTrajPos(bp);
       setSites(sitePref === "all" ? d.tokens.map(t => t.i) : referentSites(d.tokens));
+
+      // a preset can name its cells by token text; resolve now that we have indices
+      if (cellsAt) {
+        const t = d.tokens.find(x => x.text.trim().toLowerCase() === cellsAt.token);
+        if (t) {
+          setPicked(d.layers.filter(l => l >= cellsAt.lo && l <= cellsAt.hi)
+                            .map(l => [l, t.i]));
+        }
+        setCellsAt(null);
+      }
     } catch (e) { setReadErr(e.message); setReadout(null); }
     setReading(false);
-  }, [prompt, concepts, useJac, sitePref, referentSites]);
+  }, [prompt, concepts, useJac, sitePref, referentSites, cellsAt]);
 
   useEffect(() => { if (meta) runReadout(); }, [meta, prompt, concepts, useJac]);
 
@@ -506,7 +560,8 @@ function App() {
     setConcepts(p.track.map((n, i) => ({ name: n, color: COLORS[i] })));
     setBConcept(p.concept); setBWatch(p.watch.join(" "));
     setSitePref(p.sites); setReferent(p.referent); setCarrier(p.carrier);
-    setPoints(null); setAlpha(0.25);
+    setOp(p.op || "add"); setCellsAt(p.cellsAt || null); setCellMode(!!p.cellsAt);
+    setPicked([]); setAfter(null); setPoints(null); setAlpha(0.25);
   };
 
   // re-aim the sites when the referent word changes under a live prompt
@@ -515,16 +570,29 @@ function App() {
   }, [referent]);
 
   const runInject = useCallback(async () => {
-    if (!bConcept || !bLayers.length || !sites.length) return;
+    if (!bConcept) return;
+    if (!editCells && (!bLayers.length || !sites.length)) return;
     setInjecting(true); setInjErr(null);
     try {
-      const body = { prompt, concept: bConcept, layers: bLayers, positions: sites,
+      const body = { prompt, concept: bConcept,
+                     layers: editCells ? null : bLayers,
+                     positions: editCells ? null : sites,
+                     cells: editCells, op,
                      alpha: Number(alpha), mode, watch, carrier };
       const d = await api("/api/inject", body);
       setInj(d);
-    } catch (e) { setInjErr(e.message); setInj(null); }
+
+      // read the grid again with the edit live: this is the impact, propagating
+      const g = await api("/api/readout", {
+        prompt, concepts: concepts.map(c => c.name), layers: null, use_jacobian: useJac,
+        edit: { concept: bConcept, op, alpha: Number(alpha), mode, carrier,
+                cells: editCells || bLayers.flatMap(l => sites.map(p => [l, p])) },
+      });
+      setAfter(g);
+    } catch (e) { setInjErr(e.message); setInj(null); setAfter(null); }
     setInjecting(false);
-  }, [prompt, bConcept, bLayers, sites, alpha, mode, watch, carrier]);
+  }, [prompt, bConcept, bLayers, sites, alpha, mode, watch, carrier, op, editCells,
+      concepts, useJac]);
 
   useEffect(() => {
     if (!meta || !readout) return;
@@ -545,8 +613,10 @@ function App() {
       const n = 14;
       const alphas = Array.from({ length: n }, (_, i) =>
         Math.round(alphaMax * Math.pow(i / (n - 1), 1.4) * 1000) / 1000);
-      const d = await api("/api/sweep", { prompt, concept: bConcept, layers: bLayers,
-                                          positions: sites, alphas, mode, watch, carrier });
+      const d = await api("/api/sweep", {
+        prompt, concept: bConcept,
+        layers: editCells ? null : bLayers, positions: editCells ? null : sites,
+        cells: editCells, op, alphas, mode, watch, carrier });
       setPoints(d.points);
     } catch (e) { setInjErr(e.message); }
     setSweeping(false);
@@ -636,10 +706,44 @@ function App() {
             your tracked concept the lens finds there. Flip to the logit lens to see how much of this is
             invisible to a plain readout.</p>
 
+          <div class="row spread" style=${{ marginBottom: 10 }}>
+            <div class="row">
+              <button class=${"btn" + (!cellMode ? " on" : "")}
+                      onClick=${() => setCellMode(false)}>inspect</button>
+              <button class=${"btn" + (cellMode ? " on" : "")}
+                      onClick=${() => setCellMode(true)}>edit cells</button>
+              ${picked.length > 0 && html`
+                <span class="chip mono" style=${{ borderColor: "var(--bad)" }}>
+                  ${picked.length} cell${picked.length > 1 ? "s" : ""}
+                  <span class="x" onClick=${() => setPicked([])}>×</span></span>`}
+            </div>
+            ${after && html`
+              <div class="row">
+                <button class=${"btn" + (!showAfter ? " on" : "")}
+                        onClick=${() => setShowAfter(false)}>before</button>
+                <button class=${"btn" + (showAfter ? " on" : "")}
+                        onClick=${() => setShowAfter(true)}>after</button>
+              </div>`}
+          </div>
+          ${cellMode && html`
+            <p class="hint" style=${{ margin: "0 0 10px" }}>
+              Click any square to edit that exact cell — one layer, one token. The bench then applies
+              its operation to those cells alone, instead of the whole layers × tokens rectangle.
+              <b>Erase</b> the concept out of <span class="mono">' boot'</span> at L8–L21 and the model
+              stops answering "euro" at all.</p>`}
+
           ${readErr && html`<div class="err">${readErr}</div>`}
           ${readout && html`
-            <${IgnitionGrid} data=${readout} concepts=${concepts} sites=${sites}
-                             toggleSite=${toggleSite} pinned=${pinned} setPinned=${setPinned} />`}
+            <${IgnitionGrid} data=${(showAfter && after) ? after : readout}
+                             base=${(showAfter && after) ? readout : null}
+                             concepts=${concepts} sites=${sites}
+                             toggleSite=${toggleSite} pinned=${pinned} setPinned=${setPinned}
+                             cellMode=${cellMode} cellSet=${cellSet} toggleCell=${toggleCell} />`}
+          ${showAfter && after && html`
+            <div class="hint" style=${{ margin: "8px 0 0" }}>
+              Showing the workspace <b>with the edit live</b>. Red outlines are the cells you edited;
+              green outlines are cells whose reading moved as a result — including cells
+              <i>above</i> the edit, which is the change propagating up the stack.</div>`}
           ${readout && readout.missing_concepts.length > 0 && html`
             <div class="warn">Not single tokens, so they cannot be tracked or injected:
               ${readout.missing_concepts.join(", ")}.</div>`}
@@ -692,7 +796,26 @@ function App() {
             has not used it, and that degenerate win is what <span class="mono">top1_is_entity</span>
             exists to catch.</p>
 
-          <div class="row" style=${{ marginBottom: 12 }}>
+          <div class="row" style=${{ marginBottom: 10 }}>
+            <label class="lbl">operation</label>
+            <button class=${"btn" + (op === "add" ? " on" : "")}
+                    onClick=${() => setOp("add")} title="h += α · v">add</button>
+            <button class=${"btn" + (op === "erase" ? " on" : "")}
+                    onClick=${() => setOp("erase")}
+                    title="project the concept out: h -= (h·v) v">erase</button>
+            <button class=${"btn" + (op === "replace" ? " on" : "")}
+                    onClick=${() => setOp("replace")}
+                    title="erase, then add: overwrite the concept's component">replace</button>
+          </div>
+          ${op === "erase" && html`
+            <p class="hint" style=${{ margin: "0 0 12px" }}>
+              Erase projects the concept <i>out</i> of the residual at those cells
+              (<span class="mono">h −= (h·v)·v</span>). α is ignored. This is the causal test: if the
+              workspace content is really load-bearing, taking it out should cost the model the answer.</p>`}
+
+          <div class="row" style=${{ marginBottom: 12,
+                                     opacity: op === "erase" ? 0.4 : 1,
+                                     pointerEvents: op === "erase" ? "none" : "auto" }}>
             <label class="lbl">amplitude</label>
             <button class=${"btn" + (mode === "strength" ? " on" : "")}
                     onClick=${() => setMode("strength")}>α × norm</button>
@@ -726,7 +849,14 @@ function App() {
             </div>
           </div>
 
-          <div class="row spread">
+          ${picked.length > 0 && html`
+            <div class="warn" style=${{ background: "rgba(255,92,122,.06)" }}>
+              Editing <b>${picked.length} hand-picked cell${picked.length > 1 ? "s" : ""}</b> from the
+              grid. The layers and sites below are ignored while any cell is picked —
+              <span class="x" style=${{ cursor: "pointer", textDecoration: "underline" }}
+                    onClick=${() => setPicked([])}>clear them</span> to go back to layers × sites.</div>`}
+
+          <div class="row spread" style=${{ opacity: picked.length ? 0.4 : 1 }}>
             <label class="lbl">sites (${sites.length} of ${readout ? readout.tokens.length : "?"} tokens)</label>
             <div class="row">
               <button class="btn" onClick=${() => { setSitePref("referent");

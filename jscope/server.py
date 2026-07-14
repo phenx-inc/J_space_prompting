@@ -53,11 +53,21 @@ def cached(path: str, body: dict, fn):
     return CACHE[k]
 
 
+class Edit(BaseModel):
+    concept: str
+    cells: list[list[int]]           # [[layer, position], ...] — an arbitrary set
+    alpha: float = 0.0
+    mode: str = "strength"
+    op: str = "add"                 # add | erase | replace
+    carrier: str = ""
+
+
 class ReadoutReq(BaseModel):
     prompt: str
     concepts: list[str] = []
     layers: list[int] | None = None
     use_jacobian: bool = True
+    edit: Edit | None = None        # read the grid with this edit live
 
 
 from engine import NATURAL_CARRIER  # noqa: E402
@@ -66,23 +76,27 @@ from engine import NATURAL_CARRIER  # noqa: E402
 class InjectReq(BaseModel):
     prompt: str
     concept: str
-    layers: list[int]
-    positions: list[int]
+    layers: list[int] | None = None
+    positions: list[int] | None = None
     alpha: float
     mode: str = "strength"
     watch: list[str] = []                    # what a correct answer looks like, if any
     carrier: str = NATURAL_CARRIER           # sentence the natural amplitude is measured in
+    op: str = "add"                          # add | erase | replace
+    cells: list[list[int]] | None = None     # overrides layers x positions
 
 
 class SweepReq(BaseModel):
     prompt: str
     concept: str
-    layers: list[int]
-    positions: list[int]
+    layers: list[int] | None = None
+    positions: list[int] | None = None
     alphas: list[float]
     mode: str = "strength"
     watch: list[str] = []
     carrier: str = NATURAL_CARRIER
+    op: str = "add"
+    cells: list[list[int]] | None = None
 
 
 class NaturalReq(BaseModel):
@@ -111,8 +125,11 @@ def tokenize(req: ReadoutReq):
 @app.post("/api/readout")
 def readout(req: ReadoutReq):
     body = req.model_dump()
+    edit = req.edit.model_dump() if req.edit else None
+    if edit and not edit.get("carrier"):
+        edit["carrier"] = NATURAL_CARRIER
     return cached("/api/readout", body, lambda: ENGINE.readout(
-        req.prompt, req.concepts, req.layers, req.use_jacobian))
+        req.prompt, req.concepts, req.layers, req.use_jacobian, edit=edit))
 
 
 @app.post("/api/inject")
@@ -120,7 +137,7 @@ def inject(req: InjectReq):
     body = req.model_dump()
     return cached("/api/inject", body, lambda: ENGINE.inject(
         req.prompt, req.concept, req.layers, req.positions, req.alpha, req.mode,
-        watch=req.watch, carrier=req.carrier))
+        watch=req.watch, carrier=req.carrier, op=req.op, cells=req.cells))
 
 
 @app.post("/api/sweep")
@@ -128,7 +145,7 @@ def sweep(req: SweepReq):
     body = req.model_dump()
     return cached("/api/sweep", body, lambda: {"points": ENGINE.sweep(
         req.prompt, req.concept, req.layers, req.positions, req.alphas, req.mode,
-        watch=req.watch, carrier=req.carrier)})
+        watch=req.watch, carrier=req.carrier, op=req.op, cells=req.cells)})
 
 
 @app.post("/api/natural")

@@ -135,12 +135,16 @@ class RealEngine:
 
     # -- read ---------------------------------------------------------------
 
-    def readout(self, prompt, concepts, layers=None, use_jacobian=True, topk=5):
+    def readout(self, prompt, concepts, layers=None, use_jacobian=True, topk=5, edit=None):
         """The ignition grid: for every (layer, position), what the lens verbalizes.
 
         Returns the top-k tokens per cell plus, for each tracked concept, the
         probability the lens assigns to that concept's token there. That second
         number is what makes a cell light up.
+
+        With `edit`, the same grid is read *while the edit is live*. The hook sits
+        below the lens's recorders, so every cell above the edited one shows what
+        the model now carries — you watch the change propagate up the stack.
         """
         torch = self.torch
         toks = self.tokenize(prompt)
@@ -155,11 +159,24 @@ class RealEngine:
             except ValueError:
                 continue
 
-        with torch.no_grad():
-            jl, model_logits, _ = self.lens.apply(
-                self.model, prompt, layers=layers, positions=positions,
-                use_jacobian=use_jacobian,
+        plan = None
+        if edit and edit.get("cells"):
+            plan, _ = self._plan(
+                prompt, edit["concept"], None, None, float(edit.get("alpha", 0)),
+                edit.get("mode", "strength"), edit.get("carrier", NATURAL_CARRIER),
+                edit.get("op", "add"), edit["cells"],
             )
+
+        handles = self._install(plan)
+        try:
+            with torch.no_grad():
+                jl, model_logits, _ = self.lens.apply(
+                    self.model, prompt, layers=layers, positions=positions,
+                    use_jacobian=use_jacobian,
+                )
+        finally:
+            for h in handles:
+                h.remove()
 
         cells = {}
         for l in layers:
@@ -245,23 +262,42 @@ class RealEngine:
             for l in layers
         }
 
-    def _hooked_logits(self, prompt, plan):
-        """One forward pass, with `plan` added into the residual stream."""
+    def _install(self, plan):
+        """Register the edit hooks. Returns handles; caller must remove them.
+
+        Registered *before* the lens registers its own recorders, so a forward
+        hook that rewrites the residual is seen by everything downstream of it —
+        including the lens. That is what lets the grid show the edit propagating.
+        """
         torch = self.torch
         handles = []
-        if plan:
-            for l in plan:
-                def make(layer):
-                    def hook(module, inputs, output):
-                        pos, vec = plan[layer]
-                        hidden = output if torch.is_tensor(output) else output[0]
-                        hidden = hidden.clone()
-                        hidden[:, pos] += vec
-                        if torch.is_tensor(output):
-                            return hidden
-                        return (hidden,) + tuple(output[1:])
-                    return hook
-                handles.append(self.model.layers[l].register_forward_hook(make(l)))
+        if not plan:
+            return handles
+        for l in plan:
+            def make(layer):
+                def hook(module, inputs, output):
+                    pos, v, mag, op = plan[layer]
+                    hidden = output if torch.is_tensor(output) else output[0]
+                    hidden = hidden.clone()
+                    vf = v.float()
+                    if op in ("erase", "replace"):
+                        # project the concept out of the residual at those cells
+                        h = hidden[:, pos].float()
+                        coef = h @ vf
+                        hidden[:, pos] = (h - coef.unsqueeze(-1) * vf).to(hidden.dtype)
+                    if op in ("add", "replace"):
+                        hidden[:, pos] += (mag * vf).to(hidden.dtype)
+                    if torch.is_tensor(output):
+                        return hidden
+                    return (hidden,) + tuple(output[1:])
+                return hook
+            handles.append(self.model.layers[l].register_forward_hook(make(l)))
+        return handles
+
+    def _hooked_logits(self, prompt, plan):
+        """One forward pass, with `plan` applied to the residual stream."""
+        torch = self.torch
+        handles = self._install(plan)
         try:
             ids = self.model.encode(prompt)
             with torch.no_grad():
@@ -271,9 +307,24 @@ class RealEngine:
             for h in handles:
                 h.remove()
 
-    def _plan(self, prompt, concept, layers, positions, alpha, mode, carrier=NATURAL_CARRIER):
+    def _plan(self, prompt, concept, layers, positions, alpha, mode, carrier=NATURAL_CARRIER,
+              op="add", cells=None):
+        """Build the edit.
+
+        `cells` is a list of (layer, position) pairs — an arbitrary set, which is
+        what lets you edit one square of the grid. `layers` x `positions` is the
+        cross-product shorthand for the common case.
+        """
         torch = self.torch
-        pos = torch.tensor(positions, device=self.device)
+        if cells:
+            by_layer: dict[int, list[int]] = {}
+            for l, p in cells:
+                by_layer.setdefault(int(l), []).append(int(p))
+            layers = sorted(by_layer)
+        else:
+            layers = sorted(layers)
+            by_layer = {l: list(positions) for l in layers}
+
         if mode == "natural":
             coefs = self.natural_coefs(prompt, concept, layers, carrier)
             if coefs is None:
@@ -285,14 +336,17 @@ class RealEngine:
         else:
             norms = self.mean_norms(prompt, layers)
             mags = {l: alpha * norms[l] for l in layers}
-        return {
-            l: (pos, (mags[l] * self.direction(l, concept).float()).to(self.dtype))
+
+        plan = {
+            l: (torch.tensor(sorted(set(by_layer[l])), device=self.device),
+                self.direction(l, concept), mags[l], op)
             for l in layers
-        }, mags
+        }
+        return plan, mags
 
     def inject(self, prompt, concept, layers, positions, alpha, mode="strength",
-               watch=None, topk=10, carrier=NATURAL_CARRIER):
-        """Push `concept` in; report what the model does about it.
+               watch=None, topk=10, carrier=NATURAL_CARRIER, op="add", cells=None):
+        """Push `concept` in (or take it out); report what the model does about it.
 
         Two different things can happen, and conflating them is the easiest way to
         fool yourself. The model can *use* the concept — inject France, and it
@@ -304,11 +358,12 @@ class RealEngine:
         (what was injected). P(concept) is reported as the parrot signal.
         """
         torch = self.torch
-        layers = sorted(layers)
         watch = watch or []
 
         base = torch.softmax(self._hooked_logits(prompt, None), dim=-1)
-        plan, mags = self._plan(prompt, concept, layers, positions, alpha, mode, carrier)
+        plan, mags = self._plan(prompt, concept, layers, positions, alpha, mode, carrier,
+                                op, cells)
+        layers = sorted(plan)
         inj = torch.softmax(self._hooked_logits(prompt, plan), dim=-1)
 
         parrot = self.tid(concept)
@@ -361,8 +416,11 @@ class RealEngine:
             "concept": concept,
             "alpha": alpha,
             "mode": mode,
+            "op": op,
             "layers": layers,
             "positions": positions,
+            "cells": cells,
+            "n_cells": sum(len(plan[l][0]) for l in plan),
             "magnitudes": {str(l): mags[l] for l in layers},
             "watch": [
                 {"tok": w, "base": float(base[i]), "inj": float(inj[i])}
@@ -379,12 +437,12 @@ class RealEngine:
         }
 
     def sweep(self, prompt, concept, layers, positions, alphas, mode="strength", watch=None,
-              carrier=NATURAL_CARRIER):
+              carrier=NATURAL_CARRIER, op="add", cells=None):
         """The alpha curve: does the concept get used, or just repeated, or does it break?"""
         out = []
         for a in alphas:
             r = self.inject(prompt, concept, layers, positions, a, mode, watch=watch, topk=3,
-                            carrier=carrier)
+                            carrier=carrier, op=op, cells=cells)
             row = {
                 "alpha": a,
                 "parrot": r["p_parrot_inj"],
@@ -471,11 +529,19 @@ class MockEngine:
         noise = self._rng(prompt, concept, layer, pos).random() * 0.08
         return max(0.0, min(0.97, depth * late * base + noise))
 
-    def readout(self, prompt, concepts, layers=None, use_jacobian=True, topk=5):
+    def readout(self, prompt, concepts, layers=None, use_jacobian=True, topk=5, edit=None):
         toks = self.tokenize(prompt)
         n_pos = len(toks)
         layers = sorted(layers or self.source_layers)
         damp = 1.0 if use_jacobian else 0.28   # the logit lens sees far less
+
+        # an erase kills the concept at the edited cells and everything above them
+        killed = set()
+        if edit and edit.get("op") in ("erase", "replace") and edit.get("cells"):
+            lo = {}
+            for l, p in edit["cells"]:
+                lo[p] = min(lo.get(p, 10 ** 9), l)
+            killed = {(l, p) for p, ml in lo.items() for l in layers if l >= ml}
 
         cells = {}
         for l in layers:
@@ -483,6 +549,8 @@ class MockEngine:
             for p in range(n_pos):
                 r = self._rng(prompt, l, p)
                 probs = {c: self._ignition(l, p, n_pos, c, prompt) * damp for c in concepts}
+                if edit and (l, p) in killed:
+                    probs[edit["concept"]] = 0.0
                 # distinct tokens, descending — a top-k list that isn't sorted reads as a bug
                 pool = r.sample(self._vocab, min(topk + len(concepts), len(self._vocab)))
                 top = {w: 0.4 * (0.6 ** k) + r.random() * 0.05 for k, w in enumerate(pool)}
@@ -530,9 +598,18 @@ class MockEngine:
         return max(0.0, min(0.98, used)), max(0.0, min(0.98, parrot)), kl
 
     def inject(self, prompt, concept, layers, positions, alpha, mode="strength",
-               watch=None, topk=10, carrier=NATURAL_CARRIER):
+               watch=None, topk=10, carrier=NATURAL_CARRIER, op="add", cells=None):
         watch = watch or []
+        if cells:
+            positions = sorted({p for _, p in cells})
+            layers = sorted({l for l, _ in cells})
+        positions = positions or []
+        layers = layers or []
         used, parrot, kl = self._curve(concept, alpha, prompt, positions)
+        if op in ("erase", "replace"):
+            # taking the concept out does not make the model say it
+            used, parrot = 0.004, 0.0
+            kl = 0.05 + 0.4 * min(1.0, len(cells or positions) / 8)
         r = self._rng(prompt, concept, alpha)
 
         rows = [{"tok": concept, "id": 1, "base": 0.0002, "inj": round(parrot, 4),
@@ -556,8 +633,9 @@ class MockEngine:
         )[:5]
         norms = {l: 40 + l for l in layers}
         return {
-            "concept": concept, "alpha": alpha, "mode": mode, "layers": sorted(layers),
-            "positions": positions,
+            "concept": concept, "alpha": alpha, "mode": mode, "op": op,
+            "layers": sorted(layers), "positions": positions,
+            "cells": cells, "n_cells": len(cells) if cells else len(layers) * len(positions),
             "magnitudes": {str(l): alpha * norms[l] for l in layers},
             "watch": [{"tok": w, "base": 0.019, "inj": round(used, 4)} for w in watch],
             "p_parrot_base": 0.0002, "p_parrot_inj": round(parrot, 4), "kl": round(kl, 4),
@@ -567,8 +645,11 @@ class MockEngine:
         }
 
     def sweep(self, prompt, concept, layers, positions, alphas, mode="strength", watch=None,
-              carrier=NATURAL_CARRIER):
+              carrier=NATURAL_CARRIER, op="add", cells=None):
         watch = watch or []
+        if cells:
+            positions = sorted({p for _, p in cells})
+        positions = positions or []
         out = []
         for a in alphas:
             used, parrot, kl = self._curve(concept, a, prompt, positions)
