@@ -5,3 +5,7 @@ venv/
 *.pt
 *.log
 .DS_Store
+
+# jscope
+.claude/
+jscope/frozen/
