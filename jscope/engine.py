@@ -268,6 +268,13 @@ class RealEngine:
         Registered *before* the lens registers its own recorders, so a forward
         hook that rewrites the residual is seen by everything downstream of it —
         including the lens. That is what lets the grid show the edit propagating.
+
+        plan[layer] = (pos_tensor, ops), ops a list of (v_float, kind, value):
+          add   h += value * v
+          erase h -= (h·v) v                      (project the axis out)
+          set   h += (value - h·v) v              (move the shadow to `value`)
+        The list runs in order, each op reading the residual the previous left —
+        so a mixer's per-concept `set` ops compose into one move of the vector.
         """
         torch = self.torch
         handles = []
@@ -276,17 +283,18 @@ class RealEngine:
         for l in plan:
             def make(layer):
                 def hook(module, inputs, output):
-                    pos, v, mag, op = plan[layer]
+                    pos, ops = plan[layer]
                     hidden = output if torch.is_tensor(output) else output[0]
                     hidden = hidden.clone()
-                    vf = v.float()
-                    if op in ("erase", "replace"):
-                        # project the concept out of the residual at those cells
-                        h = hidden[:, pos].float()
-                        coef = h @ vf
-                        hidden[:, pos] = (h - coef.unsqueeze(-1) * vf).to(hidden.dtype)
-                    if op in ("add", "replace"):
-                        hidden[:, pos] += (mag * vf).to(hidden.dtype)
+                    sub = hidden[:, pos].float()
+                    for v, kind, value in ops:
+                        if kind == "add":
+                            sub = sub + value * v
+                        elif kind == "erase":
+                            sub = sub - (sub @ v).unsqueeze(-1) * v
+                        elif kind == "set":
+                            sub = sub + (value - (sub @ v)).unsqueeze(-1) * v
+                    hidden[:, pos] = sub.to(hidden.dtype)
                     if torch.is_tensor(output):
                         return hidden
                     return (hidden,) + tuple(output[1:])
@@ -337,9 +345,17 @@ class RealEngine:
             norms = self.mean_norms(prompt, layers)
             mags = {l: alpha * norms[l] for l in layers}
 
+        def ops_for(l):
+            v = self.direction(l, concept).float()
+            seq = []
+            if op in ("erase", "replace"):
+                seq.append((v, "erase", 0.0))
+            if op in ("add", "replace"):
+                seq.append((v, "add", mags[l]))
+            return seq
+
         plan = {
-            l: (torch.tensor(sorted(set(by_layer[l])), device=self.device),
-                self.direction(l, concept), mags[l], op)
+            l: (torch.tensor(sorted(set(by_layer[l])), device=self.device), ops_for(l))
             for l in layers
         }
         return plan, mags
@@ -453,6 +469,110 @@ class RealEngine:
                 row["watch_" + w["tok"]] = w["inj"]
             out.append(row)
         return out
+
+    def mix(self, prompt, targets, cells, watch=None, carrier=NATURAL_CARRIER, topk=12):
+        """Move the vector along several concept axes at once, and see the result.
+
+        `targets` maps concept -> s, where s is in units of that concept's natural
+        amplitude: s=0 removes it, s=1 makes it 'as loud as the real word', s=2
+        doubles it. For each cell we set the residual's shadow on that concept to
+        `s * natural_coef`, live. Add and erase are the one-axis, one-value cases
+        of this; the mixer is the general move.
+
+        Returns, per concept, its *current* shadow (in natural units) so a slider
+        can open where the vector already sits — plus the next-token distribution
+        before and after. The concept axes are not orthogonal, so moving several at
+        once has some cross-talk; the achieved shadow is remeasured and returned
+        so nothing is hidden.
+        """
+        torch = self.torch
+        watch = watch or []
+        by_layer: dict[int, list[int]] = {}
+        for l, p in cells:
+            by_layer.setdefault(int(l), []).append(int(p))
+        layers = sorted(by_layer)
+
+        # natural coef and direction per concept, once, over all edited layers
+        nat, direc, current, avail = {}, {}, {}, []
+        for c in targets:
+            n = self.natural_coefs(prompt, c, layers, carrier)
+            if n is None:
+                continue
+            nat[c] = n
+            direc[c] = {l: self.direction(l, c).float() for l in layers}
+            avail.append(c)
+
+        # current shadow of each concept at the edited cells (clean pass)
+        from jlens.hooks import ActivationRecorder
+
+        ids = self.model.encode(prompt)
+        with ActivationRecorder(self.model.layers, layers) as rec, torch.no_grad():
+            self.model.forward(ids)
+        for c in avail:
+            vals = []
+            for l in layers:
+                for p in by_layer[l]:
+                    h = rec.activations[l][0, p].float()
+                    vals.append(float(h @ direc[c][l]) / (nat[c][l] or 1e-9))
+            current[c] = sum(vals) / len(vals)
+
+        # build the set-plan: shadow on concept c at layer l -> s_c * nat_c[l]
+        plan = {}
+        for l in layers:
+            ops = [(direc[c][l], "set", targets[c] * nat[c][l]) for c in avail]
+            plan[l] = (torch.tensor(sorted(set(by_layer[l])), device=self.device), ops)
+
+        base = torch.softmax(self._hooked_logits(prompt, None), dim=-1)
+        inj = torch.softmax(self._hooked_logits(prompt, plan), dim=-1)
+
+        # achieved shadow after the (non-orthogonal) move
+        handles = self._install(plan)
+        try:
+            with ActivationRecorder(self.model.layers, layers) as rec2, torch.no_grad():
+                self.model.forward(ids)
+        finally:
+            for h in handles:
+                h.remove()
+        achieved = {}
+        for c in avail:
+            vals = []
+            for l in layers:
+                for p in by_layer[l]:
+                    h = rec2.activations[l][0, p].float()
+                    vals.append(float(h @ direc[c][l]) / (nat[c][l] or 1e-9))
+            achieved[c] = sum(vals) / len(vals)
+
+        watch_ids = {}
+        for w in watch:
+            try:
+                watch_ids[w] = self.tid(w)
+            except ValueError:
+                continue
+        shown = set(base.topk(topk).indices.tolist()) | set(inj.topk(topk).indices.tolist())
+        shown |= set(watch_ids.values())
+        rows = sorted(
+            ({"tok": self.tok.decode([t]), "id": int(t),
+              "base": float(base[t]), "inj": float(inj[t]),
+              "is_watch": t in watch_ids.values(), "is_parrot": False}
+             for t in shown),
+            key=lambda r: -r["inj"])
+        kl = float((inj * (inj.clamp_min(1e-12).log() - base.clamp_min(1e-12).log())).sum())
+
+        return {
+            "concepts": [
+                {"concept": c, "current": current[c], "target": targets[c],
+                 "achieved": achieved[c]}
+                for c in avail
+            ],
+            "unavailable": [c for c in targets if c not in avail],
+            "n_cells": len(cells),
+            "watch": [{"tok": w, "base": float(base[i]), "inj": float(inj[i])}
+                      for w, i in watch_ids.items()],
+            "kl": kl,
+            "rows": rows[:14],
+            "top1_base": self.tok.decode([int(base.argmax())]),
+            "top1_inj": self.tok.decode([int(inj.argmax())]),
+        }
 
     def natural_alpha(self, prompt, concept, layers, carrier=NATURAL_CARRIER):
         """Where 'as loud as the real thing' sits on the strength slider.
@@ -659,6 +779,35 @@ class MockEngine:
                 row["watch_" + w] = round(used, 4)
             out.append(row)
         return out
+
+    def mix(self, prompt, targets, cells, watch=None, carrier=NATURAL_CARRIER, topk=12):
+        watch = watch or []
+        avail = list(targets)
+        r = self._rng(prompt, "mix", tuple(sorted(targets.items())))
+        # a made-up but plausible response: the dominant target wins the answer
+        top = max(avail, key=lambda c: targets[c]) if avail else None
+        base_answer = {"euro": 0.14, "yen": 0.0, "machine": 0.43}
+        rows = []
+        for w in watch:
+            rows.append({"tok": w, "id": 40 + len(rows), "base": base_answer.get(w, 0.05),
+                         "inj": round(0.02 + 0.4 * (targets.get(top, 0) if top else 0), 3),
+                         "is_watch": True, "is_parrot": False})
+        for k, c in enumerate(self._vocab[:8]):
+            rows.append({"tok": c, "id": 80 + k, "base": round(0.2 * 0.7 ** k, 3),
+                         "inj": round(0.2 * 0.7 ** k * (0.8 + r.random() * 0.4), 3),
+                         "is_watch": False, "is_parrot": False})
+        rows.sort(key=lambda d: -d["inj"])
+        return {
+            "concepts": [{"concept": c, "current": round(0.4 + r.random() * 0.4, 2),
+                          "target": targets[c], "achieved": round(targets[c], 2)}
+                         for c in avail],
+            "unavailable": [], "n_cells": len(cells),
+            "watch": [{"tok": w, "base": base_answer.get(w, 0.05),
+                       "inj": round(0.02 + 0.4 * (targets.get(top, 0) if top else 0), 3)}
+                      for w in watch],
+            "kl": round(0.1 + sum(abs(v - 0.6) for v in targets.values()), 2),
+            "rows": rows[:14], "top1_base": "euro", "top1_inj": rows[0]["tok"],
+        }
 
     def natural_alpha(self, prompt, concept, layers, carrier=NATURAL_CARRIER):
         r = self._rng(prompt, concept, "nat")

@@ -410,6 +410,18 @@ const PRESETS = [
     referent: "country", carrier: "Fact: Kevin's home country is {concept}. ",
   },
   {
+    // The mixer demo: pick the ' boot' column, pull Italy to 0 and push Japan to
+    // 1, and the currency answer walks euro -> yen. Concepts tracked so all three
+    // get a slider.
+    name: "remix it",
+    blurb: "pull Italy down, push Japan up — the currency answer walks euro → yen",
+    prompt: "The currency used in the country shaped like a boot is called the",
+    track: ["Italy", "Japan", "France"],
+    concept: "Italy", watch: ["euro", "yen"], sites: "referent",
+    referent: "country", carrier: "Fact: Kevin's home country is {concept}. ",
+    op: "add", cellsAt: { token: "boot", lo: 8, hi: 21 },
+  },
+  {
     // The causal test, and the reason the readout is not decoration. Project
     // 'Italy' out of the ' boot' column and the model loses the answer: next-token
     // goes from ' euro' (0.143) to '\n', and euro falls out of the top four.
@@ -470,6 +482,11 @@ function App() {
   const [picked, setPicked] = useState([]);         // [[layer, pos], ...]
   const [after, setAfter] = useState(null);         // grid read with the edit live
   const [showAfter, setShowAfter] = useState(true);
+
+  const [mixTargets, setMixTargets] = useState({});   // concept -> multiple of natural
+  const [mix, setMix] = useState(null);
+  const [mixing, setMixing] = useState(false);
+  const mixInit = useRef(null);
 
   const cellSet = useMemo(() => new Set(picked.map(([l, p]) => l + ":" + p)), [picked]);
   const toggleCell = (l, p) => setPicked(cs =>
@@ -605,6 +622,42 @@ function App() {
     api("/api/natural", { prompt, concept: bConcept, layers: bLayers, carrier })
       .then(d => setNatural(d.natural)).catch(() => setNatural(null));
   }, [meta, prompt, bConcept, bLayers, carrier]);
+
+  /* The mixer: one slider per tracked concept, over the picked cells. Opens each
+     slider at the concept's *current* shadow, so moving it is moving the vector. */
+  const runMix = useCallback(async (targets) => {
+    if (!editCells || !concepts.length) return;
+    setMixing(true); setInjErr(null);
+    try {
+      const d = await api("/api/mix", {
+        prompt, targets, cells: editCells, watch, carrier });
+      setMix(d);
+      // first response defines where each slider "rests" (the current shadow)
+      if (!mixInit.current) {
+        const init = {};
+        d.concepts.forEach(c => { init[c.concept] = c.current; });
+        mixInit.current = init;
+        setMixTargets(t => ({ ...init, ...t }));
+      }
+    } catch (e) { setInjErr(e.message); setMix(null); }
+    setMixing(false);
+  }, [prompt, editCells, concepts, watch, carrier]);
+
+  // when cells are first picked, prime the mixer at the resting vector
+  useEffect(() => {
+    if (!editCells) { mixInit.current = null; setMix(null); return; }
+    const seed = {};
+    concepts.forEach(c => { seed[c.name] = 1; });
+    mixInit.current = null;
+    runMix(seed);
+  }, [editCells && editCells.map(c => c.join(":")).join(","), concepts.map(c => c.name).join(",")]);
+
+  // debounce slider drags
+  useEffect(() => {
+    if (!editCells || !Object.keys(mixTargets).length || !mixInit.current) return;
+    const t = setTimeout(() => runMix(mixTargets), 120);
+    return () => clearTimeout(t);
+  }, [mixTargets]);
 
   const runSweep = async () => {
     setSweeping(true); setPoints(null);
@@ -787,6 +840,69 @@ function App() {
 
       <!-- =========================== WRITE ============================ -->
       <div class="col">
+        ${editCells && html`
+          <div class="panel" style=${{ borderColor: "var(--ignite)" }}>
+            <div class="row spread">
+              <h2 style=${{ margin: 0, color: "var(--ignite)" }}>Vector mixer</h2>
+              ${mixing && html`<span class="spin"></span>`}
+            </div>
+            <p class="hint">You picked <b>${editCells.length} cell${editCells.length > 1 ? "s" : ""}</b>.
+              Each slider is one concept's <i>shadow</i> on that vector, in multiples of its natural
+              strength: <b>0</b> removes it, <b>1</b> is as loud as the real word. Every slider opens
+              where the vector already sits — drag one and you are moving the vector along that axis,
+              live.</p>
+
+            ${concepts.map(c => {
+              const info = mix && mix.concepts.find(x => x.concept === c.name);
+              const rest = mixInit.current ? mixInit.current[c.name] : 1;
+              const val = mixTargets[c.name] ?? rest ?? 1;
+              return html`
+                <div key=${c.name} style=${{ marginBottom: 12 }}>
+                  <div class="row spread">
+                    <label class="lbl raw" style=${{ color: c.color }}>${c.name}</label>
+                    <span class="muted mono">
+                      ${info ? `now ${info.achieved.toFixed(2)}×` : ""}
+                      ${info && Math.abs(info.achieved - val) > 0.06 ? " (cross-talk)" : ""}
+                    </span>
+                  </div>
+                  <input class="slider" type="range" min="0" max="2.5" step="0.05" value=${val}
+                         style=${{ accentColor: c.color }}
+                         onInput=${e => setMixTargets(t => ({ ...t, [c.name]: Number(e.target.value) }))} />
+                  <div class="row spread">
+                    <span class="muted mono" style=${{ fontSize: 11 }}>0 · gone</span>
+                    <span class="mono" style=${{ color: c.color, fontSize: 12 }}>${Number(val).toFixed(2)}×</span>
+                    <span class="muted mono" style=${{ fontSize: 11 }}>1 · real · 2.5</span>
+                  </div>
+                </div>`;
+            })}
+            ${mix && mix.unavailable.length > 0 && html`
+              <div class="warn">No natural amplitude for ${mix.unavailable.join(", ")} in this carrier,
+                so they have no slider.</div>`}
+
+            ${mix && html`
+              <${Distribution} inj=${mix} />
+              <div class="stat">
+                ${mix.watch.map(w => html`
+                  <div key=${w.tok}>
+                    <span class="k raw">P(${w.tok})</span>
+                    <span class="v" style=${{ color: "var(--good)" }}>${fmt(w.inj)}</span>
+                    <span class="muted mono">was ${fmt(w.base)}</span>
+                  </div>`)}
+                <div>
+                  <span class="k">top-1</span>
+                  <span class="v mono">${JSON.stringify(mix.top1_inj)}</span>
+                  <span class="muted mono">was ${JSON.stringify(mix.top1_base)}</span>
+                </div>
+                <div>
+                  <span class="k">KL</span>
+                  <span class="v" style=${{ color: mix.kl > 3 ? "var(--bad)" : "var(--txt)" }}>${fmt(mix.kl, 2)}</span>
+                </div>
+              </div>`}
+            <p class="hint" style=${{ margin: "10px 0 0" }}>
+              Try the <b>light it up</b> preset, pick the <span class="mono">' boot'</span> column, then
+              pull Italy to 0 and push Japan to 1: the currency answer walks from euro to yen.</p>
+          </div>`}
+
         <div class="panel">
           <h2>Injection bench</h2>
           <p class="hint">A concept word becomes a direction through the lens Jacobian, and is added into

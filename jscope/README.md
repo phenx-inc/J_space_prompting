@@ -84,6 +84,30 @@ untouched. (16% is a lot for one direction: a random one would capture ~2%.)
 Erasing is the causal test, and it works — project Italy out of the `' boot'`
 column and next-token goes from `' euro'` (0.143) to `'\n'`.
 
+### The vector mixer
+
+Add and erase are the one-axis presets. The general move is the **mixer**: pick
+some cells, and get one slider per tracked concept — each concept's *shadow* on
+that vector, in multiples of its natural amplitude (`0` = gone, `1` = as loud as
+the real word). Every slider opens where the vector already sits, so dragging one
+is literally moving the vector along that axis, with the model's next token
+updating live. Under the hood each slider sets the residual's projection onto that
+concept: `h += (s·natural − h·v)·v`, all concepts at once.
+
+The demo, on the boot riddle with the `' boot'` column picked:
+
+| Italy | Japan | answer | P(euro) | P(yen) |
+|---|---|---|---|---|
+| 0.65 (rest) | 0.18 (rest) | `euro` | 0.136 | 0.000 |
+| **0** | 0.18 | `\n` | 0.021 | 0.003 |
+| 0 | **1** | `yen` | 0.000 | 0.276 |
+
+Dial Italy out and Japan in, and the model comes to believe the boot-shaped
+country uses the yen. Nothing in the prompt changed — only the vector at those
+cells. The concept axes are not orthogonal, so the mixer reports each concept's
+*achieved* shadow next to its target; when they diverge it labels the slider
+"cross-talk" rather than hiding it.
+
 **But do not read the grid as proof the concept is gone.** The lens reads a
 concept by projecting onto `v`; erase removes exactly that projection. So
 P(concept) collapsing to 0.0000 after an erase is *partly tautological*, at the

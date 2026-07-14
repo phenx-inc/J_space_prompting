@@ -99,6 +99,14 @@ class SweepReq(BaseModel):
     cells: list[list[int]] | None = None
 
 
+class MixReq(BaseModel):
+    prompt: str
+    targets: dict[str, float]        # concept -> multiple of its natural amplitude
+    cells: list[list[int]]
+    watch: list[str] = []
+    carrier: str = NATURAL_CARRIER
+
+
 class NaturalReq(BaseModel):
     prompt: str
     concept: str
@@ -146,6 +154,13 @@ def sweep(req: SweepReq):
     return cached("/api/sweep", body, lambda: {"points": ENGINE.sweep(
         req.prompt, req.concept, req.layers, req.positions, req.alphas, req.mode,
         watch=req.watch, carrier=req.carrier, op=req.op, cells=req.cells)})
+
+
+@app.post("/api/mix")
+def mix(req: MixReq):
+    body = req.model_dump()
+    return cached("/api/mix", body, lambda: ENGINE.mix(
+        req.prompt, req.targets, req.cells, watch=req.watch, carrier=req.carrier))
 
 
 @app.post("/api/natural")
