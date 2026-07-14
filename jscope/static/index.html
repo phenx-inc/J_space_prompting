@@ -242,6 +242,18 @@ function IgnitionGrid({ data, concepts, sites, toggleSite, pinned, setPinned }) 
       <span class="muted">colour is scaled to the brightest cell in this grid</span>
       <span class="muted mono">peak p = ${gmax < 0.001 ? gmax.toExponential(1) : fmt(gmax)}</span>
     </div>
+    ${gmax < 0.02 && html`
+      <div class="warn">Nothing really ignites here — the brightest cell is only
+        p=${gmax < 0.001 ? gmax.toExponential(1) : fmt(gmax)}. Because colour is scaled to that peak,
+        what you are looking at is faint structure stretched to full brightness, not a concept
+        catching. For comparison, "Italy" on the boot riddle reaches 0.26.</div>`}
+    ${gmax >= 0.02 && html`
+      <div class="hint" style=${{ margin: "6px 0 0" }}>
+        Function words often glow: a preposition like <span class="mono">" of"</span> in
+        "the capital of ___" holds the <i>type</i> the slot expects, so the lens reads a spread of
+        countries there and every country you track picks up a little. That is grammar, not
+        retrieval. A concept that has actually been <i>resolved</i> — "Italy" on
+        <span class="mono">" boot"</span> — spikes on one token and leaves its rivals at zero.</div>`}
 
     <div class="inspect">
       ${!shown
