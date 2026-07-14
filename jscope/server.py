@@ -60,6 +60,9 @@ class ReadoutReq(BaseModel):
     use_jacobian: bool = True
 
 
+from engine import NATURAL_CARRIER  # noqa: E402
+
+
 class InjectReq(BaseModel):
     prompt: str
     concept: str
@@ -67,7 +70,8 @@ class InjectReq(BaseModel):
     positions: list[int]
     alpha: float
     mode: str = "strength"
-    watch: list[str] = []          # what a correct answer looks like, if any
+    watch: list[str] = []                    # what a correct answer looks like, if any
+    carrier: str = NATURAL_CARRIER           # sentence the natural amplitude is measured in
 
 
 class SweepReq(BaseModel):
@@ -78,12 +82,14 @@ class SweepReq(BaseModel):
     alphas: list[float]
     mode: str = "strength"
     watch: list[str] = []
+    carrier: str = NATURAL_CARRIER
 
 
 class NaturalReq(BaseModel):
     prompt: str
     concept: str
     layers: list[int]
+    carrier: str = NATURAL_CARRIER
 
 
 class FreezeReq(BaseModel):
@@ -114,7 +120,7 @@ def inject(req: InjectReq):
     body = req.model_dump()
     return cached("/api/inject", body, lambda: ENGINE.inject(
         req.prompt, req.concept, req.layers, req.positions, req.alpha, req.mode,
-        watch=req.watch))
+        watch=req.watch, carrier=req.carrier))
 
 
 @app.post("/api/sweep")
@@ -122,14 +128,14 @@ def sweep(req: SweepReq):
     body = req.model_dump()
     return cached("/api/sweep", body, lambda: {"points": ENGINE.sweep(
         req.prompt, req.concept, req.layers, req.positions, req.alphas, req.mode,
-        watch=req.watch)})
+        watch=req.watch, carrier=req.carrier)})
 
 
 @app.post("/api/natural")
 def natural(req: NaturalReq):
     body = req.model_dump()
     return cached("/api/natural", body, lambda: {
-        "natural": ENGINE.natural_alpha(req.prompt, req.concept, req.layers)})
+        "natural": ENGINE.natural_alpha(req.prompt, req.concept, req.layers, req.carrier)})
 
 
 @app.post("/api/freeze")

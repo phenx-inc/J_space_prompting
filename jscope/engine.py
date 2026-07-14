@@ -260,11 +260,11 @@ class RealEngine:
             for h in handles:
                 h.remove()
 
-    def _plan(self, prompt, concept, layers, positions, alpha, mode):
+    def _plan(self, prompt, concept, layers, positions, alpha, mode, carrier=NATURAL_CARRIER):
         torch = self.torch
         pos = torch.tensor(positions, device=self.device)
         if mode == "natural":
-            coefs = self.natural_coefs(prompt, concept, layers)
+            coefs = self.natural_coefs(prompt, concept, layers, carrier)
             if coefs is None:
                 raise ValueError(
                     f"cannot measure a natural amplitude for {concept!r}: it does not "
@@ -280,7 +280,7 @@ class RealEngine:
         }, mags
 
     def inject(self, prompt, concept, layers, positions, alpha, mode="strength",
-               watch=None, topk=10):
+               watch=None, topk=10, carrier=NATURAL_CARRIER):
         """Push `concept` in; report what the model does about it.
 
         Two different things can happen, and conflating them is the easiest way to
@@ -297,7 +297,7 @@ class RealEngine:
         watch = watch or []
 
         base = torch.softmax(self._hooked_logits(prompt, None), dim=-1)
-        plan, mags = self._plan(prompt, concept, layers, positions, alpha, mode)
+        plan, mags = self._plan(prompt, concept, layers, positions, alpha, mode, carrier)
         inj = torch.softmax(self._hooked_logits(prompt, plan), dim=-1)
 
         parrot = self.tid(concept)
@@ -367,11 +367,13 @@ class RealEngine:
             "missing_watch": [w for w in watch if w not in watch_ids],
         }
 
-    def sweep(self, prompt, concept, layers, positions, alphas, mode="strength", watch=None):
+    def sweep(self, prompt, concept, layers, positions, alphas, mode="strength", watch=None,
+              carrier=NATURAL_CARRIER):
         """The alpha curve: does the concept get used, or just repeated, or does it break?"""
         out = []
         for a in alphas:
-            r = self.inject(prompt, concept, layers, positions, a, mode, watch=watch, topk=3)
+            r = self.inject(prompt, concept, layers, positions, a, mode, watch=watch, topk=3,
+                            carrier=carrier)
             row = {
                 "alpha": a,
                 "parrot": r["p_parrot_inj"],
@@ -383,12 +385,15 @@ class RealEngine:
             out.append(row)
         return out
 
-    def natural_alpha(self, prompt, concept, layers):
+    def natural_alpha(self, prompt, concept, layers, carrier=NATURAL_CARRIER):
         """Where 'as loud as the real thing' sits on the strength slider.
 
         The natural coefficient differs by layer, so this is a range, not a tick.
+        The carrier is the sentence the concept is measured in; it must contain
+        `{concept}` and should read naturally for whatever you are probing. The
+        default is v3's, which is about countries — change it if your prompt is not.
         """
-        coefs = self.natural_coefs(prompt, concept, layers)
+        coefs = self.natural_coefs(prompt, concept, layers, carrier)
         if coefs is None:
             return None
         norms = self.mean_norms(prompt, layers)
@@ -514,7 +519,7 @@ class MockEngine:
         return max(0.0, min(0.98, used)), max(0.0, min(0.98, parrot)), kl
 
     def inject(self, prompt, concept, layers, positions, alpha, mode="strength",
-               watch=None, topk=10):
+               watch=None, topk=10, carrier=NATURAL_CARRIER):
         watch = watch or []
         used, parrot, kl = self._curve(concept, alpha, prompt, positions)
         r = self._rng(prompt, concept, alpha)
@@ -550,7 +555,8 @@ class MockEngine:
             "missing_watch": [],
         }
 
-    def sweep(self, prompt, concept, layers, positions, alphas, mode="strength", watch=None):
+    def sweep(self, prompt, concept, layers, positions, alphas, mode="strength", watch=None,
+              carrier=NATURAL_CARRIER):
         watch = watch or []
         out = []
         for a in alphas:
@@ -562,7 +568,7 @@ class MockEngine:
             out.append(row)
         return out
 
-    def natural_alpha(self, prompt, concept, layers):
+    def natural_alpha(self, prompt, concept, layers, carrier=NATURAL_CARRIER):
         r = self._rng(prompt, concept, "nat")
         m = 1.6 + r.random() * 0.8
         return {"per_layer": {str(l): m + r.random() * 0.4 - 0.2 for l in layers},

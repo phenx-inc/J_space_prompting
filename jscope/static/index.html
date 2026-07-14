@@ -352,7 +352,11 @@ function Sweep({ points, natural, alpha, watch }) {
 
 /* ------------------------------------------------------------------ app --- */
 
-/* Light it up, shape it, break it — the three findings, one click each. */
+/* Starting points, not rails. Every field below is free text — including the
+   referent token and the carrier sentence, both of which used to be hardcoded to
+   v3's countries battery and quietly made every other prompt behave oddly. */
+const NEUTRAL_CARRIER = "Fact: the answer is {concept}. ";
+
 const PRESETS = [
   {
     name: "light it up",
@@ -360,6 +364,7 @@ const PRESETS = [
     prompt: "The currency used in the country shaped like a boot is called the",
     track: ["Italy", "Japan"],
     concept: "Japan", watch: ["Yen", "Euro"], sites: "referent",
+    referent: "country", carrier: "Fact: Kevin's home country is {concept}. ",
   },
   {
     name: "shape it",
@@ -367,6 +372,7 @@ const PRESETS = [
     prompt: "The capital of Kevin's home country is the city of",
     track: ["France", "Japan"],
     concept: "France", watch: ["Paris"], sites: "referent",
+    referent: "country", carrier: "Fact: Kevin's home country is {concept}. ",
   },
   {
     name: "break it",
@@ -374,16 +380,30 @@ const PRESETS = [
     prompt: "The capital of Kevin's home country is the city of",
     track: ["France"],
     concept: "France", watch: ["Paris"], sites: "all",
+    referent: "country", carrier: "Fact: Kevin's home country is {concept}. ",
+  },
+  {
+    // Nothing to do with countries. Baseline says ' machine' (0.43); inject
+    // 'animal' at ' computer' and the answer flips to ' human' while the parrot
+    // term stays at 0.002 — the concept is used, not repeated.
+    name: "analogy",
+    blurb: "inject 'animal' into 'computer' and the answer flips machine → human",
+    prompt: "A human is an animal. A computer is a",
+    track: ["machine", "animal", "human"],
+    concept: "animal", watch: ["machine", "human"], sites: "referent",
+    referent: "computer", carrier: NEUTRAL_CARRIER,
   },
 ];
-
-const REFERENT = "country";
 
 function App() {
   const [meta, setMeta] = useState(null);
   const [fatal, setFatal] = useState(null);
 
-  const P0 = PRESETS[0];
+  // #preset=analogy opens straight into that setup, so a view can be linked.
+  const P0 = useMemo(() => {
+    const m = /preset=([a-z-]+)/.exec(location.hash);
+    return (m && PRESETS.find(p => p.name.replace(/ /g, "-") === m[1])) || PRESETS[0];
+  }, []);
   const [draft, setDraft] = useState(P0.prompt);
   const [prompt, setPrompt] = useState(P0.prompt);
   const [concepts, setConcepts] = useState(
@@ -401,6 +421,9 @@ function App() {
   const [bLayers, setBLayers] = useState([]);
   const [sites, setSites] = useState([]);
   const [sitePref, setSitePref] = useState(P0.sites);   // survives a prompt change
+  const [referent, setReferent] = useState(P0.referent);
+  const [carrier, setCarrier] = useState(P0.carrier);
+  const [adv, setAdv] = useState(false);
   const [alpha, setAlpha] = useState(0.25);
   const [mode, setMode] = useState("strength");
   const [inj, setInj] = useState(null);
@@ -426,12 +449,20 @@ function App() {
       .catch(e => setFatal(e.message));
   }, []);
 
-  /* Positions of the token the question refers to ("...Kevin's home country..."),
-     which is where v3 aims its injection. */
+  /* Positions of the token the question hangs on. For v3 that is " country"; for
+     your prompt it is whatever noun the answer depends on. If it isn't in the
+     prompt we fall back to the last token and say so, rather than pretending. */
   const referentSites = useCallback(toks => {
-    const hit = toks.filter(t => t.text.trim().toLowerCase() === REFERENT).map(t => t.i);
+    const want = referent.trim().toLowerCase();
+    const hit = toks.filter(t => t.text.trim().toLowerCase() === want).map(t => t.i);
     return hit.length ? hit : [toks.length - 1];
-  }, []);
+  }, [referent]);
+
+  const referentFound = useMemo(() => {
+    if (!readout) return true;
+    const want = referent.trim().toLowerCase();
+    return readout.tokens.some(t => t.text.trim().toLowerCase() === want);
+  }, [readout, referent]);
 
   const runReadout = useCallback(async () => {
     setReading(true); setReadErr(null);
@@ -462,20 +493,26 @@ function App() {
     setDraft(p.prompt); setPrompt(p.prompt);
     setConcepts(p.track.map((n, i) => ({ name: n, color: COLORS[i] })));
     setBConcept(p.concept); setBWatch(p.watch.join(" "));
-    setSitePref(p.sites); setPoints(null); setAlpha(0.25);
+    setSitePref(p.sites); setReferent(p.referent); setCarrier(p.carrier);
+    setPoints(null); setAlpha(0.25);
   };
+
+  // re-aim the sites when the referent word changes under a live prompt
+  useEffect(() => {
+    if (readout && sitePref === "referent") setSites(referentSites(readout.tokens));
+  }, [referent]);
 
   const runInject = useCallback(async () => {
     if (!bConcept || !bLayers.length || !sites.length) return;
     setInjecting(true); setInjErr(null);
     try {
       const body = { prompt, concept: bConcept, layers: bLayers, positions: sites,
-                     alpha: Number(alpha), mode, watch };
+                     alpha: Number(alpha), mode, watch, carrier };
       const d = await api("/api/inject", body);
       setInj(d);
     } catch (e) { setInjErr(e.message); setInj(null); }
     setInjecting(false);
-  }, [prompt, bConcept, bLayers, sites, alpha, mode, watch]);
+  }, [prompt, bConcept, bLayers, sites, alpha, mode, watch, carrier]);
 
   useEffect(() => {
     if (!meta || !readout) return;
@@ -485,9 +522,9 @@ function App() {
 
   useEffect(() => {
     if (!meta || !bConcept || !bLayers.length) { setNatural(null); return; }
-    api("/api/natural", { prompt, concept: bConcept, layers: bLayers })
+    api("/api/natural", { prompt, concept: bConcept, layers: bLayers, carrier })
       .then(d => setNatural(d.natural)).catch(() => setNatural(null));
-  }, [meta, prompt, bConcept, bLayers]);
+  }, [meta, prompt, bConcept, bLayers, carrier]);
 
   const runSweep = async () => {
     setSweeping(true); setPoints(null);
@@ -497,7 +534,7 @@ function App() {
       const alphas = Array.from({ length: n }, (_, i) =>
         Math.round(alphaMax * Math.pow(i / (n - 1), 1.4) * 1000) / 1000);
       const d = await api("/api/sweep", { prompt, concept: bConcept, layers: bLayers,
-                                          positions: sites, alphas, mode, watch });
+                                          positions: sites, alphas, mode, watch, carrier });
       setPoints(d.points);
     } catch (e) { setInjErr(e.message); }
     setSweeping(false);
@@ -688,10 +725,39 @@ function App() {
                 setSites(readout ? [readout.tokens.length - 1] : []); }}>last</button>
             </div>
           </div>
-          <p class="hint" style=${{ margin: "5px 0 0" }}>
-            Click token labels in the grid to pick sites by hand. Aiming at the referent — the
-            <span class="mono"> "${REFERENT}"</span> the question hangs on — is what separates
-            steering from vandalism.</p>
+          <div class="row" style=${{ marginTop: 7 }}>
+            <label class="lbl">referent token</label>
+            <input class="add" style=${{ width: 120, borderStyle: "solid" }} value=${referent}
+                   onInput=${e => setReferent(e.target.value)} />
+            <span class="muted">the word your answer hangs on</span>
+          </div>
+          <p class="hint" style=${{ margin: "6px 0 0" }}>
+            Aiming at the referent is what separates steering from vandalism. Or click token
+            labels in the grid to pick sites by hand.</p>
+          ${!referentFound && html`
+            <div class="warn">No <span class="mono">"${referent}"</span> token in this prompt, so
+              "referent" is falling back to the last token. Set it to whichever word your question
+              actually depends on.</div>`}
+
+          <div style=${{ marginTop: 13, paddingTop: 11, borderTop: "1px solid var(--line)" }}>
+            <button class="btn" onClick=${() => setAdv(a => !a)}>
+              ${adv ? "▾" : "▸"} natural-amplitude probe</button>
+            ${adv && html`
+              <div style=${{ marginTop: 9 }}>
+                <p class="hint" style=${{ margin: "0 0 7px" }}>
+                  To find out how loud a concept is <i>naturally</i>, we state it plainly in a carrier
+                  sentence and read the residual at its own token. The default carrier is v3's, and it
+                  is about countries — if your prompt is not, this sentence should not be either, or
+                  the α ≈ ${natural ? natural.mean.toFixed(2) : "?"} reference means nothing.</p>
+                <textarea style=${{ minHeight: 40 }} value=${carrier}
+                          onInput=${e => setCarrier(e.target.value)} />
+                <div class="row" style=${{ marginTop: 7 }}>
+                  <button class="btn" onClick=${() => setCarrier(NEUTRAL_CARRIER)}>neutral</button>
+                  <button class="btn" onClick=${() => setCarrier(PRESETS[0].carrier)}>v3 (countries)</button>
+                  <span class="muted mono">must contain {concept}</span>
+                </div>
+              </div>`}
+          </div>
 
           ${injErr && html`<div class="err" style=${{ marginTop: 12 }}>${injErr}</div>`}
         </div>
