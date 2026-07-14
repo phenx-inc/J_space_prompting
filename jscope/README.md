@@ -65,6 +65,50 @@ hidden[:, positions] += alpha * mean_residual_norm[layer] * v
 the same thing at every depth. The bench shows the next-token distribution before
 and after, as paired bars.
 
+## Editing cells, and why the grid lies about erasure
+
+Cells are editable one at a time: `cells=[[layer, position], ...]`, an arbitrary
+set rather than a layers × tokens rectangle. Three operations:
+
+```python
+add:     h += alpha * v        # v is a unit vector
+erase:   h -= (h @ v) * v      # project the concept out
+replace: erase, then add
+```
+
+All three are **rank-1**. Nothing is flattened or zeroed. At (L11, `' boot'`) the
+Italy direction accounts for **16% of the residual's norm** and erasing it rotates
+the vector by about 9 degrees — cosine similarity 0.987, the other 2559 dimensions
+untouched. (16% is a lot for one direction: a random one would capture ~2%.)
+
+Erasing is the causal test, and it works — project Italy out of the `' boot'`
+column and next-token goes from `' euro'` (0.143) to `'\n'`.
+
+**But do not read the grid as proof the concept is gone.** The lens reads a
+concept by projecting onto `v`; erase removes exactly that projection. So
+P(concept) collapsing to 0.0000 after an erase is *partly tautological*, at the
+edited cells and every cell above them.
+
+The model disagrees with the grid:
+
+| cut at `' boot'` | P(euro) | KL |
+|---|---|---|
+| nothing (baseline) | 0.143 | — |
+| L0–L7, below where Italy forms | 0.131 | 0.00 |
+| L8–L11, where it forms | 0.091 | 0.08 |
+| L12–L21, after it has formed | 0.035 | 0.36 |
+| L8–L21, the whole column | 0.023 | 0.46 |
+
+After cutting L8–L11 the grid claims Italy is gone at every layer above — yet the
+model still answers `euro` at 0.091, and cutting L12–L21 *as well* drops it to
+0.023. It could not, if the concept were really gone. **`v` is a 1-D projection of
+the concept, not the concept.** Italy-flavoured information survives in directions
+the lens cannot see. Trust the next-token distribution for whether a concept is
+really gone, and treat the grid as a view, not a ground truth.
+
+Cutting L0–L7 does nothing at all (KL = 0.00), which independently confirms the
+ignition timing the grid shows: Italy has not formed yet down there.
+
 ## Read the damage, not just the win
 
 The bench reports KL divergence from the baseline distribution and lists the

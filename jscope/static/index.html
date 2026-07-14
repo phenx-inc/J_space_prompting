@@ -739,11 +739,22 @@ function App() {
                              concepts=${concepts} sites=${sites}
                              toggleSite=${toggleSite} pinned=${pinned} setPinned=${setPinned}
                              cellMode=${cellMode} cellSet=${cellSet} toggleCell=${toggleCell} />`}
-          ${showAfter && after && html`
+          ${showAfter && after && op !== "erase" && html`
             <div class="hint" style=${{ margin: "8px 0 0" }}>
               Showing the workspace <b>with the edit live</b>. Red outlines are the cells you edited;
               green outlines are cells whose reading moved as a result — including cells
               <i>above</i> the edit, which is the change propagating up the stack.</div>`}
+          ${showAfter && after && op === "erase" && html`
+            <div class="warn">Do not read this grid as proof the concept is gone. The lens reads the
+              concept by projecting onto <span class="mono">v</span>, and erase removes exactly that
+              projection — so P(concept) collapsing to 0.0000 here is <b>partly tautological</b>, at the
+              edited cells and above them.
+              <br /><br />
+              The model disagrees with the grid. Erase Italy at L8–L21 and the grid says it is gone
+              everywhere above — yet cutting L12–L21 <i>as well</i> still drops P(euro) from 0.091 to
+              0.023. Italy-flavoured information survives in directions the lens cannot see.
+              <b>Trust the next-token distribution, not this grid, for whether a concept is really
+              gone.</b></div>`}
           ${readout && readout.missing_concepts.length > 0 && html`
             <div class="warn">Not single tokens, so they cannot be tracked or injected:
               ${readout.missing_concepts.join(", ")}.</div>`}
