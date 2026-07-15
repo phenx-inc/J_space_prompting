@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1920, height=1080" />
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1920px; height: 1080px; overflow: hidden; }
+      body { font-family: -apple-system, "Segoe UI", Inter, sans-serif; color: #E6EDF3; }
+      #stage { position: relative; width: 1920px; height: 1080px; background: #0A0D12; }
+      .mono { font-family: ui-monospace, "SF Mono", Menlo, monospace;
+              font-variant-numeric: tabular-nums; }
+
+      /* full-bleed background lives on a child, never the root */
+      .bg { position: absolute; inset: 0; background:
+              radial-gradient(120% 90% at 50% 0%, #0E1420 0%, #0A0D12 60%, #070A0E 100%); }
+      .bg .net { position: absolute; inset: 0; opacity: .5;
+        background-image: linear-gradient(#121a24 1px, transparent 1px),
+                          linear-gradient(90deg, #121a24 1px, transparent 1px);
+        background-size: 72px 72px; }
+
+      /* persistent chrome */
+      .wm { position: absolute; left: 64px; top: 52px; font-size: 24px; font-weight: 800;
+            letter-spacing: -.01em; color: #E6EDF3; opacity: 0; }
+      .wm b { color: #FFB020; }
+      .stamp { position: absolute; right: 64px; top: 58px; font-size: 15px; color: #8593A3;
+               letter-spacing: .08em; opacity: 0; }
+      .slabel { position: absolute; left: 64px; bottom: 52px; font-size: 17px; color: #8593A3;
+                letter-spacing: .22em; text-transform: uppercase; opacity: 0; }
+
+      .scene { position: absolute; inset: 0; opacity: 0; }
+
+      /* ---------- scene 0 : title ---------- */
+      #s0 { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+      #s0 .mark { font-size: 128px; font-weight: 800; letter-spacing: -.03em; }
+      #s0 .mark b { color: #FFB020; }
+      #s0 .tag { font-size: 40px; color: #C4CDD8; margin-top: 18px; font-weight: 500; }
+      #s0 .meta { font-size: 20px; color: #8593A3; margin-top: 40px; letter-spacing: .14em;
+                  text-transform: uppercase; }
+      #s0 .cursor { display: inline-block; width: 4px; height: 96px; background: #FFB020;
+                    margin-left: 14px; vertical-align: middle; }
+
+      /* ---------- shared scene frame ---------- */
+      .head { position: absolute; left: 96px; top: 128px; }
+      .head .kick { font-size: 20px; letter-spacing: .2em; text-transform: uppercase;
+                    color: #FFB020; font-weight: 700; }
+      .head .h { font-size: 54px; font-weight: 700; letter-spacing: -.02em; margin-top: 12px; }
+      .head .h em { font-style: normal; color: #FFB020; }
+      .head .h em.g { color: #35D0A5; } .head .h em.c { color: #38BDF8; }
+
+      .prompt { position: absolute; left: 96px; top: 300px; display: flex; gap: 9px;
+                align-items: center; flex-wrap: wrap; width: 1200px; }
+      .tok { font-size: 24px; padding: 8px 13px; border-radius: 7px; background: #121821;
+             border: 1px solid #1E2733; color: #A7B2BE; }
+      .tok.key { border-color: #FFB020; color: #FFB020; background: rgba(255,176,32,.08); }
+
+      /* ignition grid */
+      #grid { position: absolute; }
+      .cell { position: absolute; border-radius: 3px; background: #0E141C; }
+      .glab { position: absolute; font-size: 13px; color: #8B98A6; }
+      .chip { position: absolute; padding: 7px 12px; border-radius: 8px; opacity: 0;
+              font-size: 20px; font-weight: 700; white-space: nowrap; }
+      .chip.amber { background: rgba(255,176,32,.14); border: 1px solid #FFB020; color: #FFB020; }
+      .readout { position: absolute; opacity: 0; font-size: 22px; }
+      .readout .r1 { color: #FFB020; font-weight: 700; }
+      .readout .r2 { color: #8593A3; margin-top: 4px; }
+
+      .note { position: absolute; font-size: 26px; color: #8593A3; opacity: 0; }
+      .note b { color: #E6EDF3; }
+
+      /* real-tool screenshot inset */
+      .realcard { position: absolute; left: 1360px; top: 720px; width: 470px; opacity: 0;
+                  border: 1px solid #263141; border-radius: 10px; overflow: hidden;
+                  background: #0D131B; box-shadow: 0 24px 60px rgba(0,0,0,.5); }
+      .realcard .rc-lab { font-size: 14px; letter-spacing: .16em; text-transform: uppercase;
+                          color: #8593A3; padding: 9px 14px; border-bottom: 1px solid #1B2431; }
+      .realcard img { display: block; width: 100%; }
+
+      /* distribution bars */
+      .dist { position: absolute; width: 760px; }
+      .drow { display: grid; grid-template-columns: 132px 1fr 128px; align-items: center;
+              gap: 16px; margin-bottom: 16px; }
+      .dtok { font-size: 24px; text-align: right; color: #8593A3; }
+      .dtok.g { color: #35D0A5; font-weight: 700; } .dtok.c { color: #38BDF8; font-weight: 700; }
+      .dtok.a { color: #FFB020; font-weight: 700; } .dtok.p { color: #FF5C7A; font-weight: 700; }
+      .track { height: 30px; background: #10161E; border-radius: 5px; position: relative;
+               overflow: hidden; }
+      .fill { position: absolute; left: 0; top: 0; bottom: 0; width: 0%; border-radius: 5px;
+              background: #5B6B7D; }
+      .fill.g { background: linear-gradient(90deg,#35D0A5,#14B8A6); }
+      .fill.c { background: linear-gradient(90deg,#38BDF8,#0EA5E9); }
+      .fill.a { background: linear-gradient(90deg,#FFB020,#F59E0B); }
+      .dval { font-size: 22px; color: #C4CDD8; }
+
+      /* mixer sliders */
+      .mix { position: absolute; width: 720px; }
+      .srow { margin-bottom: 40px; }
+      .srow .sl { display: flex; justify-content: space-between; font-size: 26px;
+                  font-weight: 700; margin-bottom: 12px; }
+      .srow .sl .rt { font-size: 24px; }
+      .rail { height: 12px; background: #10161E; border-radius: 6px; position: relative; }
+      .knob { position: absolute; top: -12px; width: 36px; height: 36px; border-radius: 50%;
+              border: 4px solid #0A0D12; }
+      .srow.italy .sl { color: #FFB020; } .srow.italy .knob { background: #FFB020; }
+      .srow.japan .sl { color: #38BDF8; } .srow.japan .knob { background: #38BDF8; }
+
+      .verdict { position: absolute; left: 96px; top: 300px; opacity: 0; }
+      .verdict .walk { font-size: 72px; font-weight: 800; letter-spacing: -.02em; }
+      .verdict .walk .from { color: #8593A3; text-decoration: line-through; }
+      .verdict .walk .to { color: #38BDF8; }
+      .verdict .sub { font-size: 34px; color: #C4CDD8; margin-top: 20px; font-weight: 500; }
+      .verdict .end { font-size: 30px; color: #8593A3; margin-top: 44px; letter-spacing: .04em; }
+      .verdict .end b { color: #FFB020; font-weight: 800; letter-spacing: -.01em; }
+    </style>
+  </head>
+  <body>
+    <div id="stage" data-composition-id="main" data-start="0" data-duration="72"
+         data-width="1920" data-height="1080">
+      <div class="bg"><div class="net"></div></div>
+
+      <!-- narration (direct children of root; framework owns playback) -->
+      <audio id="vo0" src="assets/vo_s0.wav" data-start="0"    data-duration="3.42"  data-track-index="20" data-volume="1"></audio>
+      <audio id="vo1" src="assets/vo_s1.wav" data-start="4.4"  data-duration="18.29" data-track-index="21" data-volume="1"></audio>
+      <audio id="vo2" src="assets/vo_s2.wav" data-start="24.0" data-duration="14.32" data-track-index="22" data-volume="1"></audio>
+      <audio id="vo3" src="assets/vo_s3.wav" data-start="39.5" data-duration="13.25" data-track-index="23" data-volume="1"></audio>
+      <audio id="vo4" src="assets/vo_s4.wav" data-start="54.0" data-duration="16.32" data-track-index="24" data-volume="1"></audio>
+
+      <div class="wm" id="wm">J<b>·</b>Scope</div>
+      <div class="stamp mono" id="stamp">Qwen3.5-4B · Jacobian lens</div>
+      <div class="slabel" id="slabel">read</div>
+
+      <!-- ================= scene 0 : title ================= -->
+      <div class="scene" id="s0">
+        <div class="mark">J<b>·</b>Scope<span class="cursor" id="cur"></span></div>
+        <div class="tag">watch a model think — and change its mind</div>
+        <div class="meta mono">an instrument for the model's workspace</div>
+      </div>
+
+      <!-- ================= scene 1 : READ ================= -->
+      <div class="scene" id="s1">
+        <div class="head">
+          <div class="kick">read</div>
+          <div class="h">The model already knows <em>Italy</em>.</div>
+        </div>
+        <div class="prompt" id="p1"></div>
+        <div id="grid"></div>
+        <div class="chip amber mono" id="chip1">意大利 · Italy</div>
+        <div class="readout mono" id="ro1">
+          <div class="r1">peak p = 0.26 · layer 12</div>
+          <div class="r2">a word never written in the prompt</div>
+        </div>
+        <div class="realcard" id="real1">
+          <div class="rc-lab mono">the live tool</div>
+          <img src="assets/real_read.png" alt="J-Scope ignition grid" />
+        </div>
+      </div>
+
+      <!-- ================= scene 2 : WRITE ================= -->
+      <div class="scene" id="s2">
+        <div class="head">
+          <div class="kick">write</div>
+          <div class="h">Inject <em>France</em> — it answers <em class="g">Paris</em>.</div>
+        </div>
+        <div class="prompt" id="p2"></div>
+        <div class="dist" id="d2" style="left: 96px; top: 470px;">
+          <div class="drow"><div class="dtok g">Paris</div>
+            <div class="track"><div class="fill g" id="f-paris"></div></div>
+            <div class="dval mono" id="v-paris">0.02</div></div>
+          <div class="drow"><div class="dtok">Rome</div>
+            <div class="track"><div class="fill" id="f-rome"></div></div>
+            <div class="dval mono" id="v-rome">0.01</div></div>
+          <div class="drow"><div class="dtok p">France</div>
+            <div class="track"><div class="fill" id="f-fr" style="background:#FF5C7A"></div></div>
+            <div class="dval mono" id="v-fr">0.00</div></div>
+        </div>
+        <div class="note" id="n2" style="left: 980px; top: 500px; width: 620px;">
+          It never says <b>France</b>. It <b>used</b> it — the injected concept
+          steered the answer, it wasn't parroted back.
+        </div>
+      </div>
+
+      <!-- ================= scene 3 : ERASE ================= -->
+      <div class="scene" id="s3">
+        <div class="head">
+          <div class="kick">erase</div>
+          <div class="h">Cut <em>Italy</em> out — the answer <em class="p" style="color:#FF5C7A">dies</em>.</div>
+        </div>
+        <div id="col3" style="position:absolute; left:150px; top:330px;"></div>
+        <div class="dist" id="d3" style="left: 520px; top: 380px; width: 900px;">
+          <div class="drow"><div class="dtok a">euro</div>
+            <div class="track" style="width:640px"><div class="fill a" id="f-euro"></div></div>
+            <div class="dval mono" id="v-euro">0.14</div></div>
+          <div class="drow"><div class="dtok">newline</div>
+            <div class="track" style="width:640px"><div class="fill" id="f-nl"></div></div>
+            <div class="dval mono" id="v-nl">0.12</div></div>
+        </div>
+        <div class="note" id="n3" style="left: 520px; top: 560px; width: 820px;">
+          <b>euro</b> was its top answer. Take Italy out of that column and it
+          collapses — the fact was living there the whole time.
+        </div>
+      </div>
+
+      <!-- ================= scene 4 : MIX ================= -->
+      <div class="scene" id="s4">
+        <div class="head">
+          <div class="kick">remix</div>
+          <div class="h">Pull <em>Italy</em> down, push <em class="c">Japan</em> up.</div>
+        </div>
+        <div class="mix" id="mix4" style="left: 96px; top: 320px;">
+          <div class="srow italy">
+            <div class="sl"><span>Italy</span><span class="rt mono" id="si-v">0.65×</span></div>
+            <div class="rail"><div class="knob" id="si-k" style="left: 380px;"></div></div>
+          </div>
+          <div class="srow japan">
+            <div class="sl"><span>Japan</span><span class="rt mono" id="sj-v">0.18×</span></div>
+            <div class="rail"><div class="knob" id="sj-k" style="left: 110px;"></div></div>
+          </div>
+        </div>
+        <div class="dist" id="d4" style="left: 900px; top: 330px; width: 700px;">
+          <div class="drow"><div class="dtok a">euro</div>
+            <div class="track"><div class="fill a" id="f-euro4"></div></div>
+            <div class="dval mono" id="v-euro4">0.14</div></div>
+          <div class="drow"><div class="dtok c">yen</div>
+            <div class="track"><div class="fill c" id="f-yen4"></div></div>
+            <div class="dval mono" id="v-yen4">0.00</div></div>
+        </div>
+        <div class="realcard" id="real4" style="right: 90px; left: auto; top: 150px;">
+          <div class="rc-lab mono">the live tool</div>
+          <img src="assets/real_mix.png" alt="J-Scope vector mixer" />
+        </div>
+        <div class="verdict" id="verdict">
+          <div class="walk"><span class="from">euro</span> &rarr; <span class="to">yen</span></div>
+          <div class="sub">Same prompt. Every word unchanged.</div>
+          <div class="end">We reached into the model's mind and changed what it believes. &nbsp;<b>J·Scope</b></div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      window.__timelines = window.__timelines || {};
+      const tl = gsap.timeline({ paused: true });
+      const $ = (s) => document.querySelector(s);
+
+      /* scene start times — locked to the narration clip lengths
+         (vo: 3.4 / 18.3 / 14.3 / 13.2 / 16.3 s) */
+      const S = { s0: 0, s1: 4.4, s2: 24.0, s3: 39.5, s4: 54.0 };
+
+      /* ---- build prompt token rows ---- */
+      function tokens(host, arr, keyIdx) {
+        arr.forEach((w, i) => {
+          const el = document.createElement("span");
+          el.className = "tok" + (i === keyIdx ? " key" : "");
+          el.textContent = w;
+          host.appendChild(el);
+        });
+      }
+      /* amber blended over the dark cell base — GSAP can't tween color-mix(), so
+         we hand it plain rgb() targets */
+      function amber(a) {
+        const r = Math.round(255 * a + 14 * (1 - a)),
+              g = Math.round(176 * a + 20 * (1 - a)),
+              b = Math.round(32 * a + 28 * (1 - a));
+        return "rgb(" + r + "," + g + "," + b + ")";
+      }
+
+      const P1 = ["The","currency","used","in","the","country","shaped","like","a","boot","is","called","the"];
+      tokens($("#p1"), P1, -1);
+      tokens($("#p2"), ["The","capital","of","Kevin's","home","country","is","the","city","of"], 5);
+
+      /* ---- build the ignition grid (scene 1) ---- */
+      const LAYERS = [30,28,26,24,22,20,18,16,14,12,10,8,6,4];
+      const BOOT = 9;
+      const CW = 82, CH = 30, GX = 4, GY = 6;            // cell w/h + gaps
+      const GRID_L = 150, GRID_T = 476;
+      const grid = $("#grid");
+      // faint static heat on a couple of function words, for texture
+      const faint = { 3: 0.16, 4: 0.12 };               // 'in', 'the'
+      const bootHeat = { 8:0.35, 10:0.62, 12:1.0, 14:0.72, 16:0.55, 18:0.30, 20:0.20 };
+      LAYERS.forEach((L, r) => {
+        const gl = document.createElement("div");
+        gl.className = "glab mono";
+        gl.textContent = "L" + L;
+        gl.style.left = (GRID_L - 42) + "px";
+        gl.style.top = (GRID_T + r * (CH + GY) + 7) + "px";
+        grid.appendChild(gl);
+        P1.forEach((w, c) => {
+          const d = document.createElement("div");
+          d.className = "cell";
+          d.style.width = CW + "px"; d.style.height = CH + "px";
+          d.style.left = (GRID_L + c * (CW + GX)) + "px";
+          d.style.top = (GRID_T + r * (CH + GY)) + "px";
+          if (c === BOOT && bootHeat[L]) {
+            d.classList.add("ig");
+            d.dataset.target = amber(bootHeat[L]);
+          } else if (faint[c]) {
+            const a = faint[c] * (r > 3 && r < 9 ? 1 : 0.4);
+            const rr = Math.round(43 * a + 14 * (1 - a)),
+                  gg = Math.round(58 * a + 20 * (1 - a)),
+                  bb = Math.round(73 * a + 28 * (1 - a));
+            d.style.background = "rgb(" + rr + "," + gg + "," + bb + ")";
+          }
+          grid.appendChild(d);
+        });
+      });
+      // column labels for a few tokens
+      [["boot",BOOT],["country",5],["The",0]].forEach(([w,c]) => {
+        const t = document.createElement("div");
+        t.className = "glab mono";
+        t.style.color = c === BOOT ? "#FFB020" : "#8B98A6";
+        t.style.left = (GRID_L + c * (CW + GX)) + "px";
+        t.style.top = (GRID_T - 26) + "px";
+        t.textContent = w;
+        grid.appendChild(t);
+      });
+      const bootX = GRID_L + BOOT * (CW + GX);
+      $("#chip1").style.left = (bootX - 40) + "px";
+      $("#chip1").style.top = "372px";                   // clear band: prompt ends ~345, cols at 448
+      $("#ro1").style.left = (bootX + CW + 40) + "px";
+      $("#ro1").style.top = (GRID_T + 5 * (CH + GY)) + "px";
+
+      /* ---- scene 3 : the boot column, standalone ---- */
+      const col3 = $("#col3");
+      const C3 = [0.20,0.30,0.55,0.72,1.0,0.62,0.35];   // L20..L8 top->down
+      C3.forEach((h, i) => {
+        const d = document.createElement("div");
+        d.className = "c3cell";
+        d.style.cssText = "position:absolute;left:0;width:150px;height:40px;border-radius:4px;top:"
+          + (i * 46) + "px;background:" + amber(h) + ";";
+        col3.appendChild(d);
+      });
+      const c3lab = document.createElement("div");
+      c3lab.className = "glab mono";
+      c3lab.style.cssText = "left:0;top:-30px;color:#FFB020;font-size:16px;";
+      c3lab.textContent = "' boot' · L8–L20";
+      col3.appendChild(c3lab);
+
+      /* count-up helper */
+      function counter(el, from, to, at, dur, digits, suffix) {
+        const o = { v: from }; suffix = suffix || "";
+        tl.to(o, { v: to, duration: dur, ease: "none",
+          onUpdate() { el.textContent = o.v.toFixed(digits) + suffix; } }, at);
+      }
+
+      /* =================== TIMELINE =================== */
+      /* chrome */
+      tl.to("#wm", { opacity: 1, duration: .6 }, S.s1)
+        .to("#stamp", { opacity: 1, duration: .6 }, S.s1);
+
+      /* ---- s0 title ---- */
+      tl.set("#s0", { opacity: 1 }, S.s0)
+        .from("#s0 .mark", { opacity: 0, y: 26, duration: .9, ease: "power2.out" }, S.s0 + .2)
+        .to("#cur", { opacity: 0, duration: .28, repeat: 6, yoyo: true }, S.s0 + 1.0)
+        .from("#s0 .tag", { opacity: 0, y: 18, duration: .7 }, S.s0 + 1.1)
+        .from("#s0 .meta", { opacity: 0, duration: .7 }, S.s0 + 1.7)
+        .to("#s0", { opacity: 0, y: -30, duration: .6 }, S.s1 - .5);
+
+      /* ---- s1 READ ---- */
+      tl.to("#slabel", { opacity: 1, duration: .5 }, S.s1)
+        .set("#slabel", { textContent: "read" }, S.s1)
+        .to("#s1", { opacity: 1, duration: .5 }, S.s1)
+        .from("#s1 .head", { opacity: 0, y: 20, duration: .6 }, S.s1 + .2)
+        .from("#s1 .tok", { opacity: 0, y: 12, duration: .5, stagger: .045 }, S.s1 + .8);
+      // ignite the boot column, bottom -> top
+      tl.to("#grid .ig", { duration: .5, stagger: { each: .12, from: "end" },
+        backgroundColor: (i, t) => t.dataset.target }, S.s1 + 2.4);
+      tl.fromTo("#chip1", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .6 }, S.s1 + 4.4);
+      tl.to("#ro1", { opacity: 1, duration: .6 }, S.s1 + 5.2);
+      tl.fromTo("#real1", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .7 }, S.s1 + 6.2);
+      tl.to("#s1", { opacity: 0, y: -24, duration: .6 }, S.s2 - .5);
+
+      /* ---- s2 WRITE ---- */
+      tl.set("#slabel", { textContent: "write" }, S.s2 - .1)
+        .to("#s2", { opacity: 1, duration: .5 }, S.s2)
+        .from("#s2 .head", { opacity: 0, y: 20, duration: .6 }, S.s2 + .2)
+        .from("#s2 .tok", { opacity: 0, y: 12, duration: .5, stagger: .04 }, S.s2 + .8)
+        .from("#s2 .drow", { opacity: 0, x: -18, duration: .5, stagger: .12 }, S.s2 + 2.0);
+      tl.to("#f-paris", { width: "16%", duration: .6 }, S.s2 + 2.6)
+        .to("#f-rome", { width: "24%", duration: .6 }, S.s2 + 2.6)
+        .to("#f-fr", { width: "1%", duration: .6 }, S.s2 + 2.6);
+      // inject: Paris surges, France stays flat (parrot line)
+      tl.to("#f-paris", { width: "78%", duration: 1.1, ease: "power2.out" }, S.s2 + 5.0);
+      tl.to("#f-rome", { width: "12%", duration: 1.1 }, S.s2 + 5.0);
+      counter($("#v-paris"), 0.02, 0.14, S.s2 + 5.0, 1.1, 2);
+      counter($("#v-rome"), 0.24, 0.09, S.s2 + 5.0, 1.1, 2);
+      tl.fromTo("#n2", { opacity: 0, x: 22 }, { opacity: 1, x: 0, duration: .7 }, S.s2 + 6.2);
+      tl.to("#s2", { opacity: 0, y: -24, duration: .6 }, S.s3 - .5);
+
+      /* ---- s3 ERASE ---- */
+      tl.set("#slabel", { textContent: "erase" }, S.s3 - .1)
+        .to("#s3", { opacity: 1, duration: .5 }, S.s3)
+        .from("#s3 .head", { opacity: 0, y: 20, duration: .6 }, S.s3 + .2)
+        .from("#col3 .c3cell", { opacity: 0, x: -14, duration: .4, stagger: .06 }, S.s3 + .8)
+        .from("#s3 .drow", { opacity: 0, x: -16, duration: .5, stagger: .12 }, S.s3 + 1.4);
+      tl.to("#f-euro", { width: "68%", duration: .5 }, S.s3 + 2.0)
+        .to("#f-nl", { width: "58%", duration: .5 }, S.s3 + 2.0);
+      // erase: the column goes dark, euro collapses
+      tl.to("#col3 .c3cell", { backgroundColor: "#0E141C", duration: 1.0, stagger: .05 }, S.s3 + 3.6);
+      tl.to("#f-euro", { width: "10%", duration: 1.1, ease: "power2.in" }, S.s3 + 3.8);
+      tl.to("#f-nl", { width: "74%", duration: 1.1 }, S.s3 + 3.8);
+      counter($("#v-euro"), 0.14, 0.02, S.s3 + 3.8, 1.1, 2);
+      counter($("#v-nl"), 0.12, 0.15, S.s3 + 3.8, 1.1, 2);
+      tl.fromTo("#n3", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .7 }, S.s3 + 5.0);
+      tl.to("#s3", { opacity: 0, y: -24, duration: .6 }, S.s4 - .5);
+
+      /* ---- s4 MIX ---- */
+      tl.set("#slabel", { textContent: "remix" }, S.s4 - .1)
+        .to("#s4", { opacity: 1, duration: .5 }, S.s4)
+        .from("#s4 .head", { opacity: 0, y: 20, duration: .6 }, S.s4 + .2)
+        .from("#s4 .srow", { opacity: 0, x: -18, duration: .5, stagger: .15 }, S.s4 + .8)
+        .from("#s4 .drow", { opacity: 0, x: 18, duration: .5, stagger: .15 }, S.s4 + 1.0);
+      tl.fromTo("#real4", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: .7 }, S.s4 + 1.2);
+      tl.to("#f-euro4", { width: "62%", duration: .5 }, S.s4 + 1.6)
+        .to("#f-yen4", { width: "1%", duration: .5 }, S.s4 + 1.6);
+      // "pull Italy down, push Japan up" — drag the knobs (transform, not left)
+      tl.to("#si-k", { x: -270, duration: 2.4, ease: "power1.inOut" }, S.s4 + 3.0);
+      tl.to("#sj-k", { x: 450, duration: 2.4, ease: "power1.inOut" }, S.s4 + 3.0);
+      counter($("#si-v"), 0.65, 0.0, S.s4 + 3.0, 2.4, 2, "×");
+      counter($("#sj-v"), 0.18, 1.0, S.s4 + 3.0, 2.4, 2, "×");
+      // "and the answer walks — euro gone, yen 0.28"
+      tl.to("#f-euro4", { width: "1%", duration: 1.8, ease: "power2.in" }, S.s4 + 4.6);
+      tl.to("#f-yen4", { width: "68%", duration: 1.8, ease: "power2.out" }, S.s4 + 5.2);
+      counter($("#v-euro4"), 0.14, 0.00, S.s4 + 4.6, 1.8, 2);
+      counter($("#v-yen4"), 0.00, 0.28, S.s4 + 5.2, 1.8, 2);
+      // verdict — lands on "changed what it believes. This is J-Scope."
+      tl.to(["#s4 .mix", "#s4 .dist", "#s4 .head", "#real4"], { opacity: 0, duration: .6 }, S.s4 + 9.8);
+      tl.fromTo("#verdict", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: .8,
+        ease: "power2.out" }, S.s4 + 10.2);
+      tl.from("#verdict .sub", { opacity: 0, y: 14, duration: .6 }, S.s4 + 11.2);
+      tl.from("#verdict .end", { opacity: 0, duration: .8 }, S.s4 + 13.4);
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>
