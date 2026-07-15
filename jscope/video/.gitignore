@@ -1,0 +1,4 @@
+snapshots/
+renders/work-*
+node_modules/
+*.log

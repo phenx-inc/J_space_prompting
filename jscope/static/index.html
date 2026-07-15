@@ -1,0 +1,1123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>J-Scope</title>
+<style>
+  :root {
+    --bg:#0A0D12; --panel:#121821; --sunk:#0D131B; --line:#1E2733;
+    --txt:#E6EDF3; --dim:#8593A3; --faint:#5A6675;
+    --ignite:#FFB020; --good:#35D0A5; --bad:#FF5C7A; --ghost:#38424F;
+    --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+    --sans: -apple-system, "Segoe UI", Inter, Roboto, sans-serif;
+  }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--txt); font-family:var(--sans);
+         font-size:14px; -webkit-font-smoothing:antialiased; }
+  button, input, select, textarea { font:inherit; color:inherit; }
+  .mono { font-family:var(--mono); font-variant-numeric:tabular-nums; }
+
+  header { display:flex; align-items:baseline; gap:16px; padding:14px 22px;
+           border-bottom:1px solid var(--line); background:var(--sunk); }
+  header h1 { margin:0; font-size:16px; font-weight:700; letter-spacing:-0.01em; }
+  header h1 span { color:var(--ignite); }
+  .meta { font-family:var(--mono); font-size:12px; color:var(--faint); }
+  .badge { margin-left:auto; font-family:var(--mono); font-size:11px; font-weight:700;
+           letter-spacing:.08em; padding:4px 9px; border-radius:4px; }
+  .badge.live   { background:rgba(53,208,165,.12); color:var(--good); }
+  .badge.mock   { background:rgba(255,176,32,.12);  color:var(--ignite); }
+  .badge.frozen { background:rgba(133,147,163,.12); color:var(--dim); }
+
+  main { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);
+         gap:1px; background:var(--line); min-height:calc(100vh - 51px); }
+  .col { background:var(--bg); padding:20px 22px 40px; display:flex; flex-direction:column; gap:20px;
+         min-width:0; }
+  @media (max-width:1180px) { main { grid-template-columns:1fr; } }
+
+  .panel { background:var(--panel); border:1px solid var(--line); border-radius:8px; padding:16px; }
+  .panel > h2 { margin:0 0 3px; font-size:12px; font-weight:700; text-transform:uppercase;
+                letter-spacing:.1em; color:var(--dim); }
+  .panel > .hint { margin:0 0 14px; font-size:12.5px; color:var(--faint); line-height:1.45; }
+
+  textarea { width:100%; background:var(--sunk); border:1px solid var(--line); border-radius:6px;
+             padding:10px 12px; font-family:var(--mono); font-size:13px; resize:vertical;
+             min-height:58px; line-height:1.5; }
+  textarea:focus, input:focus { outline:2px solid var(--ignite); outline-offset:-1px; }
+
+  .row { display:flex; align-items:center; gap:8px; flex-wrap:wrap; }
+  .spread { justify-content:space-between; }
+  label.lbl { font-size:11px; text-transform:uppercase; letter-spacing:.08em; color:var(--faint);
+              font-weight:600; }
+  /* Greek and concept names must not be uppercased: it turns α into Α. */
+  label.lbl.raw, .stat .k.raw { text-transform:none; }
+
+  button.btn { background:var(--sunk); border:1px solid var(--line); border-radius:5px;
+               padding:6px 12px; cursor:pointer; font-size:12.5px; }
+  button.btn:hover:not(:disabled) { border-color:var(--faint); }
+  button.btn:disabled { opacity:.45; cursor:default; }
+  button.btn.go { background:var(--ignite); border-color:var(--ignite); color:#0A0D12; font-weight:700; }
+  button.btn.go:hover:not(:disabled) { filter:brightness(1.1); }
+  button.btn.on { border-color:var(--ignite); color:var(--ignite); }
+
+  .chip { display:inline-flex; align-items:center; gap:6px; padding:4px 9px; border-radius:999px;
+          border:1px solid var(--line); background:var(--sunk); font-family:var(--mono);
+          font-size:12px; cursor:pointer; }
+  .chip .dot { width:8px; height:8px; border-radius:50%; }
+  .chip .x { color:var(--faint); font-weight:700; }
+  .chip .x:hover { color:var(--bad); }
+  input.add { background:var(--sunk); border:1px dashed var(--line); border-radius:999px;
+              padding:4px 10px; width:110px; font-family:var(--mono); font-size:12px; }
+
+  .lchip { padding:2px 6px; border-radius:4px; border:1px solid var(--line); background:var(--sunk);
+           font-family:var(--mono); font-size:11px; cursor:pointer; color:var(--faint); }
+  .lchip.on { border-color:var(--ignite); color:var(--ignite); background:rgba(255,176,32,.08); }
+
+  /* ---- ignition grid ---- */
+  .gridwrap { overflow-x:auto; padding-bottom:4px; }
+  .grid { display:grid; gap:2px; min-width:max-content; }
+  .gcell { height:19px; border-radius:2px; background:var(--sunk); cursor:crosshair;
+           position:relative; transition:transform .06s; }
+  .gcell:hover { transform:scale(1.22); z-index:3; box-shadow:0 0 0 1px var(--txt); }
+  .gcell.pin { box-shadow:0 0 0 1px var(--txt); }
+  .gcell.picked { box-shadow:0 0 0 2px var(--bad); z-index:2; }
+  .gcell.moved::after { content:""; position:absolute; inset:0; border-radius:2px;
+                        box-shadow:inset 0 0 0 1px var(--good); }
+  .grid.editing .gcell { cursor:cell; }
+  .glab { font-family:var(--mono); font-size:10.5px; color:var(--faint); text-align:right;
+          padding-right:7px; line-height:19px; white-space:nowrap; }
+  .thead { font-family:var(--mono); font-size:10.5px; color:var(--dim); text-align:center;
+           padding-bottom:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+           cursor:pointer; border-bottom:2px solid transparent; max-width:70px; }
+  .thead:hover { color:var(--txt); }
+  .thead.site { color:var(--good); border-bottom-color:var(--good); }
+
+  .inspect { margin-top:12px; background:var(--sunk); border:1px solid var(--line); border-radius:6px;
+             padding:11px 13px; font-family:var(--mono); font-size:12px; min-height:74px; }
+  .inspect .hdr { color:var(--faint); margin-bottom:7px; }
+  .inspect .tk { display:flex; justify-content:space-between; gap:14px; padding:1.5px 0; }
+  .inspect .tk b { font-weight:600; }
+
+  /* ---- distribution bars ---- */
+  .dist { display:flex; flex-direction:column; gap:5px; margin-top:4px; }
+  .drow { display:grid; grid-template-columns:86px 1fr 120px; align-items:center; gap:9px; }
+  .dtok { font-family:var(--mono); font-size:12px; text-align:right; white-space:nowrap;
+          overflow:hidden; text-overflow:ellipsis; color:var(--dim); }
+  .dtok.tgt { color:var(--good); font-weight:700; }
+  .dtok.prt { color:var(--ignite); font-weight:700; }
+  .dbar { position:relative; height:17px; background:var(--sunk); border-radius:3px; overflow:hidden; }
+  .dbar .b { position:absolute; inset:0 auto 0 0; border-radius:3px; }
+  .dbar .base { background:var(--ghost); }
+  .dbar .inj  { background:#5B6B7D; opacity:.95; height:9px; top:4px; }
+  .dbar .inj.tgt { background:var(--good); }
+  .dbar .inj.prt { background:var(--ignite); }
+  .dnum { font-family:var(--mono); font-size:11.5px; color:var(--faint); white-space:nowrap; }
+  .dnum b { color:var(--txt); font-weight:600; }
+
+  .stat { display:flex; gap:18px; margin-top:14px; padding-top:13px; border-top:1px solid var(--line); }
+  .stat div { display:flex; flex-direction:column; gap:2px; }
+  .stat .k { font-size:10.5px; text-transform:uppercase; letter-spacing:.07em; color:var(--faint); }
+  .stat .v { font-family:var(--mono); font-size:19px; font-weight:700; }
+
+  .warn { margin-top:11px; padding:9px 11px; border-radius:5px; font-size:12.5px; line-height:1.5;
+          background:rgba(255,92,122,.08); border:1px solid rgba(255,92,122,.25); color:#FFA6B7; }
+  .err  { background:rgba(255,92,122,.1); border:1px solid var(--bad); color:#FFB3C1;
+          padding:9px 11px; border-radius:5px; font-size:12.5px; }
+  .slider { width:100%; accent-color:var(--ignite); }
+  .muted { color:var(--faint); font-size:12px; }
+  .spin { display:inline-block; width:11px; height:11px; border:2px solid var(--line);
+          border-top-color:var(--ignite); border-radius:50%; animation:sp .7s linear infinite; }
+  @keyframes sp { to { transform:rotate(360deg); } }
+  @media (prefers-reduced-motion:reduce) { .spin { animation:none; } .gcell { transition:none; } }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.2.0/umd/react.production.min.js"></script>
+<script src="https://unpkg.com/react-dom@18.2.0/umd/react-dom.production.min.js"></script>
+<script src="https://unpkg.com/prop-types@15.8.1/prop-types.min.js"></script>
+<script src="https://unpkg.com/recharts@2.12.7/umd/Recharts.js"></script>
+<script src="https://unpkg.com/htm@3.1.1/dist/htm.umd.js"></script>
+<script>
+const { useState, useEffect, useCallback, useMemo, useRef } = React;
+const html = htm.bind(React.createElement);
+const R = window.Recharts;
+
+const FROZEN = window.__JSCOPE_FROZEN__ || null;
+const SESSION = {};
+
+const COLORS = ["#FFB020", "#38BDF8", "#A78BFA", "#34D399", "#F472B6"];
+
+/* Keys are generated here and shipped to the server verbatim on freeze, so the
+   frozen page looks things up exactly the way the live page did. */
+function stable(v) {
+  if (v === null || typeof v !== "object") return JSON.stringify(v);
+  if (Array.isArray(v)) return "[" + v.map(stable).join(",") + "]";
+  return "{" + Object.keys(v).sort().map(k => JSON.stringify(k) + ":" + stable(v[k])).join(",") + "}";
+}
+const keyOf = (path, body) => path + "|" + stable(body === undefined ? null : body);
+
+async function api(path, body) {
+  const k = keyOf(path, body ?? null);
+  if (FROZEN) {
+    if (k in FROZEN) return FROZEN[k];
+    throw new Error("not part of the frozen session — this copy has no model behind it");
+  }
+  if (SESSION[k]) return SESSION[k];
+  const res = await fetch(path, body == null ? {} : {
+    method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify(body),
+  });
+  if (!res.ok) {
+    const e = await res.json().catch(() => ({ detail: res.statusText }));
+    throw new Error(e.detail || "request failed");
+  }
+  const j = await res.json();
+  SESSION[k] = j;
+  return j;
+}
+
+const fmt = (p, n = 3) => (p == null ? "—" : p.toFixed(n));
+/* Perceptual-ish ramp: low probabilities still show, without noise looking hot. */
+const heat = p => Math.pow(Math.max(0, Math.min(1, p)), 0.55);
+
+/* ---------------------------------------------------------------- grid --- */
+
+function IgnitionGrid({ data, base, concepts, sites, toggleSite, pinned, setPinned,
+                        cellMode, cellSet, toggleCell }) {
+  const { tokens, layers, cells } = data;
+  const rows = [...layers].reverse();      // deep layers on top: the stack, upright
+  const cols = `54px repeat(${tokens.length}, minmax(40px, 1fr))`;
+
+  const colorOf = cell => {
+    let best = null, bp = 0;
+    for (const c of concepts) {
+      const p = cell.concepts[c.name] ?? 0;
+      if (p > bp) { bp = p; best = c; }
+    }
+    return best ? { color: best.color, p: bp, name: best.name } : { color: null, p: 0 };
+  };
+
+  /* Concept probabilities span orders of magnitude between prompts: silent Italy
+     peaks near 0.26, a concept with no foothold near 0.001. On an absolute ramp
+     the second renders as an empty grid, which reads as a broken tool. So the
+     ramp is scaled to the brightest cell — and that cell's true probability is
+     printed, so a faint grid is never mistaken for a hot one. */
+  const gmax = useMemo(() => {
+    let m = 0;
+    for (const l of layers)
+      for (const t of tokens)
+        for (const c of concepts)
+          m = Math.max(m, cells[String(l)][t.i].concepts[c.name] ?? 0);
+    return m;
+  }, [data, concepts]);
+
+  const shown = pinned || null;
+
+  return html`
+    <div class="gridwrap">
+      <div class=${"grid" + (cellMode ? " editing" : "")} style=${{ gridTemplateColumns: cols }}>
+        <div></div>
+        ${tokens.map(t => html`
+          <div key=${"h" + t.i}
+               class=${"thead" + (sites.includes(t.i) ? " site" : "")}
+               title=${`token ${t.i}: ${JSON.stringify(t.text)} — click to ${sites.includes(t.i) ? "remove as" : "use as"} an injection site`}
+               onClick=${() => toggleSite(t.i)}>${t.text.trim() || "␣"}</div>`)}
+
+        ${rows.map(l => [
+          html`<div key=${"l" + l} class="glab">L${l}</div>`,
+          ...tokens.map(t => {
+            const cell = cells[String(l)][t.i];
+            const { color, p, name } = colorOf(cell);
+            const isPin = shown && shown.l === l && shown.p === t.i;
+            const rel = gmax > 0 ? p / gmax : 0;
+            const picked = cellSet.has(l + ":" + t.i);
+            // in an after-view, mark cells whose reading actually moved
+            const was = base ? (() => { const c = base.cells[String(l)][t.i];
+              let m = 0; for (const k of concepts) m = Math.max(m, c.concepts[k.name] ?? 0);
+              return m; })() : null;
+            const moved = was != null && Math.abs(was - p) > 0.01;
+            return html`
+              <div key=${l + "-" + t.i}
+                   class=${"gcell" + (isPin ? " pin" : "") + (picked ? " picked" : "")
+                           + (moved ? " moved" : "")}
+                   style=${{ background: color && rel > 0.02
+                       ? `color-mix(in srgb, ${color} ${heat(rel) * 100}%, var(--sunk))`
+                       : "var(--sunk)" }}
+                   title=${`L${l} · ${JSON.stringify(t.text)}${name ? ` · ${name} ${fmt(p)}` : ""}`
+                          + (was != null ? ` (was ${fmt(was)})` : "")
+                          + (cellMode ? " — click to edit this cell" : "")}
+                   onMouseEnter=${() => setPinned({ l, p: t.i, sticky: false })}
+                   onClick=${() => cellMode ? toggleCell(l, t.i)
+                                            : setPinned({ l, p: t.i, sticky: true })}></div>`;
+          }),
+        ])}
+      </div>
+    </div>
+    <div class="row spread" style=${{ marginTop: 8 }}>
+      <span class="muted">colour is scaled to the brightest cell in this grid</span>
+      <span class="muted mono">peak p = ${gmax < 0.001 ? gmax.toExponential(1) : fmt(gmax)}</span>
+    </div>
+    ${gmax < 0.02 && html`
+      <div class="warn">Nothing really ignites here — the brightest cell is only
+        p=${gmax < 0.001 ? gmax.toExponential(1) : fmt(gmax)}. Because colour is scaled to that peak,
+        what you are looking at is faint structure stretched to full brightness, not a concept
+        catching. For comparison, "Italy" on the boot riddle reaches 0.26.</div>`}
+    ${gmax >= 0.02 && html`
+      <div class="hint" style=${{ margin: "6px 0 0" }}>
+        Function words often glow: a preposition like <span class="mono">" of"</span> in
+        "the capital of ___" holds the <i>type</i> the slot expects, so the lens reads a spread of
+        countries there and every country you track picks up a little. That is grammar, not
+        retrieval. A concept that has actually been <i>resolved</i> — "Italy" on
+        <span class="mono">" boot"</span> — spikes on one token and leaves its rivals at zero.</div>`}
+
+    <div class="inspect">
+      ${!shown
+        ? html`<div class="hdr">Hover a cell to read the workspace there. Click a token label to make it an injection site.</div>`
+        : (() => {
+            const cell = cells[String(shown.l)][shown.p];
+            return html`
+              <div class="hdr">L${shown.l} · position ${shown.p} · ${JSON.stringify(tokens[shown.p].text)}
+                ${shown.sticky ? " · pinned" : ""}</div>
+              ${cell.top.map((d, i) => html`
+                <div key=${i} class="tk"><b>${JSON.stringify(d.tok)}</b><span>${fmt(d.p)}</span></div>`)}
+              ${concepts.length > 0 && html`
+                <div class="tk" style=${{ marginTop: "7px", paddingTop: "6px", borderTop: "1px solid var(--line)" }}>
+                  <span style=${{ color: "var(--faint)" }}>tracked</span><span></span></div>`}
+              ${concepts.map(c => html`
+                <div key=${c.name} class="tk">
+                  <b style=${{ color: c.color }}>${c.name}</b>
+                  <span>${fmt(cell.concepts[c.name] ?? 0)}</span></div>`)}`;
+          })()}
+    </div>`;
+}
+
+/* ------------------------------------------------------------ trajectory --- */
+
+function Trajectory({ data, concepts, pos }) {
+  const rows = data.layers.map(l => {
+    const cell = data.cells[String(l)][pos];
+    const r = { layer: l };
+    concepts.forEach(c => { r[c.name] = cell.concepts[c.name] ?? 0; });
+    return r;
+  });
+  return html`
+    <${R.ResponsiveContainer} width="100%" height=${168}>
+      <${R.LineChart} data=${rows} margin=${{ top: 8, right: 12, left: -18, bottom: 2 }}>
+        <${R.CartesianGrid} stroke="#1E2733" vertical=${false} />
+        <${R.XAxis} dataKey="layer" tick=${{ fill: "#5A6675", fontSize: 11 }}
+                    axisLine=${{ stroke: "#1E2733" }} tickLine=${false} />
+        <${R.YAxis} tick=${{ fill: "#5A6675", fontSize: 11 }} axisLine=${false} tickLine=${false}
+                    domain=${[0, "auto"]} />
+        <${R.Tooltip} contentStyle=${{ background: "#0D131B", border: "1px solid #1E2733",
+                                        borderRadius: 6, fontFamily: "var(--mono)", fontSize: 12 }}
+                      labelStyle=${{ color: "#8593A3" }}
+                      formatter=${v => v.toFixed(4)} />
+        ${concepts.map(c => html`
+          <${R.Line} key=${c.name} type="monotone" dataKey=${c.name} stroke=${c.color}
+                     strokeWidth=${2} dot=${false} isAnimationActive=${false} />`)}
+      <//>
+    <//>`;
+}
+
+/* ----------------------------------------------------------------- bench --- */
+
+function Distribution({ inj }) {
+  const max = Math.max(...inj.rows.map(r => Math.max(r.base, r.inj)), 0.02);
+  return html`
+    <div class="dist">
+      ${inj.rows.map(r => html`
+        <div key=${r.id + r.tok} class="drow">
+          <div class=${"dtok" + (r.is_watch ? " tgt" : "") + (r.is_parrot ? " prt" : "")}>
+            ${JSON.stringify(r.tok)}</div>
+          <div class="dbar">
+            <div class="b base" style=${{ width: (r.base / max * 100) + "%" }}></div>
+            <div class=${"b inj" + (r.is_watch ? " tgt" : "") + (r.is_parrot ? " prt" : "")}
+                 style=${{ width: (r.inj / max * 100) + "%" }}></div>
+          </div>
+          <div class="dnum"><b>${fmt(r.inj)}</b> <span>was ${fmt(r.base)}</span></div>
+        </div>`)}
+    </div>`;
+}
+
+function Sweep({ points, natural, alpha, watch }) {
+  return html`
+    <${R.ResponsiveContainer} width="100%" height=${200}>
+      <${R.LineChart} data=${points} margin=${{ top: 14, right: 6, left: -20, bottom: 2 }}>
+        <${R.CartesianGrid} stroke="#1E2733" vertical=${false} />
+        <${R.XAxis} dataKey="alpha" type="number" domain=${["dataMin", "dataMax"]}
+                    tick=${{ fill: "#5A6675", fontSize: 11 }}
+                    axisLine=${{ stroke: "#1E2733" }} tickLine=${false}
+                    tickFormatter=${a => a.toFixed(a < 1 ? 2 : 1)} />
+        <${R.YAxis} yAxisId="p" domain=${[0, 1]} tick=${{ fill: "#5A6675", fontSize: 11 }}
+                    axisLine=${false} tickLine=${false} />
+        <${R.YAxis} yAxisId="kl" orientation="right" tick=${{ fill: "#FF5C7A", fontSize: 11 }}
+                    axisLine=${false} tickLine=${false} width=${34} />
+        <${R.Tooltip} contentStyle=${{ background: "#0D131B", border: "1px solid #1E2733",
+                                        borderRadius: 6, fontFamily: "var(--mono)", fontSize: 12 }}
+                      labelFormatter=${a => "α = " + Number(a).toFixed(2)}
+                      formatter=${(v, n) => [typeof v === "number" ? v.toFixed(3) : v, n]} />
+        ${natural && html`
+          <${R.ReferenceArea} yAxisId="p" x1=${natural.min} x2=${natural.max}
+                              fill="#8593A3" fillOpacity=${0.14} />`}
+        ${natural && html`
+          <${R.ReferenceLine} yAxisId="p" x=${natural.mean} stroke="#8593A3" strokeDasharray="3 3"
+              label=${{ value: "as loud as the real word", position: "top",
+                        fill: "#8593A3", fontSize: 10 }} />`}
+        <${R.ReferenceLine} yAxisId="p" x=${alpha} stroke="#E6EDF3" strokeWidth=${1} />
+        ${watch.map(w => html`
+          <${R.Line} key=${w} yAxisId="p" type="monotone" dataKey=${"watch_" + w}
+                     name=${"P(" + w + ") — used"} stroke="#35D0A5" strokeWidth=${2.6}
+                     dot=${{ r: 2 }} isAnimationActive=${false} />`)}
+        <${R.Line} yAxisId="p" type="monotone" dataKey="parrot" name="P(injected word) — parroted"
+                   stroke="#FFB020" strokeWidth=${2} dot=${false} isAnimationActive=${false} />
+        <${R.Line} yAxisId="kl" type="monotone" dataKey="kl" name="KL — damage"
+                   stroke="#FF5C7A" strokeWidth=${1.8} strokeDasharray="4 3" dot=${false}
+                   isAnimationActive=${false} />
+      <//>
+    <//>`;
+}
+
+/* ------------------------------------------------------------------ app --- */
+
+/* Starting points, not rails. Every field below is free text — including the
+   referent token and the carrier sentence, both of which used to be hardcoded to
+   v3's countries battery and quietly made every other prompt behave oddly. */
+const NEUTRAL_CARRIER = "Fact: the answer is {concept}. ";
+
+const PRESETS = [
+  {
+    name: "light it up",
+    blurb: "the model silently thinks 'Italy' — a word the prompt never contains",
+    prompt: "The currency used in the country shaped like a boot is called the",
+    track: ["Italy", "Japan"],
+    concept: "Japan", watch: ["Yen", "Euro"], sites: "referent",
+    referent: "country", carrier: "Fact: Kevin's home country is {concept}. ",
+  },
+  {
+    name: "shape it",
+    blurb: "empty slot: inject France at the referent and it answers Paris",
+    prompt: "The capital of Kevin's home country is the city of",
+    track: ["France", "Japan"],
+    concept: "France", watch: ["Paris"], sites: "referent",
+    referent: "country", carrier: "Fact: Kevin's home country is {concept}. ",
+  },
+  {
+    name: "break it",
+    blurb: "same injection smeared over every token — the model just parrots the word",
+    prompt: "The capital of Kevin's home country is the city of",
+    track: ["France"],
+    concept: "France", watch: ["Paris"], sites: "all",
+    referent: "country", carrier: "Fact: Kevin's home country is {concept}. ",
+  },
+  {
+    // The mixer demo: pick the ' boot' column, pull Italy to 0 and push Japan to
+    // 1, and the currency answer walks euro -> yen. Concepts tracked so all three
+    // get a slider.
+    name: "remix it",
+    blurb: "pull Italy down, push Japan up — the currency answer walks euro → yen",
+    prompt: "The currency used in the country shaped like a boot is called the",
+    track: ["Italy", "Japan", "France"],
+    concept: "Italy", watch: ["euro", "yen"], sites: "referent",
+    referent: "country", carrier: "Fact: Kevin's home country is {concept}. ",
+    op: "add", cellsAt: { token: "boot", lo: 8, hi: 21 },
+  },
+  {
+    // The causal test, and the reason the readout is not decoration. Project
+    // 'Italy' out of the ' boot' column and the model loses the answer: next-token
+    // goes from ' euro' (0.143) to '\n', and euro falls out of the top four.
+    name: "erase it",
+    blurb: "project Italy out of ' boot' and the model stops answering 'euro'",
+    prompt: "The currency used in the country shaped like a boot is called the",
+    track: ["Italy"],
+    concept: "Italy", watch: ["euro", "Euro"], sites: "referent",
+    referent: "country", carrier: "Fact: Kevin's home country is {concept}. ",
+    op: "erase", cellsAt: { token: "boot", lo: 8, hi: 21 },
+  },
+  {
+    // Nothing to do with countries. Baseline says ' machine' (0.43); inject
+    // 'animal' at ' computer' and the answer flips to ' human' while the parrot
+    // term stays at 0.002 — the concept is used, not repeated.
+    name: "analogy",
+    blurb: "inject 'animal' into 'computer' and the answer flips machine → human",
+    prompt: "A human is an animal. A computer is a",
+    track: ["machine", "animal", "human"],
+    concept: "animal", watch: ["machine", "human"], sites: "referent",
+    referent: "computer", carrier: NEUTRAL_CARRIER,
+  },
+];
+
+function App() {
+  const [meta, setMeta] = useState(null);
+  const [fatal, setFatal] = useState(null);
+
+  // #preset=analogy opens straight into that setup, so a view can be linked.
+  const P0 = useMemo(() => {
+    const m = /preset=([a-z-]+)/.exec(location.hash);
+    return (m && PRESETS.find(p => p.name.replace(/ /g, "-") === m[1])) || PRESETS[0];
+  }, []);
+  const [draft, setDraft] = useState(P0.prompt);
+  const [prompt, setPrompt] = useState(P0.prompt);
+  const [concepts, setConcepts] = useState(
+    P0.track.map((n, i) => ({ name: n, color: COLORS[i] })));
+  const [adding, setAdding] = useState("");
+  const [useJac, setUseJac] = useState(true);
+  const [readout, setReadout] = useState(null);
+  const [readErr, setReadErr] = useState(null);
+  const [reading, setReading] = useState(false);
+  const [pinned, setPinned] = useState(null);
+  const [trajPos, setTrajPos] = useState(null);
+
+  const [bConcept, setBConcept] = useState(P0.concept);
+  const [bWatch, setBWatch] = useState(P0.watch.join(" "));
+  const [bLayers, setBLayers] = useState([]);
+  const [sites, setSites] = useState([]);
+  const [sitePref, setSitePref] = useState(P0.sites);   // survives a prompt change
+  const [referent, setReferent] = useState(P0.referent);
+  const [carrier, setCarrier] = useState(P0.carrier);
+  const [adv, setAdv] = useState(false);
+
+  const [op, setOp] = useState(P0.op || "add");
+  const [cellMode, setCellMode] = useState(!!P0.cellsAt);
+  const [cellsAt, setCellsAt] = useState(P0.cellsAt || null);   // resolved once tokenized
+  const [picked, setPicked] = useState([]);         // [[layer, pos], ...]
+  const [after, setAfter] = useState(null);         // grid read with the edit live
+  const [showAfter, setShowAfter] = useState(true);
+
+  const [mixTargets, setMixTargets] = useState({});   // concept -> multiple of natural
+  const [mix, setMix] = useState(null);
+  const [mixing, setMixing] = useState(false);
+  const mixInit = useRef(null);
+
+  const cellSet = useMemo(() => new Set(picked.map(([l, p]) => l + ":" + p)), [picked]);
+  const toggleCell = (l, p) => setPicked(cs =>
+    cs.some(([a, b]) => a === l && b === p)
+      ? cs.filter(([a, b]) => !(a === l && b === p))
+      : [...cs, [l, p]]);
+
+  /* Cells win when you have picked any: the whole point is editing one square,
+     not a layers x tokens rectangle. */
+  const editCells = picked.length ? picked : null;
+  const [alpha, setAlpha] = useState(0.25);
+  const [mode, setMode] = useState("strength");
+  const [inj, setInj] = useState(null);
+  const [injErr, setInjErr] = useState(null);
+  const [injecting, setInjecting] = useState(false);
+  const [natural, setNatural] = useState(null);
+  const [points, setPoints] = useState(null);
+  const [sweeping, setSweeping] = useState(false);
+  const [froze, setFroze] = useState(null);
+
+  const watch = useMemo(
+    () => bWatch.split(/[\s,]+/).map(s => s.trim()).filter(Boolean).slice(0, 3), [bWatch]);
+
+  /* The natural amplitude is tiny (~0.2). A fixed 0-8 slider would bury the
+     entire interesting range in the first 3% of the track. */
+  const alphaMax = useMemo(() => {
+    if (!natural) return 4;
+    return Math.max(0.5, Math.min(8, Math.ceil(natural.mean * 8 * 10) / 10));
+  }, [natural]);
+
+  useEffect(() => {
+    api("/api/meta").then(m => { setMeta(m); setBLayers(m.default_band); })
+      .catch(e => setFatal(e.message));
+  }, []);
+
+  /* Positions of the token the question hangs on. For v3 that is " country"; for
+     your prompt it is whatever noun the answer depends on. If it isn't in the
+     prompt we fall back to the last token and say so, rather than pretending. */
+  const referentSites = useCallback(toks => {
+    const want = referent.trim().toLowerCase();
+    const hit = toks.filter(t => t.text.trim().toLowerCase() === want).map(t => t.i);
+    return hit.length ? hit : [toks.length - 1];
+  }, [referent]);
+
+  const referentFound = useMemo(() => {
+    if (!readout) return true;
+    const want = referent.trim().toLowerCase();
+    return readout.tokens.some(t => t.text.trim().toLowerCase() === want);
+  }, [readout, referent]);
+
+  const runReadout = useCallback(async () => {
+    setReading(true); setReadErr(null);
+    try {
+      const d = await api("/api/readout", {
+        prompt, concepts: concepts.map(c => c.name), layers: null, use_jacobian: useJac,
+      });
+      setReadout(d);
+      setPinned(null);
+      // open the trajectory where the concept actually lives, not at the last
+      // token — on the boot riddle that is ' boot', and the last token is dead.
+      let bp = d.tokens.length - 1, bv = -1;
+      for (const t of d.tokens)
+        for (const l of d.layers)
+          for (const c of concepts) {
+            const p = d.cells[String(l)][t.i].concepts[c.name] ?? 0;
+            if (p > bv) { bv = p; bp = t.i; }
+          }
+      setTrajPos(bp);
+      setSites(sitePref === "all" ? d.tokens.map(t => t.i) : referentSites(d.tokens));
+
+      // a preset can name its cells by token text; resolve now that we have indices
+      if (cellsAt) {
+        const t = d.tokens.find(x => x.text.trim().toLowerCase() === cellsAt.token);
+        if (t) {
+          setPicked(d.layers.filter(l => l >= cellsAt.lo && l <= cellsAt.hi)
+                            .map(l => [l, t.i]));
+        }
+        setCellsAt(null);
+      }
+    } catch (e) { setReadErr(e.message); setReadout(null); }
+    setReading(false);
+  }, [prompt, concepts, useJac, sitePref, referentSites, cellsAt]);
+
+  useEffect(() => { if (meta) runReadout(); }, [meta, prompt, concepts, useJac]);
+
+  const applyPreset = p => {
+    setDraft(p.prompt); setPrompt(p.prompt);
+    setConcepts(p.track.map((n, i) => ({ name: n, color: COLORS[i] })));
+    setBConcept(p.concept); setBWatch(p.watch.join(" "));
+    setSitePref(p.sites); setReferent(p.referent); setCarrier(p.carrier);
+    setOp(p.op || "add"); setCellsAt(p.cellsAt || null); setCellMode(!!p.cellsAt);
+    setPicked([]); setAfter(null); setPoints(null); setAlpha(0.25);
+  };
+
+  // re-aim the sites when the referent word changes under a live prompt
+  useEffect(() => {
+    if (readout && sitePref === "referent") setSites(referentSites(readout.tokens));
+  }, [referent]);
+
+  const runInject = useCallback(async () => {
+    if (!bConcept) return;
+    if (!editCells && (!bLayers.length || !sites.length)) return;
+    setInjecting(true); setInjErr(null);
+    try {
+      const body = { prompt, concept: bConcept,
+                     layers: editCells ? null : bLayers,
+                     positions: editCells ? null : sites,
+                     cells: editCells, op,
+                     alpha: Number(alpha), mode, watch, carrier };
+      const d = await api("/api/inject", body);
+      setInj(d);
+
+      // read the grid again with the edit live: this is the impact, propagating
+      const g = await api("/api/readout", {
+        prompt, concepts: concepts.map(c => c.name), layers: null, use_jacobian: useJac,
+        edit: { concept: bConcept, op, alpha: Number(alpha), mode, carrier,
+                cells: editCells || bLayers.flatMap(l => sites.map(p => [l, p])) },
+      });
+      setAfter(g);
+    } catch (e) { setInjErr(e.message); setInj(null); setAfter(null); }
+    setInjecting(false);
+  }, [prompt, bConcept, bLayers, sites, alpha, mode, watch, carrier, op, editCells,
+      concepts, useJac]);
+
+  useEffect(() => {
+    if (!meta || !readout) return;
+    const t = setTimeout(runInject, 90);           // debounce the alpha slider
+    return () => clearTimeout(t);
+  }, [meta, readout, runInject]);
+
+  useEffect(() => {
+    if (!meta || !bConcept || !bLayers.length) { setNatural(null); return; }
+    api("/api/natural", { prompt, concept: bConcept, layers: bLayers, carrier })
+      .then(d => setNatural(d.natural)).catch(() => setNatural(null));
+  }, [meta, prompt, bConcept, bLayers, carrier]);
+
+  /* The mixer: one slider per tracked concept, over the picked cells. Opens each
+     slider at the concept's *current* shadow, so moving it is moving the vector. */
+  const runMix = useCallback(async (targets) => {
+    if (!editCells || !concepts.length) return;
+    setMixing(true); setInjErr(null);
+    try {
+      const d = await api("/api/mix", {
+        prompt, targets, cells: editCells, watch, carrier });
+      setMix(d);
+      // first response defines where each slider "rests" (the current shadow)
+      if (!mixInit.current) {
+        const init = {};
+        d.concepts.forEach(c => { init[c.concept] = c.current; });
+        mixInit.current = init;
+        setMixTargets(t => ({ ...init, ...t }));
+      }
+    } catch (e) { setInjErr(e.message); setMix(null); }
+    setMixing(false);
+  }, [prompt, editCells, concepts, watch, carrier]);
+
+  // when cells are first picked, prime the mixer at the resting vector
+  useEffect(() => {
+    if (!editCells) { mixInit.current = null; setMix(null); return; }
+    const seed = {};
+    concepts.forEach(c => { seed[c.name] = 1; });
+    mixInit.current = null;
+    runMix(seed);
+  }, [editCells && editCells.map(c => c.join(":")).join(","), concepts.map(c => c.name).join(",")]);
+
+  // debounce slider drags
+  useEffect(() => {
+    if (!editCells || !Object.keys(mixTargets).length || !mixInit.current) return;
+    const t = setTimeout(() => runMix(mixTargets), 120);
+    return () => clearTimeout(t);
+  }, [mixTargets]);
+
+  const runSweep = async () => {
+    setSweeping(true); setPoints(null);
+    try {
+      // spread across the adaptive range, denser where the action is
+      const n = 14;
+      const alphas = Array.from({ length: n }, (_, i) =>
+        Math.round(alphaMax * Math.pow(i / (n - 1), 1.4) * 1000) / 1000);
+      const d = await api("/api/sweep", {
+        prompt, concept: bConcept,
+        layers: editCells ? null : bLayers, positions: editCells ? null : sites,
+        cells: editCells, op, alphas, mode, watch, carrier });
+      setPoints(d.points);
+    } catch (e) { setInjErr(e.message); }
+    setSweeping(false);
+  };
+
+  /* #sweep in the URL runs the sweep once the first injection has landed, so a
+     link (or a frozen page) can open straight into the finished chart. */
+  const auto = useRef(false);
+  useEffect(() => {
+    if (auto.current || !inj || !location.hash.includes("sweep")) return;
+    auto.current = true;
+    runSweep();
+  }, [inj]);
+
+  const doFreeze = async () => {
+    const name = window.prompt("Freeze this session as:", "jscope-session");
+    if (!name) return;
+    const entries = { ...SESSION, [keyOf("/api/meta", null)]: meta };
+    const r = await api("/api/freeze", { name, entries });
+    setFroze(r);
+  };
+
+  const toggleSite = i => setSites(s => s.includes(i) ? s.filter(x => x !== i) : [...s, i].sort((a, b) => a - b));
+  const toggleLayer = l => setBLayers(s => s.includes(l) ? s.filter(x => x !== l) : [...s, l].sort((a, b) => a - b));
+  const addConcept = () => {
+    const n = adding.trim();
+    if (!n || concepts.some(c => c.name === n) || concepts.length >= 5) return;
+    setConcepts(c => [...c, { name: n, color: COLORS[c.length % COLORS.length] }]);
+    setAdding("");
+  };
+
+  if (fatal) return html`<div style=${{ padding: 30 }}><div class="err">Cannot reach the engine: ${fatal}</div></div>`;
+  if (!meta) return html`<div style=${{ padding: 30, color: "var(--dim)" }}><span class="spin"></span> loading model…</div>`;
+
+  const badge = FROZEN ? ["frozen", "FROZEN"] : meta.mock ? ["mock", "MOCK DATA"] : ["live", "LIVE"];
+
+  return html`
+    <header>
+      <h1>J<span>·</span>Scope</h1>
+      <div class="meta">${meta.model} · ${meta.n_layers} layers · lens on ${meta.source_layers.length}</div>
+      <div class=${"badge " + badge[0]}>${badge[1]}</div>
+    </header>
+
+    <main>
+      <!-- ============================ READ ============================ -->
+      <div class="col">
+        <div class="panel">
+          <h2>Prompt</h2>
+          <p class="hint">What the model is given. The concepts you track below need not appear in it —
+             that is the whole point.</p>
+          <div class="row" style=${{ marginBottom: 11 }}>
+            ${PRESETS.map(p => html`
+              <button key=${p.name} class="btn" title=${p.blurb}
+                      onClick=${() => applyPreset(p)}>${p.name}</button>`)}
+          </div>
+          <textarea value=${draft} onInput=${e => setDraft(e.target.value)}
+            onKeyDown=${e => { if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) setPrompt(draft); }} />
+          <div class="row spread" style=${{ marginTop: 10 }}>
+            <div class="row">
+              <label class="lbl">track</label>
+              ${concepts.map(c => html`
+                <span key=${c.name} class="chip">
+                  <span class="dot" style=${{ background: c.color }}></span>${c.name}
+                  <span class="x" onClick=${() => setConcepts(x => x.filter(y => y.name !== c.name))}>×</span>
+                </span>`)}
+              ${concepts.length < 5 && html`
+                <input class="add" placeholder="+ concept" value=${adding}
+                       onInput=${e => setAdding(e.target.value)}
+                       onKeyDown=${e => e.key === "Enter" && addConcept()} />`}
+            </div>
+            <button class="btn go" disabled=${draft === prompt || reading}
+                    onClick=${() => setPrompt(draft)}>
+              ${reading ? html`<span class="spin"></span>` : "run ⌘↵"}
+            </button>
+          </div>
+        </div>
+
+        <div class="panel">
+          <div class="row spread" style=${{ marginBottom: 4 }}>
+            <h2 style=${{ margin: 0 }}>Ignition grid</h2>
+            <div class="row">
+              <button class=${"btn" + (useJac ? " on" : "")} onClick=${() => setUseJac(true)}>J-lens</button>
+              <button class=${"btn" + (!useJac ? " on" : "")} onClick=${() => setUseJac(false)}>logit lens</button>
+            </div>
+          </div>
+          <p class="hint">Every cell is the workspace at one layer and one token, coloured by how much of
+            your tracked concept the lens finds there. Flip to the logit lens to see how much of this is
+            invisible to a plain readout.</p>
+
+          <div class="row spread" style=${{ marginBottom: 10 }}>
+            <div class="row">
+              <button class=${"btn" + (!cellMode ? " on" : "")}
+                      onClick=${() => setCellMode(false)}>inspect</button>
+              <button class=${"btn" + (cellMode ? " on" : "")}
+                      onClick=${() => setCellMode(true)}>edit cells</button>
+              ${picked.length > 0 && html`
+                <span class="chip mono" style=${{ borderColor: "var(--bad)" }}>
+                  ${picked.length} cell${picked.length > 1 ? "s" : ""}
+                  <span class="x" onClick=${() => setPicked([])}>×</span></span>`}
+            </div>
+            ${after && html`
+              <div class="row">
+                <button class=${"btn" + (!showAfter ? " on" : "")}
+                        onClick=${() => setShowAfter(false)}>before</button>
+                <button class=${"btn" + (showAfter ? " on" : "")}
+                        onClick=${() => setShowAfter(true)}>after</button>
+              </div>`}
+          </div>
+          ${cellMode && html`
+            <p class="hint" style=${{ margin: "0 0 10px" }}>
+              Click any square to edit that exact cell — one layer, one token. The bench then applies
+              its operation to those cells alone, instead of the whole layers × tokens rectangle.
+              <b>Erase</b> the concept out of <span class="mono">' boot'</span> at L8–L21 and the model
+              stops answering "euro" at all.</p>`}
+
+          ${readErr && html`<div class="err">${readErr}</div>`}
+          ${readout && html`
+            <${IgnitionGrid} data=${(showAfter && after) ? after : readout}
+                             base=${(showAfter && after) ? readout : null}
+                             concepts=${concepts} sites=${sites}
+                             toggleSite=${toggleSite} pinned=${pinned} setPinned=${setPinned}
+                             cellMode=${cellMode} cellSet=${cellSet} toggleCell=${toggleCell} />`}
+          ${showAfter && after && op !== "erase" && html`
+            <div class="hint" style=${{ margin: "8px 0 0" }}>
+              Showing the workspace <b>with the edit live</b>. Red outlines are the cells you edited;
+              green outlines are cells whose reading moved as a result — including cells
+              <i>above</i> the edit, which is the change propagating up the stack.</div>`}
+          ${showAfter && after && op === "erase" && html`
+            <div class="warn">Do not read this grid as proof the concept is gone. The lens reads the
+              concept by projecting onto <span class="mono">v</span>, and erase removes exactly that
+              projection — so P(concept) collapsing to 0.0000 here is <b>partly tautological</b>, at the
+              edited cells and above them.
+              <br /><br />
+              The model disagrees with the grid. Erase Italy at L8–L21 and the grid says it is gone
+              everywhere above — yet cutting L12–L21 <i>as well</i> still drops P(euro) from 0.091 to
+              0.023. Italy-flavoured information survives in directions the lens cannot see.
+              <b>Trust the next-token distribution, not this grid, for whether a concept is really
+              gone.</b></div>`}
+          ${readout && readout.missing_concepts.length > 0 && html`
+            <div class="warn">Not single tokens, so they cannot be tracked or injected:
+              ${readout.missing_concepts.join(", ")}.</div>`}
+        </div>
+
+        ${readout && trajPos != null && html`
+          <div class="panel">
+            <div class="row spread">
+              <h2 style=${{ margin: 0 }}>Concept trajectory</h2>
+              <div class="row">
+                <label class="lbl">at token</label>
+                <select class="mono" style=${{ background: "var(--sunk)", border: "1px solid var(--line)",
+                                               borderRadius: 5, padding: "4px 7px", fontSize: 12 }}
+                        value=${trajPos} onChange=${e => setTrajPos(Number(e.target.value))}>
+                  ${readout.tokens.map(t => html`
+                    <option key=${t.i} value=${t.i}>${t.i}: ${JSON.stringify(t.text)}</option>`)}
+                </select>
+              </div>
+            </div>
+            <p class="hint">Probability the lens puts on each concept, layer by layer. A concept that
+              ignites climbs mid-stack and then hands off.</p>
+            <${Trajectory} data=${readout} concepts=${concepts} pos=${trajPos} />
+            <div class="row" style=${{ marginTop: 8 }}>
+              <span class="muted">model's next token:</span>
+              ${readout.next_token.slice(0, 5).map(d => html`
+                <span key=${d.tok} class="chip mono">${JSON.stringify(d.tok)} ${fmt(d.p, 2)}</span>`)}
+            </div>
+          </div>`}
+      </div>
+
+      <!-- =========================== WRITE ============================ -->
+      <div class="col">
+        ${editCells && html`
+          <div class="panel" style=${{ borderColor: "var(--ignite)" }}>
+            <div class="row spread">
+              <h2 style=${{ margin: 0, color: "var(--ignite)" }}>Vector mixer</h2>
+              ${mixing && html`<span class="spin"></span>`}
+            </div>
+            <p class="hint">You picked <b>${editCells.length} cell${editCells.length > 1 ? "s" : ""}</b>.
+              Each slider is one concept's <i>shadow</i> on that vector, in multiples of its natural
+              strength: <b>0</b> removes it, <b>1</b> is as loud as the real word. Every slider opens
+              where the vector already sits — drag one and you are moving the vector along that axis,
+              live.</p>
+
+            ${concepts.map(c => {
+              const info = mix && mix.concepts.find(x => x.concept === c.name);
+              const rest = mixInit.current ? mixInit.current[c.name] : 1;
+              const val = mixTargets[c.name] ?? rest ?? 1;
+              return html`
+                <div key=${c.name} style=${{ marginBottom: 12 }}>
+                  <div class="row spread">
+                    <label class="lbl raw" style=${{ color: c.color }}>${c.name}</label>
+                    <span class="muted mono">
+                      ${info ? `now ${info.achieved.toFixed(2)}×` : ""}
+                      ${info && Math.abs(info.achieved - val) > 0.06 ? " (cross-talk)" : ""}
+                    </span>
+                  </div>
+                  <input class="slider" type="range" min="0" max="2.5" step="0.05" value=${val}
+                         style=${{ accentColor: c.color }}
+                         onInput=${e => setMixTargets(t => ({ ...t, [c.name]: Number(e.target.value) }))} />
+                  <div class="row spread">
+                    <span class="muted mono" style=${{ fontSize: 11 }}>0 · gone</span>
+                    <span class="mono" style=${{ color: c.color, fontSize: 12 }}>${Number(val).toFixed(2)}×</span>
+                    <span class="muted mono" style=${{ fontSize: 11 }}>1 · real · 2.5</span>
+                  </div>
+                </div>`;
+            })}
+            ${mix && mix.unavailable.length > 0 && html`
+              <div class="warn">No natural amplitude for ${mix.unavailable.join(", ")} in this carrier,
+                so they have no slider.</div>`}
+
+            ${mix && html`
+              <${Distribution} inj=${mix} />
+              <div class="stat">
+                ${mix.watch.map(w => html`
+                  <div key=${w.tok}>
+                    <span class="k raw">P(${w.tok})</span>
+                    <span class="v" style=${{ color: "var(--good)" }}>${fmt(w.inj)}</span>
+                    <span class="muted mono">was ${fmt(w.base)}</span>
+                  </div>`)}
+                <div>
+                  <span class="k">top-1</span>
+                  <span class="v mono">${JSON.stringify(mix.top1_inj)}</span>
+                  <span class="muted mono">was ${JSON.stringify(mix.top1_base)}</span>
+                </div>
+                <div>
+                  <span class="k">KL</span>
+                  <span class="v" style=${{ color: mix.kl > 3 ? "var(--bad)" : "var(--txt)" }}>${fmt(mix.kl, 2)}</span>
+                </div>
+              </div>`}
+            <p class="hint" style=${{ margin: "10px 0 0" }}>
+              Try the <b>light it up</b> preset, pick the <span class="mono">' boot'</span> column, then
+              pull Italy to 0 and push Japan to 1: the currency answer walks from euro to yen.</p>
+          </div>`}
+
+        <div class="panel">
+          <h2>Injection bench</h2>
+          <p class="hint">A concept word becomes a direction through the lens Jacobian, and is added into
+            the residual stream at the layers and tokens you choose. α is measured in multiples of the mean
+            residual norm at each layer, so it means the same thing at every depth.</p>
+
+          <div class="row" style=${{ marginBottom: 10 }}>
+            <label class="lbl">inject</label>
+            <input class="add" style=${{ width: 118, borderStyle: "solid" }} value=${bConcept}
+                   onInput=${e => setBConcept(e.target.value)} />
+            <label class="lbl" style=${{ marginLeft: 6 }}>watch</label>
+            <input class="add" style=${{ width: 118, borderStyle: "solid" }} value=${bWatch}
+                   placeholder="Paris" onInput=${e => setBWatch(e.target.value)} />
+          </div>
+          <p class="hint" style=${{ margin: "0 0 12px" }}>
+            <b style=${{ color: "var(--good)" }}>watch</b> is what a correct answer looks like.
+            Keep it separate from what you inject — a model that simply repeats the word you pushed in
+            has not used it, and that degenerate win is what <span class="mono">top1_is_entity</span>
+            exists to catch.</p>
+
+          <div class="row" style=${{ marginBottom: 10 }}>
+            <label class="lbl">operation</label>
+            <button class=${"btn" + (op === "add" ? " on" : "")}
+                    onClick=${() => setOp("add")} title="h += α · v">add</button>
+            <button class=${"btn" + (op === "erase" ? " on" : "")}
+                    onClick=${() => setOp("erase")}
+                    title="project the concept out: h -= (h·v) v">erase</button>
+            <button class=${"btn" + (op === "replace" ? " on" : "")}
+                    onClick=${() => setOp("replace")}
+                    title="erase, then add: overwrite the concept's component">replace</button>
+          </div>
+          ${op === "erase" && html`
+            <p class="hint" style=${{ margin: "0 0 12px" }}>
+              Erase projects the concept <i>out</i> of the residual at those cells
+              (<span class="mono">h −= (h·v)·v</span>). α is ignored. This is the causal test: if the
+              workspace content is really load-bearing, taking it out should cost the model the answer.</p>`}
+
+          <div class="row" style=${{ marginBottom: 12,
+                                     opacity: op === "erase" ? 0.4 : 1,
+                                     pointerEvents: op === "erase" ? "none" : "auto" }}>
+            <label class="lbl">amplitude</label>
+            <button class=${"btn" + (mode === "strength" ? " on" : "")}
+                    onClick=${() => setMode("strength")}>α × norm</button>
+            <button class=${"btn" + (mode === "natural" ? " on" : "")}
+                    onClick=${() => setMode("natural")}>α × natural</button>
+          </div>
+
+          <div style=${{ marginBottom: 12 }}>
+            <div class="row spread">
+              <label class="lbl raw">α = <span class="mono" style=${{ color: "var(--ignite)", fontSize: 14 }}>${Number(alpha).toFixed(2)}</span></label>
+              ${natural && mode === "strength" && html`
+                <span class="muted">the real word lands at α ≈ ${natural.mean.toFixed(2)}</span>`}
+            </div>
+            <input class="slider" type="range" min="0" max=${alphaMax} step=${alphaMax / 200}
+                   value=${alpha} onInput=${e => setAlpha(Number(e.target.value))} />
+          </div>
+
+          <div style=${{ marginBottom: 12 }}>
+            <div class="row spread" style=${{ marginBottom: 5 }}>
+              <label class="lbl">layers (${bLayers.length})</label>
+              <div class="row">
+                <button class="btn" onClick=${() => setBLayers(meta.default_band)}>band</button>
+                <button class="btn" onClick=${() => setBLayers(meta.source_layers)}>all</button>
+                <button class="btn" onClick=${() => setBLayers([])}>none</button>
+              </div>
+            </div>
+            <div class="row" style=${{ gap: 4 }}>
+              ${meta.source_layers.map(l => html`
+                <span key=${l} class=${"lchip" + (bLayers.includes(l) ? " on" : "")}
+                      onClick=${() => toggleLayer(l)}>${l}</span>`)}
+            </div>
+          </div>
+
+          ${picked.length > 0 && html`
+            <div class="warn" style=${{ background: "rgba(255,92,122,.06)" }}>
+              Editing <b>${picked.length} hand-picked cell${picked.length > 1 ? "s" : ""}</b> from the
+              grid. The layers and sites below are ignored while any cell is picked —
+              <span class="x" style=${{ cursor: "pointer", textDecoration: "underline" }}
+                    onClick=${() => setPicked([])}>clear them</span> to go back to layers × sites.</div>`}
+
+          <div class="row spread" style=${{ opacity: picked.length ? 0.4 : 1 }}>
+            <label class="lbl">sites (${sites.length} of ${readout ? readout.tokens.length : "?"} tokens)</label>
+            <div class="row">
+              <button class="btn" onClick=${() => { setSitePref("referent");
+                setSites(readout ? referentSites(readout.tokens) : []); }}>referent</button>
+              <button class="btn" onClick=${() => { setSitePref("all");
+                setSites(readout ? readout.tokens.map(t => t.i) : []); }}>all</button>
+              <button class="btn" onClick=${() => { setSitePref("custom");
+                setSites(readout ? [readout.tokens.length - 1] : []); }}>last</button>
+            </div>
+          </div>
+          <div class="row" style=${{ marginTop: 7 }}>
+            <label class="lbl">referent token</label>
+            <input class="add" style=${{ width: 120, borderStyle: "solid" }} value=${referent}
+                   onInput=${e => setReferent(e.target.value)} />
+            <span class="muted">the word your answer hangs on</span>
+          </div>
+          <p class="hint" style=${{ margin: "6px 0 0" }}>
+            Aiming at the referent is what separates steering from vandalism. Or click token
+            labels in the grid to pick sites by hand.</p>
+          ${!referentFound && html`
+            <div class="warn">No <span class="mono">"${referent}"</span> token in this prompt, so
+              "referent" is falling back to the last token. Set it to whichever word your question
+              actually depends on.</div>`}
+
+          <div style=${{ marginTop: 13, paddingTop: 11, borderTop: "1px solid var(--line)" }}>
+            <button class="btn" onClick=${() => setAdv(a => !a)}>
+              ${adv ? "▾" : "▸"} natural-amplitude probe</button>
+            ${adv && html`
+              <div style=${{ marginTop: 9 }}>
+                <p class="hint" style=${{ margin: "0 0 7px" }}>
+                  To find out how loud a concept is <i>naturally</i>, we state it plainly in a carrier
+                  sentence and read the residual at its own token. The default carrier is v3's, and it
+                  is about countries — if your prompt is not, this sentence should not be either, or
+                  the α ≈ ${natural ? natural.mean.toFixed(2) : "?"} reference means nothing.</p>
+                <textarea style=${{ minHeight: 40 }} value=${carrier}
+                          onInput=${e => setCarrier(e.target.value)} />
+                <div class="row" style=${{ marginTop: 7 }}>
+                  <button class="btn" onClick=${() => setCarrier(NEUTRAL_CARRIER)}>neutral</button>
+                  <button class="btn" onClick=${() => setCarrier(PRESETS[0].carrier)}>v3 (countries)</button>
+                  <span class="muted mono">must contain {concept}</span>
+                </div>
+              </div>`}
+          </div>
+
+          ${injErr && html`<div class="err" style=${{ marginTop: 12 }}>${injErr}</div>`}
+        </div>
+
+        <div class="panel">
+          <div class="row spread">
+            <h2 style=${{ margin: 0 }}>Next-token distribution</h2>
+            ${injecting && html`<span class="spin"></span>`}
+          </div>
+          <p class="hint">Grey is the model left alone. Colour is the model with the concept pushed in.</p>
+          ${!inj ? html`<div class="muted">Pick a concept, some layers, and some sites.</div>` : html`
+            <${Distribution} inj=${inj} />
+            <div class="stat">
+              ${inj.watch.map(w => html`
+                <div key=${w.tok}>
+                  <span class="k raw">P(${w.tok}) — used</span>
+                  <span class="v" style=${{ color: "var(--good)" }}>${fmt(w.inj)}</span>
+                  <span class="muted mono">was ${fmt(w.base)}</span>
+                </div>`)}
+              <div>
+                <span class="k raw">P(${inj.concept}) — parroted</span>
+                <span class="v" style=${{ color: inj.p_parrot_inj > 0.3 ? "var(--ignite)" : "var(--dim)" }}>
+                  ${fmt(inj.p_parrot_inj)}</span>
+                <span class="muted mono">was ${fmt(inj.p_parrot_base)}</span>
+              </div>
+              <div>
+                <span class="k">KL — damage</span>
+                <span class="v" style=${{ color: inj.kl > 3 ? "var(--bad)" : "var(--txt)" }}>${fmt(inj.kl, 2)}</span>
+                <span class="muted mono">${JSON.stringify(inj.top1_base)} → ${JSON.stringify(inj.top1_inj)}</span>
+              </div>
+            </div>
+
+            ${inj.p_parrot_inj > 0.3 && html`
+              <div class="warn">The model is emitting <b>${JSON.stringify(inj.concept)}</b> itself
+                (p=${fmt(inj.p_parrot_inj, 2)}). It is repeating the word you pushed in, not using it to
+                answer. This is the degenerate win — it looks like the injection worked, and it did not.</div>`}
+            ${inj.kl > 4 && html`
+              <div class="warn">KL is ${fmt(inj.kl, 1)}: the distribution has come apart. At this
+                amplitude you are not steering the model, you are overwriting it — the regime where
+                naive injection scored 0%.</div>`}
+
+            ${inj.collateral.length > 0 && html`
+              <div style=${{ marginTop: 13 }}>
+                <span class="k lbl">collateral — what moved that you did not ask for</span>
+                <div class="dist" style=${{ marginTop: 7 }}>
+                  ${inj.collateral.map(c => html`
+                    <div key=${c.tok} class="row spread mono" style=${{ fontSize: 12 }}>
+                      <span style=${{ color: "var(--dim)" }}>${JSON.stringify(c.tok)}</span>
+                      <span style=${{ color: c.delta > 0 ? "var(--good)" : "var(--bad)" }}>
+                        ${c.delta > 0 ? "+" : ""}${fmt(c.delta)}</span>
+                    </div>`)}
+                </div>
+              </div>`}
+            ${inj.missing_watch.length > 0 && html`
+              <div class="warn">Not single tokens, so they cannot be watched:
+                ${inj.missing_watch.join(", ")}.</div>`}`}
+        </div>
+
+        <div class="panel">
+          <div class="row spread">
+            <h2 style=${{ margin: 0 }}>α sweep</h2>
+            <button class="btn go" onClick=${runSweep} disabled=${sweeping || !bLayers.length || !sites.length}>
+              ${sweeping ? html`<span class="spin"></span>` : "run sweep"}
+            </button>
+          </div>
+          <p class="hint">Green is the concept being <b>used</b>. Amber is the model <b>parroting</b> the
+            word you injected. Red is the distribution coming apart. The useful amplitude is the window
+            where green has risen and the other two have not.</p>
+          ${points ? html`<${Sweep} points=${points} natural=${mode === "strength" ? natural : null}
+                                    alpha=${alpha} watch=${watch} />`
+                   : html`<div class="muted">14 forward passes, α from 0 to ${alphaMax.toFixed(2)}.</div>`}
+        </div>
+
+        ${!FROZEN && html`
+          <div class="panel">
+            <div class="row spread">
+              <div>
+                <h2 style=${{ margin: 0 }}>Freeze</h2>
+                <p class="hint" style=${{ margin: "3px 0 0" }}>
+                  Bake everything you have looked at into a standalone HTML file that needs no model.</p>
+              </div>
+              <button class="btn" onClick=${doFreeze}>freeze session</button>
+            </div>
+            ${froze && html`<div class="mono muted" style=${{ marginTop: 10 }}>
+              wrote ${froze.path} — ${froze.entries} responses, ${(froze.bytes / 1024).toFixed(0)} KB</div>`}
+          </div>`}
+      </div>
+    </main>`;
+}
+
+ReactDOM.createRoot(document.getElementById("root")).render(html`<${App} />`);
+</script>
+</body>
+</html>
